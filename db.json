@@ -1,0 +1,224 @@
+{
+  "users": [
+    {
+      "id": "020fc458-567f-4ad3-a0cc-f6a869716edd",
+      "name": "Federico De Luca",
+      "sex": "f",
+      "number": 1234567,
+      "sizes": {
+        "tShirt": "m",
+        "trousers": 32,
+        "shoes": 41
+      }
+    },
+    {
+      "id": "d78ed708-9bb9-458f-9bd2-581223cdcf11",
+      "name": "Chiara Marino",
+      "sex": "f",
+      "number": 1234567,
+      "sizes": {
+        "tShirt": "s",
+        "trousers": 32,
+        "shoes": 39
+      }
+    },
+    {
+      "id": "8703fad0-5e63-4bfb-b270-18f7d996566a",
+      "name": "Laura Lombardi",
+      "sex": "m",
+      "number": 1234567,
+      "sizes": {
+        "tShirt": "s",
+        "trousers": 38,
+        "shoes": 44
+      }
+    },
+    {
+      "id": "1f96cd28-14e9-4542-9b11-f0bdb3ad9d5d",
+      "name": "Valentina Moretti",
+      "sex": "f",
+      "number": 1234567,
+      "sizes": {
+        "tShirt": "l",
+        "trousers": 34,
+        "shoes": 46
+      }
+    },
+    {
+      "id": "70f70259-a71a-452a-8e47-84dcea4c8341",
+      "name": "Federico De Luca",
+      "sex": "m",
+      "number": 1234567,
+      "sizes": {
+        "tShirt": "m",
+        "trousers": 38,
+        "shoes": 45
+      }
+    },
+    {
+      "id": "271b20d1-cef5-485b-8675-89e2fc8035f5",
+      "name": "Davide Galli",
+      "sex": "f",
+      "number": 1234567,
+      "sizes": {
+        "tShirt": "s",
+        "trousers": 36,
+        "shoes": 46
+      }
+    },
+    {
+      "id": "59445066-d83c-47a4-84b5-2a43215739e0",
+      "name": "Marco Esposito",
+      "sex": "m",
+      "number": 1234567,
+      "sizes": {
+        "tShirt": "l",
+        "trousers": 38,
+        "shoes": 43
+      }
+    },
+    {
+      "id": "ad47d156-3608-47b2-bfee-dd8b6983447a",
+      "name": "Tommaso Santoro",
+      "sex": "m",
+      "number": 1234567,
+      "sizes": {
+        "tShirt": "s",
+        "trousers": 36,
+        "shoes": 43
+      }
+    },
+    {
+      "id": "e487aa45-a6b5-4466-a299-4dd8dcd3e1a8",
+      "name": "Marco Esposito",
+      "sex": "m",
+      "number": 1234567,
+      "sizes": {
+        "tShirt": "l",
+        "trousers": 38,
+        "shoes": 39
+      }
+    },
+    {
+      "id": "135f7a2d-f361-42e1-9da6-522503682bb1",
+      "name": "Marco Esposito",
+      "sex": "f",
+      "number": 1234567,
+      "sizes": {
+        "tShirt": "xl",
+        "trousers": 32,
+        "shoes": 40
+      }
+    },
+    {
+      "id": "9fda110e-037c-478e-a209-8e2edd5a6901",
+      "name": "Sara Conti",
+      "sex": "f",
+      "number": 1234567,
+      "sizes": {
+        "tShirt": "xl",
+        "trousers": 36,
+        "shoes": 45
+      }
+    },
+    {
+      "id": "994c56c9-cd98-4dc1-ac72-881f00c915b9",
+      "name": "Alice Neri",
+      "sex": "f",
+      "number": 1234567,
+      "sizes": {
+        "tShirt": "s",
+        "trousers": 36,
+        "shoes": 40
+      }
+    },
+    {
+      "id": "4c3568fa-d8dc-446d-935b-838dda149991",
+      "name": "Laura Lombardi",
+      "sex": "f",
+      "number": 1234567,
+      "sizes": {
+        "tShirt": "l",
+        "trousers": 32,
+        "shoes": 40
+      }
+    },
+    {
+      "id": "9f58708b-1c21-4b99-9485-85b5e14e0c77",
+      "name": "Matteo Ferrari",
+      "sex": "m",
+      "number": 1234567,
+      "sizes": {
+        "tShirt": "l",
+        "trousers": 34,
+        "shoes": 41
+      }
+    },
+    {
+      "id": "bd1876b2-7e17-40b3-8f7a-5bbfe6ea3bbc",
+      "name": "Andrea Fontana",
+      "sex": "f",
+      "number": 1234567,
+      "sizes": {
+        "tShirt": "s",
+        "trousers": 38,
+        "shoes": 42
+      }
+    },
+    {
+      "id": "3b9980ea-a973-4159-94cf-9cb8bd11b5a1",
+      "name": "Martina Costa",
+      "sex": "m",
+      "number": 1234567,
+      "sizes": {
+        "tShirt": "s",
+        "trousers": 38,
+        "shoes": 40
+      }
+    },
+    {
+      "id": "4da44f5d-c695-44e7-9669-467f300c8196",
+      "name": "Francesca Ricci",
+      "sex": "m",
+      "number": 1234567,
+      "sizes": {
+        "tShirt": "m",
+        "trousers": 32,
+        "shoes": 46
+      }
+    },
+    {
+      "id": "b6fe01aa-1a06-44f4-8446-32ac44ebab04",
+      "name": "Alessandro Romano",
+      "sex": "m",
+      "number": 1234567,
+      "sizes": {
+        "tShirt": "m",
+        "trousers": 32,
+        "shoes": 42
+      }
+    },
+    {
+      "id": "8ec09665-9f65-42e3-9b7b-2ef275f18a9f",
+      "name": "Sara Conti",
+      "sex": "f",
+      "number": 1234567,
+      "sizes": {
+        "tShirt": "m",
+        "trousers": 38,
+        "shoes": 44
+      }
+    },
+    {
+      "id": "b0fd8f10-c0ce-4d78-ab5f-38b42b6e1fd3",
+      "name": "Francesca Ricci",
+      "sex": "f",
+      "number": 1234567,
+      "sizes": {
+        "tShirt": "m",
+        "trousers": 36,
+        "shoes": 46
+      }
+    }
+  ]
+}
