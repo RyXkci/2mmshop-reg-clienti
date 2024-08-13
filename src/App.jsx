@@ -21,12 +21,33 @@ function App() {
 
 
 
-  const filterBySize = (param) => {
+  const filterBySize = (type, param) => {
     //filters rendered data by parameter without losing initial data. Can constantly filter by chosen param;
-    const filteredUsers = initialData.filter((user) => user.sizes.tShirt === param)
-    setUsers(filteredUsers);
+    let filteredUsers;
+    switch(type) {
+      case "tShirt":
+        filteredUsers = initialData.filter((user) => user.sizes.tShirt === param)
+        setUsers(filteredUsers);
+        break;
+        case "trousers":
+        filteredUsers = initialData.filter((user) => user.sizes.trousers === param)
+        setUsers(filteredUsers);
+        break;
+        case "shoes":
+        filteredUsers = initialData.filter((user) => user.sizes.shoes === param)
+        setUsers(filteredUsers);
+        break;
+
+
+
+    }
+    
+  
   }
 
+  // const tShirtFilter = (param) => {
+
+  // }
 
   console.log('users:', users)
 
@@ -36,7 +57,7 @@ function App() {
         {users.map((user) => {
           return (
             <li>
-              {user.name} - t-shirt size: {user.sizes.tShirt}
+              {user.name} - TSHIRT SIZE: {user.sizes.tShirt} TROUSER SIZE: {user.sizes.trousers} SHOE SIZE: {user.sizes.shoes}
             </li>
           );
         })}
@@ -44,24 +65,68 @@ function App() {
 
       <button
         onClick={() => {
-          filterBySize("s");
+          filterBySize("tShirt","s");
         }}
       >
-        filter by s
+        filter by tshirt s
       </button>
       <button
         onClick={() => {
-          filterBySize("m");
+          filterBySize("tShirt", "m");
         }}
       >
-        filter by m
+        filter by tshirt m
       </button>
       <button
         onClick={() => {
-          filterBySize("l");
+          filterBySize("tShirt", "l");
         }}
       >
-        filter by l
+        filter by tshirt l
+      </button>
+
+      <button
+        onClick={() => {
+          filterBySize("trousers", 32)}}
+      >
+        filter by trouser 32
+      </button>
+
+      <button
+        onClick={() => {
+          filterBySize("trousers", 36);
+        }}
+      >
+        filter by trouser 36
+      </button>
+
+      <button
+        onClick={() => {
+          filterBySize("trousers", 38);
+        }}
+      >
+        filter by trouser 38
+      </button>
+      <button
+        onClick={() => {
+          filterBySize("shoes", 39);
+        }}
+      >
+        filter by shoes 39
+      </button>
+      <button
+        onClick={() => {
+          filterBySize("shoes", 44);
+        }}
+      >
+        filter by shoes 44
+      </button>
+      <button
+        onClick={() => {
+          filterBySize("shoes", 46);
+        }}
+      >
+        filter by shoes 46
       </button>
     </>
   );
