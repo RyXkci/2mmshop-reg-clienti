@@ -4,8 +4,9 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 
-import Basic from "./pages/Basic";
-import Table from "./pages/Table";
+import Basic from "./components/Basic";
+import Table from "./components/Table";
+import TanTable from "./components/TanTable";
 
 function App() {
   
@@ -19,6 +20,8 @@ function App() {
       <Route path="/basic" element={<Basic />}
       />
       <Route path="/table" element={<Table />}
+      />
+      <Route path="/tantable" element={<TanTable />}
       />
     </Routes>
     </BrowserRouter>
