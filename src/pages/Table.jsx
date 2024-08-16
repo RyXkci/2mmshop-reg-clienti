@@ -47,11 +47,11 @@ export default function Table() {
     <table className="table">
         <thead>
             <tr>
-                <td>Nome</td>
-                <td>Telefono</td>
-                <td>Maglietta</td>
-                <td>Pantaloni</td>
-                <td>Scarpe</td>
+                <th className="th-dark">Nome</th>
+                <th className="th-dark">Telefono</th>
+                <th className="th-light">Maglietta</th>
+                <th className="th-light">Pantaloni</th>
+                <th className="th-light">Scarpe</th>
             </tr>
         </thead>
         <tbody>

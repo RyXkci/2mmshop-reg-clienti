@@ -1,0 +1,37 @@
+:root {
+    --primary-400: #FD8A09;
+    --dark-700: #2F4858;
+    --dark-500: #4C8077;
+}
+main {
+    padding: 3em 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+table {
+    border-collapse: collapse;
+    border-radius: 5px;
+}
+
+th, td {
+    padding: 1.3em;
+    border: 1px solid var(--dark-700);
+}
+.th-dark {
+    background-color: var(--dark-700);
+    color: white;
+}
+
+.th-light {
+    background-color: var(--dark-500);
+    color: white;
+}
+
+tbody {
+    background-color: var(--primary-400);
+    color: var(--dark-700);
+}
