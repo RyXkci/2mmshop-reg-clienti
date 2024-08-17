@@ -1,11 +1,12 @@
 import { useState, useMemo, useEffect} from "react";
-import { useReactTable, getCoreRowModel, flexRender } from "@tanstack/react-table";
+import { useReactTable, getCoreRowModel, getFilteredRowModel, flexRender } from "@tanstack/react-table";
 import { COLUMNS } from "./columns";
  
  
  export default function TanTable() {
     const columns = useMemo(() => COLUMNS)
     const [data, setData] = useState([]);
+    const [columnFilters, setColumnFilters] = useState([])
 
     useEffect(() => {
     const getData = async() => {
@@ -17,16 +18,57 @@ import { COLUMNS } from "./columns";
     }, [])
 
 
-    const tableInstance = useReactTable({ columns, data, getCoreRowModel: getCoreRowModel() })
+    const tableInstance = useReactTable({ 
+      columns, data, 
+      state: {
+        columnFilters
+      },
+      getCoreRowModel: getCoreRowModel(),
+     
+      getFilteredRowModel: getFilteredRowModel()
+    })
+
     const {
-       
         getHeaderGroups,
         getRowModel,
     } = tableInstance;
 
     console.log(data)
+
+const onFilterChange = (id, value) => setColumnFilters(
+  prev => prev.filter(f => f.id !==id).concat({id, value})
+)
+   
     return (
       <main className="main">
+        <button
+        onClick={() => {
+          onFilterChange("tshirt", "s");
+        }}
+      >
+        filter by tshirt s
+      </button>
+        <button
+        onClick={() => {
+          onFilterChange("sex", "f");
+        }}
+      >
+        filter by sex f
+      </button>
+        <button
+        onClick={() => {
+          onFilterChange("trousers", "38");
+        }}
+      >
+        filter by trousers 38
+      </button>
+        <button
+        onClick={() => {
+          onFilterChange("shoes", "42");
+        }}
+      >
+        filter by shoes 42
+      </button>
         <table>
             <thead>
                {getHeaderGroups().map(headerGroup =>(
@@ -54,6 +96,8 @@ import { COLUMNS } from "./columns";
               })}
             </tbody>
         </table>
+
+        
         </main>
         // <table>
         //     <thead>
