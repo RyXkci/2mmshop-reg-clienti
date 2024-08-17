@@ -19,24 +19,20 @@ import { COLUMNS } from "./columns";
 
     const tableInstance = useReactTable({ columns, data, getCoreRowModel: getCoreRowModel() })
     const {
-        getTableProps,
-        getTableBodyProps,
+       
         getHeaderGroups,
         getRowModel,
-        originalRows,
-        headerGroups,
-        rows,
-        prepareRow
     } = tableInstance;
 
     console.log(data)
     return (
+      <main className="main">
         <table>
             <thead>
                {getHeaderGroups().map(headerGroup =>(
                 <tr key={headerGroup.id}>
                     {headerGroup.headers.map(header => (
-                        <th key={header.id}>
+                        <th className={header.column.columnDef.meta?.className ?? ""} key={header.id}>
                             {flexRender(
                         header.column.columnDef.header,
                         header.getContext()
@@ -48,9 +44,9 @@ import { COLUMNS } from "./columns";
             </thead>
             <tbody>
               {getRowModel().rows.map(row => {
-                 <tr key={row.id}>
-                 {row.getVisibleCells().map(cell => (
-                   <td key={`${row.id}-${cell.id}`}>
+                 return <tr key={row.id}>
+                 {row.getVisibleCells().map((cell) => (
+                   <td key={cell.id}>
                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
                    </td>
                  ))}
@@ -58,6 +54,7 @@ import { COLUMNS } from "./columns";
               })}
             </tbody>
         </table>
+        </main>
         // <table>
         //     <thead>
         //         {headerGroups.map((headerGroup)=>(
