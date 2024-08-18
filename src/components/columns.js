@@ -27,6 +27,13 @@ export const COLUMNS = [
     accessorKey: "sizes.tShirt",
     meta: {
       className: "th-light",
+      hasFilter: true,
+      sizeOptions: [
+        "s",
+        "m",
+        "l",
+        "xl"
+      ]
     },
   },
   {
