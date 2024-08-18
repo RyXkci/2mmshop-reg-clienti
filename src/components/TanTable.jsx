@@ -34,6 +34,10 @@ import { COLUMNS } from "./columns";
     } = tableInstance;
 
     console.log(data)
+    const reset = () => {
+      setColumnFilters([])
+    }
+    console.log(reset)
 
 const onFilterChange = (id, value) => setColumnFilters(
   prev => prev.filter(f => f.id !==id).concat({id, value})
@@ -41,7 +45,54 @@ const onFilterChange = (id, value) => setColumnFilters(
    
     return (
       <main className="main">
-        <button
+        <button onClick={reset}>Reset</button>
+        <table>
+         <thead>
+               {getHeaderGroups().map(headerGroup =>(
+                <tr key={headerGroup.id}>
+                    {headerGroup.headers.map(header => (
+                        <th className={header.column.columnDef.meta?.className ?? ""} key={header.id}>
+                          {header.column.columnDef.meta.hasFilter === true ?
+                          <><label htmlFor="">{flexRender(
+                            header.column.columnDef.header,
+                            header.getContext()
+                          )}</label> 
+                          <select name="" id="">
+                            <option value=""></option>
+                          {header.column.columnDef.meta.selectOptions?.map((option) => {
+                            return <option
+                            key={option}
+                            onClick={() => {onFilterChange(`${header.column.columnDef.id}`, `${option}`)}}>{option}
+                            </option>
+                          })} 
+                          </select>
+                         
+                          </>: 
+                          "testing"
+                      //        flexRender(
+                      //   header.column.columnDef.header,
+                      //   header.getContext()
+                      // )
+                      }
+                        </th>
+                    ))}
+                </tr>
+               ))}
+            </thead>
+            <tbody>
+              {getRowModel().rows.map(row => {
+                 return <tr key={row.id}>
+                 {row.getVisibleCells().map((cell) => (
+                   <td key={cell.id}>
+                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                   </td>
+                 ))}
+               </tr>
+              })}
+            </tbody>
+        </table>
+
+        {/* <button
         onClick={() => {
           onFilterChange("tshirt", "s");
         }}
@@ -68,34 +119,7 @@ const onFilterChange = (id, value) => setColumnFilters(
         }}
       >
         filter by shoes 42
-      </button>
-        <table>
-            <thead>
-               {getHeaderGroups().map(headerGroup =>(
-                <tr key={headerGroup.id}>
-                    {headerGroup.headers.map(header => (
-                        <th className={header.column.columnDef.meta?.className ?? ""} key={header.id}>
-                            {flexRender(
-                        header.column.columnDef.header,
-                        header.getContext()
-                      )}
-                        </th>
-                    ))}
-                </tr>
-               ))}
-            </thead>
-            <tbody>
-              {getRowModel().rows.map(row => {
-                 return <tr key={row.id}>
-                 {row.getVisibleCells().map((cell) => (
-                   <td key={cell.id}>
-                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                   </td>
-                 ))}
-               </tr>
-              })}
-            </tbody>
-        </table>
+      </button> */}
 
         
         </main>
