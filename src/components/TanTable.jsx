@@ -68,7 +68,10 @@ const onFilterChange = (id, value) => setColumnFilters(
                           </select>
                          
                           </>: 
-                          "testing"
+                          flexRender(
+                            header.column.columnDef.header,
+                            header.getContext()
+                          )
                       //        flexRender(
                       //   header.column.columnDef.header,
                       //   header.getContext()
