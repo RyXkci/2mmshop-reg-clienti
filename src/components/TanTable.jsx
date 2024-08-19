@@ -33,11 +33,9 @@ import { COLUMNS } from "./columns";
         getRowModel,
     } = tableInstance;
 
-    console.log(data)
     const reset = () => {
       setColumnFilters([])
     }
-    console.log(reset)
 
 const onFilterChange = (id, value) => setColumnFilters(
   prev => prev.filter(f => f.id !==id).concat({id, value})
@@ -52,12 +50,13 @@ const onFilterChange = (id, value) => setColumnFilters(
                 <tr key={headerGroup.id}>
                     {headerGroup.headers.map(header => (
                         <th className={header.column.columnDef.meta?.className ?? ""} key={header.id}>
+                        
                           {header.column.columnDef.meta.hasFilter === true ?
-                          <><label htmlFor="">{flexRender(
+                          <><label htmlFor={header.id}>{flexRender(
                             header.column.columnDef.header,
                             header.getContext()
                           )}</label> 
-                          <select name="" id="">
+                          <select name="header-options" id={header.id}>
                             <option value=""></option>
                           {header.column.columnDef.meta.selectOptions?.map((option) => {
                             return <option

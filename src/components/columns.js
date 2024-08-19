@@ -38,10 +38,12 @@ export const COLUMNS = [
       className: "th-light",
       hasFilter: true,
       selectOptions: [
+        "xs",
         "s",
         "m",
         "l",
-        "xl"
+        "xl",
+        "xxl"
       ]
     },
   },
@@ -54,9 +56,17 @@ export const COLUMNS = [
       className: "th-light",
       hasFilter: true,
       selectOptions: [
-        "32",
-        "33",
-        "34"
+      "38",
+      "40",
+      "42",
+      "44",
+      "46",
+      "48",
+      "50",
+      "52",
+      "54",
+      "56",
+      "58"
       ]
     },
   },
@@ -69,9 +79,18 @@ export const COLUMNS = [
       className: "th-light",
       hasFilter: true,
       selectOptions: [
-        "32",
-        "33",
-        "34"
+        "36",
+        "37",
+        "38",
+        "39",
+        "40",
+        "41",
+        "42",
+        "43",
+        "44",
+        "45",
+        "46"
+
       ]
     },
   },

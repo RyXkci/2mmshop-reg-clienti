@@ -6,6 +6,11 @@
     --dark-500: #4C8077;
 }
 
+body {
+    font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+}
+
 main {
     padding: 3em 0;
     width: 100%;
@@ -49,7 +54,8 @@ td {
 
 tbody {
     background-color: var(--primary-400);
-    color: var(--dark-900);
+    color: var(--dark-700);
+    font-weight: 700;
 }
 
 th:first-of-type {
