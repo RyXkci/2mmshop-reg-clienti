@@ -1,14 +1,22 @@
 :root {
+    --primary-400: rgba(253, 138, 9, .7); 
     --primary-400: #FD8A09;
-    --dark-900: #001d2b;
+     --dark-900: #001d2b;
     --dark-700: #2F4858;
     --dark-600: #2b5f57;
     --dark-500: #4C8077;
+
+    /* --dark-700: #FD8A09;
+    --dark-600: #fa8703;
+    --dark-500: #b14c00; */
+
+
+    /* */
 }
 
 body {
     font-family: "Inter", sans-serif;
-  font-optical-sizing: auto;
+    font-optical-sizing: auto;
 }
 
 main {
@@ -75,9 +83,9 @@ tr:last-of-type td:last-of-type {
     border-bottom-right-radius: 10px;
 }
 
-td:last-of-type {
+/* td:last-of-type {
     border-right: none;
-}
+} */
 
 label {
     margin-right: .5em;
