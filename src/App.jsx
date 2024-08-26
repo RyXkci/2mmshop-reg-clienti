@@ -7,6 +7,7 @@ import "./App.css";
 import Basic from "./components/Basic";
 import Table from "./components/Table";
 import TanTable from "./components/TanTable";
+import DataForm from "./components/DataForm";
 
 function App() {
   
@@ -22,6 +23,8 @@ function App() {
       <Route path="/table" element={<Table />}
       />
       <Route path="/tantable" element={<TanTable />}
+      />
+      <Route path="/formdati" element={<DataForm />}
       />
     </Routes>
     </BrowserRouter>
