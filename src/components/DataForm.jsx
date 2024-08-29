@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+import '../stylesheets/form.css'
+
 export default function DataForm() {
   const [formData, setFormData] = useState({
     firstName: "",
@@ -44,15 +46,20 @@ export default function DataForm() {
 
   return (
     <main className="main">
+      <div className="form-container">
+      <h1 className="form-title">Titolo</h1>
+      <p className="form-subtitle">Testo per inserimento taglie</p>
       <form className="post-form" onSubmit={handleSubmit}>
-        <div className="data-section">
+        <div className="data-section has-bottom-border-shadow">
+          <h1 className="data-section__title has-bottom-border-shadow">Inserisci qui tuoi dettagli</h1>
           <div className="form-input"></div>
           <div className="form-input">
             <label htmlFor="firstname">Nome</label>
             <input
+            className="has-inner-box-shadow"
               type="text"
               id="firstname"
-              placeholder="nome"
+              placeholder="Il tuo nome"
               value={formData.firstName}
               name="firstName"
               onChange={updateFormData}
@@ -61,9 +68,10 @@ export default function DataForm() {
           <div className="form-input">
             <label htmlFor="lastname">Cognome</label>
             <input
+            className="has-inner-box-shadow"
               type="text"
               id="lastname"
-              placeholder="cognome"
+              placeholder="Il tuo cognome"
               value={formData.lastName}
               name="lastName"
               onChange={updateFormData}
@@ -72,37 +80,42 @@ export default function DataForm() {
           <div className="form-input">
             <label htmlFor="phonenumber">Numero di telefono</label>
             <input
+            className="has-top-box-shadow"
               type="text"
               id="phonenumber"
-              placeholder="numero di telefono"
+              placeholder="Il tuo numero di telefono"
               value={formData.phoneNumber}
               name="phoneNumber"
               onChange={updateFormData}
             />
           </div>
-          <div className="form-dropdown">
+          <div className="form-dropdown dropdown-white">
             <label htmlFor="sex">Sesso</label>
             <select
+            className="form-dropdown has-inner-box-shadow"
               name="sex"
               id="sex"
               value={formData.sex}
               onChange={updateFormData}
             >
-              <option value=""></option>
+              <option value="">Scegli un'opzione</option>
               <option value="m">m</option>
               <option value="f">f</option>
             </select>
           </div>
         </div>
-        <div className="sizes-section">
+        <div className="sizes-section has-bottom-border-shadow">
+          <h1 className="sizes-section__title has-bottom-border-shadow">E inserisci qui le tue taglie!</h1>
           <div className="form-dropdown">
             <label htmlFor="tshirt">Maglietta:</label>
             <select
+            className="has-top-box-shadow"
               name="tshirtSize"
               id="tshirt"
               value={formData.tshirtSize}
               onChange={updateFormData}
             >
+              <option value="">Scegli un'opzione</option>
               <option value="xxs">XXS</option>
               <option value="xs">XS</option>
               <option value="s">S</option>
@@ -115,11 +128,13 @@ export default function DataForm() {
           <div className="form-dropdown">
             <label htmlFor="trousers">Pantaloni:</label>
             <select
+            className="has-top-box-shadow"
               name="trouserSize"
               id="trousers"
               value={formData.trouserSize}
               onChange={updateFormData}
             >
+              <option value="">Scegli un'opzione</option>
               <option value="38">38</option>
               <option value="40">40</option>
               <option value="42">42</option>
@@ -136,11 +151,13 @@ export default function DataForm() {
           <div className="form-dropdown">
             <label htmlFor="shoes">Scarpe:</label>
             <select
+            className="has-top-box-shadow"
               name="shoeSize"
               id="shoes"
               value={formData.shoeSize}
               onChange={updateFormData}
             >
+              <option value="">Scegli un'opzione</option>
               <option value="36">36</option>
               <option value="37">37</option>
               <option value="38">38</option>
@@ -151,8 +168,9 @@ export default function DataForm() {
             </select>
           </div>
         </div>
-        <button onClick={handleSubmit}>Submit</button>
+        <button className=" form-button has-top-border-shadow" onClick={handleSubmit}>Invia</button>
       </form>
+      </div>
     </main>
   );
 }
