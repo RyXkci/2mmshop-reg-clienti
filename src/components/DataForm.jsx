@@ -33,6 +33,7 @@ export default function DataForm() {
         trousers: formData.trouserSize,
         shoes: formData.shoeSize
       },
+      time: new Date().toISOString()
     };
     console.log(newClient)
     fetch("http://localhost:3000/users", {

@@ -12,7 +12,13 @@ import { COLUMNS } from "./columns";
     const getData = async() => {
             const response = await fetch("http://localhost:3000/users");
              const json = await response.json();
-             setData(json)
+
+             const sortedUsers = json.sort((a, b) => {
+              return new Date(b.time) - new Date(a.time);
+          });
+          console.log(sortedUsers)
+
+             setData(sortedUsers)
     }
     getData()
     }, [])

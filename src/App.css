@@ -2,6 +2,7 @@
     --primary-100: hsl(32, 98%, 93%);
     --primary-300: hsl(27, 74%, 25%);
     --primary-500: #FD8A09; 
+    --primary-600: #e47902;
 
     --dark-900: #000000;
     --dark-700: hsl(0, 0%, 10%);
@@ -48,14 +49,17 @@ td {
 
 
 .th-dark {
-    background-color: var(--dark-700);
+    background-color: var(--dark-500);
     color: white;
 }
 
 .th-light {
-    background-color: var(--dark-500);
+    background-color: var(--primary-500);
     border-right: 1px solid var(--dark-700);
     color: white;
+}
+.th-light select {
+    background: var(--primary-600);
 }
 
 tbody {

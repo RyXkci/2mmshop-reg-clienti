@@ -86,6 +86,7 @@ for (let i = 0; i < 50; i++) {
       trousers: getRandomItem(sizesOptions.trousersSizes),
       shoes: getRandomItem(sizesOptions.shoeSizes),
     },
+    time: new Date().toISOString()
   };
   db.users.push(user);
 }
