@@ -48,12 +48,15 @@ export default function DataForm() {
   return (
     <main className="main">
       <div className="form-container">
-      <h1 className="form-title">Titolo</h1>
-      <p className="form-subtitle">Testo per inserimento taglie</p>
+        <div className="form-header">
+        <h1 className="form-title">Titolo</h1>
+        <p className="form-subtitle">Testo per inserimento taglie</p>
+        </div>
+     
       <form className="post-form" onSubmit={handleSubmit}>
         <div className="data-section has-bottom-border-shadow">
           <h1 className="data-section__title has-bottom-border-shadow">Inserisci qui tuoi dettagli</h1>
-          <div className="form-input"></div>
+
           <div className="form-input">
             <label htmlFor="firstname">Nome</label>
             <input
