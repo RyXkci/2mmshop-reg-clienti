@@ -1,8 +1,12 @@
 import { useState } from "react";
 
+import Success from "./Success";
+
 import '../stylesheets/form.css'
 
 export default function DataForm() {
+
+  const [isSubmitted, setIsSubmitted] = useState(false)
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -22,7 +26,7 @@ export default function DataForm() {
       };
     });
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     const newClient = {
       name: `${formData.firstName} ${formData.lastName}`,
@@ -36,14 +40,33 @@ export default function DataForm() {
       time: new Date().toISOString()
     };
     console.log(newClient)
-    fetch("http://localhost:3000/users", {
+    const response = await fetch("http://localhost:3000/users", {
       method: "POST",
       headers: {
         "Content-Type": "Application/JSON",
       },
       body: JSON.stringify(newClient),
-    }).then(response => response.json())
+    })
+    if(response.ok) {
+      setIsSubmitted(!isSubmitted)
+    }
+  
+   
   };
+
+  const reset = () => {
+    setFormData({
+      firstName: "",
+      lastName: "",
+      phoneNumber: "",
+      sex: "",
+  
+      tshirtSize: "",
+      trouserSize: "",
+      shoeSize: "",
+    })
+    setIsSubmitted(false)
+  }
 
   return (
     <main className="main">
@@ -67,6 +90,7 @@ export default function DataForm() {
               value={formData.firstName}
               name="firstName"
               onChange={updateFormData}
+              disabled={isSubmitted}
             />
           </div>
           <div className="form-input">
@@ -79,6 +103,7 @@ export default function DataForm() {
               value={formData.lastName}
               name="lastName"
               onChange={updateFormData}
+              disabled={isSubmitted}
             />
           </div>
           <div className="form-input">
@@ -91,6 +116,7 @@ export default function DataForm() {
               value={formData.phoneNumber}
               name="phoneNumber"
               onChange={updateFormData}
+              disabled={isSubmitted}
             />
           </div>
           <div className="form-dropdown dropdown-white">
@@ -101,6 +127,7 @@ export default function DataForm() {
               id="sex"
               value={formData.sex}
               onChange={updateFormData}
+              disabled={isSubmitted}
             >
               <option value="">Scegli un'opzione</option>
               <option value="m">m</option>
@@ -118,6 +145,7 @@ export default function DataForm() {
               id="tshirt"
               value={formData.tshirtSize}
               onChange={updateFormData}
+              disabled={isSubmitted}
             >
               <option value="">Scegli un'opzione</option>
               <option value="xxs">XXS</option>
@@ -137,6 +165,7 @@ export default function DataForm() {
               id="trousers"
               value={formData.trouserSize}
               onChange={updateFormData}
+              disabled={isSubmitted}
             >
               <option value="">Scegli un'opzione</option>
               <option value="38">38</option>
@@ -160,6 +189,7 @@ export default function DataForm() {
               id="shoes"
               value={formData.shoeSize}
               onChange={updateFormData}
+              disabled={isSubmitted}
             >
               <option value="">Scegli un'opzione</option>
               <option value="36">36</option>
@@ -172,9 +202,16 @@ export default function DataForm() {
             </select>
           </div>
         </div>
-        <button className=" form-button has-top-border-shadow" onClick={handleSubmit}>Invia</button>
+        <button disabled={isSubmitted} className=" form-button has-top-border-shadow" onClick={handleSubmit}>Invia</button>
       </form>
       </div>
+     {isSubmitted && <Success clickFunc={reset} />}
+      {/* <div className="success-page">
+        <div className="success-page-inner">
+          <h1 className="success-page__title has-text-stroke-dark">Bene, i tuoi dati sono stati inviati!</h1>
+          <p className="success-page__subtitle has-text-stroke-dark">Attendi le promozioni mirate alle tue taglie!</p>
+        </div>
+      </div> */}
     </main>
   );
 }
