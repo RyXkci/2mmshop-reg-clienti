@@ -3,7 +3,7 @@
     font-family: "Special Elite", system-ui;
     font-weight: 400;
     font-style: normal;
-    font-size: 2.3rem;
+    font-size: 2rem;
     text-align:center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     clip-path: polygon(0% 10%, 10% 0%, 20% 10%, 30% 0%, 40% 10%, 50% 0%,
@@ -17,7 +17,7 @@
     font-family: "Special Elite", system-ui;
     font-weight: 400;
     font-style: normal;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     text-align:center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     clip-path: polygon(0% 10%, 10% 0%, 20% 10%, 30% 0%, 40% 10%, 50% 0%,
@@ -34,6 +34,12 @@
     color: var(--primary-300);
 }
 
+.form-danger {
+    font-size: .8rem;
+    color: var(--danger);
+    text-transform: uppercase;
+    font-weight:bold;
+}
 
 
 
