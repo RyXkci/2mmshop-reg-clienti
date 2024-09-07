@@ -65,7 +65,7 @@ td {
 }
 
 tbody {
-    background-color: var(--primary-400);
+    background-color: var(--primary-100);
     color: var(--dark-700);
     font-weight: 700;
 }
