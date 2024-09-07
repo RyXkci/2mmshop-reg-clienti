@@ -1,6 +1,7 @@
 :root { 
     --primary-100: hsl(32, 98%, 93%);
     --primary-300: hsl(27, 74%, 25%);
+    --primary-400: #fd931b;
     --primary-500: #FD8A09; 
     --primary-600: #e47902;
 
