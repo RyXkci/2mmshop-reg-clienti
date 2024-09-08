@@ -7,13 +7,15 @@ import { values } from "../utils/formUtils";
 import { registerOptions } from "../utils/formUtils";
 import "../stylesheets/form.css";
 
+import { postData } from "../utils/fetches";
+
 import { success, fail } from "../utils/resultText.json";
-console.log(success);
+
 
 export default function HookForm() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [resultText, setResultText] = useState(null);
-  const [isSuccess, setIsSuccess] = useState(true) // STATE TO DETERMINE RESULT COMPONENT RESET
+  const [isSuccess, setIsSuccess] = useState(true); // STATE TO DETERMINE RESULT COMPONENT RESET
 
   const {
     register,
@@ -26,7 +28,7 @@ export default function HookForm() {
     defaultValues: values,
   });
 
-  const submitData = async (formData) => {
+  const submitData =  async (formData) => {
     const newClient = {
       name: `${formData.firstName} ${formData.lastName}`,
       number: formData.phoneNumber,
@@ -38,29 +40,53 @@ export default function HookForm() {
       },
       time: new Date().toISOString(),
     };
-    console.log(newClient);
-    try {
-    const response = await fetch("http://localhost:3000/users", {
-      method: "POST",
-      headers: {
-        "Content-Type": "Application/JSON",
-      },
-      body: JSON.stringify(newClient),
-    });
-    if (response.ok) {
-      console.log(success);
-      setIsSuccess(true)
+    const response =  await postData(newClient);
+    if (!response.error) {
+      console.log(response);
+      setIsSuccess(true);
       setIsSubmitted(!isSubmitted);
       setResultText(success);
-      console.log(resultText);
-    } 
-  } catch (error) {
-    console.log(error)
-    setIsSuccess(false)
-    setIsSubmitted(!isSubmitted);
-    setResultText(fail)
-  }
+    } else {
+      setIsSuccess(false);
+      setIsSubmitted(!isSubmitted);
+      setResultText(fail);
+    }
   };
+
+  // const submitData = async (formData) => {
+  //   const newClient = {
+  //     name: `${formData.firstName} ${formData.lastName}`,
+  //     number: formData.phoneNumber,
+  //     sex: formData.sex,
+  //     sizes: {
+  //       tShirt: formData.tShirtSize,
+  //       trousers: formData.trouserSize,
+  //       shoes: formData.shoeSize,
+  //     },
+  //     time: new Date().toISOString(),
+  //   };
+  //   console.log(newClient);
+  //   try {
+  //   const response = await fetch("http://localhost:3000/users", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "Application/JSON",
+  //     },
+  //     body: JSON.stringify(newClient),
+  //   });
+  //   if (response.ok) {
+  //     console.log(success);
+  //     setIsSuccess(true)
+  //     setIsSubmitted(!isSubmitted);
+  //     setResultText(success);
+  //   }
+  // } catch (error) {
+  //   console.log(error)
+  //   setIsSuccess(false)
+  //   setIsSubmitted(!isSubmitted);
+  //   setResultText(fail)
+  // }
+  // };
 
   const clearResult = () => {
     setIsSubmitted(false);
@@ -235,10 +261,7 @@ export default function HookForm() {
           </button>
         </form>
       </div>
-      {isSubmitted && 
-      <Result 
-      content={resultText}
-      clickFunc={clearResult} />}
+      {isSubmitted && <Result content={resultText} clickFunc={clearResult} />}
     </main>
   );
 }
