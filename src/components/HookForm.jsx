@@ -57,9 +57,35 @@ export default function HookForm() {
     defaultValues: values,
   });
 
-  const submitData = (formData) => {
-    console.log(formData);
+  const submitData = async (formData) => {
+    const newClient = {
+      name: `${formData.firstName} ${formData.lastName}`,
+      number: formData.phoneNumber,
+      sex: formData.sex,
+      sizes: {
+        tShirt: formData.tShirtSize,
+        trousers: formData.trouserSize,
+        shoes: formData.shoeSize,
+      },
+      time: new Date().toISOString(),
+    };
+    console.log(newClient);
+    const response = await fetch("http://localhost:3000/users", {
+      method: "POST",
+      headers: {
+        "Content-Type": "Application/JSON",
+      },
+      body: JSON.stringify(newClient),
+    });
+    if (response.ok) {
+      setIsSubmitted(!isSubmitted);
+    }
   };
+
+  const clearResult = () => {
+    setIsSubmitted(false);
+    reset(values)
+  }
 
   const [isSubmitted, setIsSubmitted] = useState(false);
   return (
@@ -224,12 +250,14 @@ export default function HookForm() {
           <button
             type="submit"
             disabled={isSubmitted}
-            className=" form-button has-top-border-shadow"
+            className="btn-fill-dark has-top-border-shadow"
           >
             Invia
           </button>
         </form>
+        
       </div>
+      {isSubmitted && <Success clickFunc={clearResult} />}
     </main>
   );
 }

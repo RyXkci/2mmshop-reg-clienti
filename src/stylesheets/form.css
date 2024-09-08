@@ -139,14 +139,15 @@ form {
         inset 0 -2px 2px hsla(0, 0%, 100%, .15);
 }
 
-.form-button {
+.btn-fill-dark {
     background: var(--dark-500);
     color: white;
-    padding: .8em 1.3em;
+    padding: .5em 1.3em;
     border-radius: 10px;
     font-size: 1.3em;
     font-family: inherit;
     margin-top: 1.3em;
+
 }
 
 @media screen and (min-width: 670px) {
