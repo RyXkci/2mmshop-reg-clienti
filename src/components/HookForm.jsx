@@ -1,50 +1,19 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
-import Success from "./Success";
+import Result from "./Result";
 
+import { values } from "../utils/formUtils";
+import { registerOptions } from "../utils/formUtils";
 import "../stylesheets/form.css";
 
-export default function HookForm() {
-  const values = {
-    firstName: "",
-    lastName: "",
-    phoneNumber: "",
-    sex: "",
-    tShirtSize: "",
-    trouserSize: "",
-    shoeSize: "",
-    givenConsent: false,
-  };
+import { success, fail } from "../utils/resultText.json";
+console.log(success);
 
-  const registerOptions = {
-    firstName: {
-      required: "Questo campo è obbligatorio",
-    },
-    lastName: {
-      required: "Questo campo è obbligatorio",
-    },
-    phoneNumber: {
-      required: "Questo campo è obbligatorio",
-      valueAsNumber: true,
-      validate: (value) => !isNaN(value) || "Inserisci un numero valido",
-    },
-    sex: {
-      required: "Seleziona un'opzione",
-    },
-    tShirtSize: {
-      required: "Seleziona un'opzione",
-    },
-    trouserSize: {
-      required: "Seleziona un'opzione",
-    },
-    shoeSize: {
-      required: "Seleziona un'opzione",
-    },
-    givenConsent: {
-      required: "Devi permetterci di utilizzare i tuoi dati",
-    },
-  };
+export default function HookForm() {
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [resultText, setResultText] = useState(null);
+  const [isSuccess, setIsSuccess] = useState(true) // STATE TO DETERMINE RESULT COMPONENT RESET
 
   const {
     register,
@@ -70,6 +39,7 @@ export default function HookForm() {
       time: new Date().toISOString(),
     };
     console.log(newClient);
+    try {
     const response = await fetch("http://localhost:3000/users", {
       method: "POST",
       headers: {
@@ -78,16 +48,25 @@ export default function HookForm() {
       body: JSON.stringify(newClient),
     });
     if (response.ok) {
+      console.log(success);
+      setIsSuccess(true)
       setIsSubmitted(!isSubmitted);
-    }
+      setResultText(success);
+      console.log(resultText);
+    } 
+  } catch (error) {
+    console.log(error)
+    setIsSuccess(false)
+    setIsSubmitted(!isSubmitted);
+    setResultText(fail)
+  }
   };
 
   const clearResult = () => {
     setIsSubmitted(false);
-    reset(values)
-  }
+    isSuccess && reset(values);
+  };
 
-  const [isSubmitted, setIsSubmitted] = useState(false);
   return (
     <main className="main">
       <div className="form-container">
@@ -255,9 +234,11 @@ export default function HookForm() {
             Invia
           </button>
         </form>
-        
       </div>
-      {isSubmitted && <Success clickFunc={clearResult} />}
+      {isSubmitted && 
+      <Result 
+      content={resultText}
+      clickFunc={clearResult} />}
     </main>
   );
 }

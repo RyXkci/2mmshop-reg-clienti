@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import Success from "./Success";
+// import Success from "./Success";
 
 import "../stylesheets/form.css";
 
