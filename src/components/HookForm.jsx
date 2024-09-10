@@ -53,40 +53,7 @@ export default function HookForm() {
     }
   };
 
-  // const submitData = async (formData) => {
-  //   const newClient = {
-  //     name: `${formData.firstName} ${formData.lastName}`,
-  //     number: formData.phoneNumber,
-  //     sex: formData.sex,
-  //     sizes: {
-  //       tShirt: formData.tShirtSize,
-  //       trousers: formData.trouserSize,
-  //       shoes: formData.shoeSize,
-  //     },
-  //     time: new Date().toISOString(),
-  //   };
-  //   console.log(newClient);
-  //   try {
-  //   const response = await fetch("http://localhost:3000/users", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "Application/JSON",
-  //     },
-  //     body: JSON.stringify(newClient),
-  //   });
-  //   if (response.ok) {
-  //     console.log(success);
-  //     setIsSuccess(true)
-  //     setIsSubmitted(!isSubmitted);
-  //     setResultText(success);
-  //   }
-  // } catch (error) {
-  //   console.log(error)
-  //   setIsSuccess(false)
-  //   setIsSubmitted(!isSubmitted);
-  //   setResultText(fail)
-  // }
-  // };
+
 
   const clearResult = () => {
     setIsSubmitted(false);
@@ -239,6 +206,7 @@ export default function HookForm() {
               </div>
             </div>
           </article>
+          <div className="form-input row-ls">
           <label htmlFor="consent">
             Do il consenso al trattamento dei dati
           </label>
@@ -252,10 +220,11 @@ export default function HookForm() {
           <div className="form-danger">
             {errors?.givenConsent && errors.givenConsent.message}
           </div>
+          </div>
           <button
             type="submit"
             disabled={isSubmitted}
-            className="btn-fill-dark has-top-border-shadow"
+            className="form-button btn-fill-dark has-top-border-shadow"
           >
             Invia
           </button>

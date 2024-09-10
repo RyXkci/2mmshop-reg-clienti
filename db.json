@@ -611,6 +611,18 @@
         "shoes": "42"
       },
       "time": "2024-09-08T16:57:30.979Z"
+    },
+    {
+      "id": "0afe",
+      "name": "Frapobranco MAGB",
+      "number": 3315636846,
+      "sex": "f",
+      "sizes": {
+        "tShirt": "s",
+        "trousers": "38",
+        "shoes": "36"
+      },
+      "time": "2024-09-08T17:02:21.911Z"
     }
   ]
 }
