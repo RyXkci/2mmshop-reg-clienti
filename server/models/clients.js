@@ -10,7 +10,7 @@ const ClientSchema = new Schema({
     sizes: {
         tshirtSize: String,
         trouserSize: Number,
-        shoeShize: Number,
+        shoeSize: Number,
     },
     givenConsent: Boolean,
     date: {

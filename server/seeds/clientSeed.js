@@ -31,9 +31,9 @@ function getRandomItem(arr) {
             number: 123456789,
             givenConsent: false,
             sizes: {
-                tshirtSizes: getRandomItem(sizesOptions.tShirtSizes),
-                trousersSizes: getRandomItem(sizesOptions.tShirtSizes),
-                shoeSizes: getRandomItem(sizesOptions.tShirtSizes)
+                tshirtSize: getRandomItem(sizesOptions.tShirtSizes),
+                trouserSize: getRandomItem(sizesOptions.trousersSizes),
+                shoeSize: getRandomItem(sizesOptions.shoeSizes)
             },
             date: Date.now(),
         });

@@ -1,11 +1,10 @@
 const express = require("express");
 const router = express.Router();
 
+const {getClients} = require('../controllers/clientController')
 
 // GET ALL CLIENTS
-router.get('/', (req, res) => {
-    res.json({mssg: "this is where the clients will come from"})
-})
+router.get('/', getClients)
 
 // POST NEW CLIENT
 router.post('/', (req, res) => {
