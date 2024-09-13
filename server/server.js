@@ -1,6 +1,17 @@
 const express = require('express');
 const app = express();
 
+const mongoose = require('mongoose');
+mongoose
+  .connect("mongodb://localhost:27017/2mmShop")
+  .then(() => {
+    console.log("MONGO CONNECTION OPENED!!!");
+  })
+  .catch((err) => {
+    console.log("MONGO OH NO; ERROR", err);
+  });
+
+
 const clientRoutes = require('./routes/clients');
 
 // MIDDLEWARE
