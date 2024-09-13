@@ -8,8 +8,16 @@ export const COLUMNS = [
     },
   },
   {
+    header: "Cognome",
+    accessorKey: "surname",
+    meta: {
+      className: "th-dark",
+      hasFilter: false
+    },
+  },
+  {
     header: "Telefono",
-    accessorKey: "number",
+    accessorKey: "phoneNumber",
     meta: {
       className: "th-dark",
       hasFilter: false
@@ -32,7 +40,7 @@ export const COLUMNS = [
   {
     id: "tshirt",
     header: "Maglietta",
-    accessorKey: "sizes.tShirt",
+    accessorKey: "sizes.tshirtSize",
     filterFn: "equalsString",
     meta: {
       className: "th-light",
@@ -50,7 +58,7 @@ export const COLUMNS = [
   {
     id: "trousers",
     header: "Pantaloni",
-    accessorFn: row => `${row.sizes.trousers.toString()}`,
+    accessorFn: row => `${row.sizes.trouserSize.toString()}`,
     filterFn: "equalsString",
     meta: {
       className: "th-light",
@@ -73,7 +81,7 @@ export const COLUMNS = [
   {
     id: "shoes",
     header: "Scarpe",
-    accessorFn: row => `${row.sizes.shoes.toString()}`,
+    accessorFn: row => `${row.sizes.shoeSize.toString()}`,
     filterFn: "equalsString",
     meta: {
       className: "th-light",

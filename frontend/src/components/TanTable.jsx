@@ -10,7 +10,7 @@ import { COLUMNS } from "./columns";
 
     useEffect(() => {
     const getData = async() => {
-            const response = await fetch("http://localhost:3000/users");
+            const response = await fetch("http://localhost:4000/api/clients");
              const json = await response.json();
 
              const sortedUsers = json.sort((a, b) => {
