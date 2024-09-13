@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const cors = require('cors');
 
 const mongoose = require('mongoose');
 mongoose
@@ -16,6 +17,7 @@ const clientRoutes = require('./routes/clients');
 
 // MIDDLEWARE
 app.use(express.json());
+app.use(cors());
 
 
 

@@ -28,7 +28,7 @@ function getRandomItem(arr) {
             name: getRandomItem(names),
             surname: getRandomItem(surnames),
             sex: getRandomItem(sexes),
-            number: 123456789,
+            phoneNumber: 123456789,
             givenConsent: false,
             sizes: {
                 tshirtSize: getRandomItem(sizesOptions.tShirtSizes),
