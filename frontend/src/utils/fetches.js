@@ -20,7 +20,7 @@ const getData = async () => {
   // POSTS
   const postData = async(newClient) => {
     try {
-        const response = await fetch("http://localhost:3000/users", {
+        const response = await fetch("http://localhost:4000/api/clients", {
           method: "POST",
           headers: {
             "Content-Type": "Application/JSON",

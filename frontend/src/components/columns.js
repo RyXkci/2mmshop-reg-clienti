@@ -1,7 +1,7 @@
 export const COLUMNS = [
   {
     header: "Nome",
-    accessorKey: "name",
+    accessorKey: "firstName",
     meta: {
       className: "th-dark",
       hasFilter: false
@@ -9,7 +9,7 @@ export const COLUMNS = [
   },
   {
     header: "Cognome",
-    accessorKey: "surname",
+    accessorKey: "lastName",
     meta: {
       className: "th-dark",
       hasFilter: false

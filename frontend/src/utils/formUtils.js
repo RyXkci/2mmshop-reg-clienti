@@ -3,7 +3,7 @@ const values = {
     lastName: "",
     phoneNumber: "",
     sex: "",
-    tShirtSize: "",
+    tshirtSize: "",
     trouserSize: "",
     shoeSize: "",
     givenConsent: false,
@@ -24,7 +24,7 @@ const values = {
     sex: {
       required: "Seleziona un'opzione",
     },
-    tShirtSize: {
+    tshirtSize: {
       required: "Seleziona un'opzione",
     },
     trouserSize: {

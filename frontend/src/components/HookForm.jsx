@@ -29,16 +29,18 @@ export default function HookForm() {
   });
 
   const submitData =  async (formData) => {
+    console.log(formData)
     const newClient = {
-      name: `${formData.firstName} ${formData.lastName}`,
-      number: formData.phoneNumber,
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      phoneNumber: formData.phoneNumber,
       sex: formData.sex,
       sizes: {
-        tShirt: formData.tShirtSize,
-        trousers: formData.trouserSize,
-        shoes: formData.shoeSize,
+        tshirtSize: formData.tshirtSize,
+        trouserSize: formData.trouserSize,
+        shoeSize: formData.shoeSize,
       },
-      time: new Date().toISOString(),
+      givenConsent: formData.givenConsent
     };
     const response =  await postData(newClient);
     if (!response.error) {
@@ -140,9 +142,9 @@ export default function HookForm() {
               <select
                 className="has-top-box-shadow"
                 id="maglietta"
-                name="tShirtSize"
+                name="tshirtSize"
                 disabled={isSubmitted}
-                {...register("tShirtSize", registerOptions.tShirtSize)}
+                {...register("tshirtSize", registerOptions.tshirtSize)}
               >
                 <option value="">Seleziona un'opzione</option>
                 <option value="xxs">XXS</option>
@@ -154,7 +156,7 @@ export default function HookForm() {
                 <option value="xxl">XXL</option>
               </select>
               <div className="form-danger">
-                {errors?.tShirtSize && errors.tShirtSize.message}
+                {errors?.tshirtSize && errors.tshirtSize.message}
               </div>
             </div>
             <div className="form-dropdown">

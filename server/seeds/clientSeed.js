@@ -25,8 +25,8 @@ function getRandomItem(arr) {
 
     for (let i = 0; i < 50; i++) {
         const client = new Client({
-            name: getRandomItem(names),
-            surname: getRandomItem(surnames),
+            firstName: getRandomItem(names),
+            lastName: getRandomItem(surnames),
             sex: getRandomItem(sexes),
             phoneNumber: 123456789,
             givenConsent: false,

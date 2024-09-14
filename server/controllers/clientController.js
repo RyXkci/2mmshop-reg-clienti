@@ -9,6 +9,10 @@ const getClients = async(req, res) => {
 
 
 // Post new client
+const createClient = async(req, res) => {
+    const client = new Client(req.body);
+    await client.save();
+    res.status(200).json(client)
+}
 
-
-module.exports = {getClients}
+module.exports = {getClients, createClient};
