@@ -2,6 +2,7 @@ import { useState, useMemo, useEffect} from "react";
 import { useReactTable, getCoreRowModel, getFilteredRowModel, flexRender } from "@tanstack/react-table";
 import { COLUMNS } from "./columns";
  
+import { getData } from "../utils/fetches";
  
  export default function TanTable() {
     const columns = useMemo(() => COLUMNS)
@@ -9,18 +10,15 @@ import { COLUMNS } from "./columns";
     const [columnFilters, setColumnFilters] = useState([])
 
     useEffect(() => {
-    const getData = async() => {
-            const response = await fetch("http://localhost:4000/api/clients");
-             const json = await response.json();
-
-             const sortedUsers = json.sort((a, b) => {
-              return new Date(b.time) - new Date(a.time);
-          });
-          console.log(sortedUsers)
-
-             setData(sortedUsers)
-    }
-    getData()
+      const fetchData = async() => {
+        const response = await getData()
+        if (!response.error) {
+          setData(response)
+        } else {
+          console.log(response)
+        }
+      }
+      fetchData()
     }, [])
 
 
@@ -77,10 +75,6 @@ const onFilterChange = (id, value) => setColumnFilters(
                             header.column.columnDef.header,
                             header.getContext()
                           )
-                      //        flexRender(
-                      //   header.column.columnDef.header,
-                      //   header.getContext()
-                      // )
                       }
                         </th>
                     ))}
@@ -100,60 +94,9 @@ const onFilterChange = (id, value) => setColumnFilters(
             </tbody>
         </table>
 
-        {/* <button
-        onClick={() => {
-          onFilterChange("tshirt", "s");
-        }}
-      >
-        filter by tshirt s
-      </button>
-        <button
-        onClick={() => {
-          onFilterChange("sex", "f");
-        }}
-      >
-        filter by sex f
-      </button>
-        <button
-        onClick={() => {
-          onFilterChange("trousers", "38");
-        }}
-      >
-        filter by trousers 38
-      </button>
-        <button
-        onClick={() => {
-          onFilterChange("shoes", "42");
-        }}
-      >
-        filter by shoes 42
-      </button> */}
 
         
         </main>
-        // <table>
-        //     <thead>
-        //         {headerGroups.map((headerGroup)=>(
-        //             <tr {...headerGroup.getHeaderGroupProps()}>
-        //                 {headerGroup.headers.map((column)=>(
-        //                     <th {...column.getHeaderProps()}>{column.render('Header')}</th>
-        //                 ))}
-        //             </tr>
-        //         ))}
-        //     </thead>
-        //     <tbody {...getTableBodyProps()}>
-        //        {rows.map(row => {
-        //         prepareRow(row)
-        //         return (
-        //             <tr {...row.getRowProps()}>
-        //                 {row.cells.map(cell => {
-        //                     return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
-        //                 })}
-        //             </tr>
-        //         )
-        //        })}
-        //     </tbody>
-        // </table>
 
     )
 

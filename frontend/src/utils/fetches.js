@@ -1,14 +1,20 @@
 //  GETS
 
 const getData = async () => {
-    const response = await fetch("http://localhost:3000/users");
-    const json = await response.json();
-    if (response.ok) {
-        return json
+  try {
+    const response = await fetch("http://localhost:4000/api/clients");
+ 
+    if(!response.ok) {
+      throw new Error('testing error msg');
     }
-    // setInitialData(json);
-    // setUsers(json); //on each initial render all of them
-    // console.log(json);
+    const json = await response.json();
+    return json;
+
+  } catch (error) {
+    console.log({error})
+    return {error}
+  }
+  
   };
 
   // POSTS
