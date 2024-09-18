@@ -2,6 +2,12 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 
+const dotenv = require("dotenv")
+dotenv.config()
+
+const Admin = require('./models/admin');
+
+
 const mongoose = require('mongoose');
 mongoose
   .connect("mongodb://localhost:27017/2mmShop")
@@ -14,6 +20,7 @@ mongoose
 
 
 const clientRoutes = require('./routes/clients');
+const adminRoutes = require('./routes/admin');
 
 // MIDDLEWARE
 app.use(express.json());
@@ -21,11 +28,13 @@ app.use(cors());
 
 
 
-
 // ROUTES
 app.use('/api/clients', clientRoutes)
+app.use('/api/admin', adminRoutes)
 
+console.log(process.env.SECRET)
 
+// FIRING UP SERVER
 app.listen(4000, () => {
     console.log('listening on port 4000')
 })

@@ -20,7 +20,7 @@ function getRandomItem(arr) {
   }
 
 
-  const seedDB = async() => {
+  const seedClient = async() => {
     await Client.deleteMany({});
 
     for (let i = 0; i < 50; i++) {
@@ -42,7 +42,7 @@ function getRandomItem(arr) {
     }
   };
 
-  seedDB().then(() => {
+  seedClient().then(() => {
     mongoose.connection.close();
   });
   
