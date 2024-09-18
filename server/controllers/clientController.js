@@ -2,9 +2,6 @@ const mongoose = require("mongoose");
 const Client = require("../models/clients");
 const Joi = require("joi");
 
-// const validateClient = (req, res, next) => {
-
-// }
 
 // Get all clients
 const getClients = async (req, res) => {
