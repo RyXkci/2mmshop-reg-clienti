@@ -20,7 +20,8 @@ function App() {
           <Route path="/table" element={<Table />} />
           <Route path="/tantable" element={<TanTable />} />
           <Route path="/formdati" element={<HookForm />} />
-          <Route path="/admin/login" element={<Login/>}
+          <Route 
+          path="/admin/login" element={<Login/>}
           />
           <Route
             path="/admin/tabellaclienti"

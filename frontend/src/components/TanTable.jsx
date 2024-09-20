@@ -10,15 +10,21 @@ import { getData } from "../utils/fetches";
     const [columnFilters, setColumnFilters] = useState([])
 
     useEffect(() => {
+      const admin = JSON.parse(localStorage.getItem("admin"));
+      console.log(admin) 
       const fetchData = async() => {
-        const response = await getData()
+        const response = await getData(admin)
         if (!response.error) {
           setData(response)
         } else {
           console.log(response)
         }
       }
-      fetchData()
+
+      if (admin) {
+        fetchData()
+      }
+    
     }, [])
 
 
