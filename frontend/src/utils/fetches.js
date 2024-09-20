@@ -1,8 +1,12 @@
 //  GETS
 
-const getData = async () => {
+const getData = async (admin) => {
   try {
-    const response = await fetch("http://localhost:4000/api/clients");
+    const response = await fetch("http://localhost:4000/api/clients", {
+      headers: {
+        'Authorization': `Bearer ${admin.token}`
+      }
+    });
  
     if(!response.ok) {
       throw new Error('testing error msg');
