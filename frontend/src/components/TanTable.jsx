@@ -47,10 +47,18 @@ import { getData } from "../utils/fetches";
       setColumnFilters([])
     }
 
-const onFilterChange = (id, value) => setColumnFilters(
-  prev => prev.filter(f => f.id !==id).concat({id, value})
-)
-   
+// const onFilterChange = (id, value) => setColumnFilters(
+//   prev => prev.filter(f => f.id !==id).concat({id, value})
+// )
+
+const onFilterChange = (id, event) => {
+  const value = event.target.value; // Get the value from the event
+  setColumnFilters(prev => 
+    prev.filter(f => f.id !== id) // Remove existing filter with the same id
+       .concat({ id, value })      // Add the new filter
+  );
+};
+
     return (
       <main className="main">
         <button onClick={reset}>Reset</button>
@@ -66,12 +74,18 @@ const onFilterChange = (id, value) => setColumnFilters(
                             header.column.columnDef.header,
                             header.getContext()
                           )}</label> 
-                          <select name="header-options" id={header.id}>
+                          <select 
+                          name="header-options" 
+                          id={header.id}
+                          onChange={(event) => {onFilterChange(header.id, event)}}
+                          >
                             <option value=""></option>
+                            
                           {header.column.columnDef.meta.selectOptions?.map((option) => {
                             return <option
                             key={option}
-                            onClick={() => {onFilterChange(`${header.column.columnDef.id}`, `${option}`)}}>{option}
+                            value={option}
+                            >{option}
                             </option>
                           })} 
                           </select>
