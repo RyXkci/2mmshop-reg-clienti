@@ -16,6 +16,7 @@ const getClients = async (req, res) => {
 
 // Post new client
 const createClient = async (req, res) => {
+  console.log(req.body)
   const clientSchema = Joi.object({
     firstName: Joi.string().required(),
     lastName: Joi.string().required(),
@@ -34,6 +35,7 @@ const createClient = async (req, res) => {
     return res.status(400).json(result.error);
   }
   try {
+  
     const client = new Client(req.body);
     await client.save();
     res.status(200).json(client);
