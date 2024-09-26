@@ -37,6 +37,7 @@ const getData = async (admin) => {
         }
           return json
       } catch (error) {
+        console.log(error)
       return {error}
       }
   }
