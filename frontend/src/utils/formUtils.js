@@ -1,6 +1,7 @@
 const values = {
     firstName: "",
     lastName: "",
+    phonePrefix: "+39",
     phoneNumber: "",
     sex: "",
     tshirtSize: "",
@@ -16,10 +17,18 @@ const values = {
     lastName: {
       required: "Questo campo è obbligatorio",
     },
+    phonePrefix: {
+      required: "Questo campo è obbligatorio",
+
+    },
     phoneNumber: {
       required: "Questo campo è obbligatorio",
-      valueAsNumber: true,
-      validate: (value) => !isNaN(value) || "Inserisci un numero valido",
+      pattern: {
+        value: /^(?=(?:[^0-9]*[0-9]){10}[^0-9]*$)(?:\d{1,4} ?){2,4}\d{1,4}$/,
+        message: 'Inserisci un numero valido',
+      }
+      // valueAsNumber: true,
+      // validate: (value) => !isNaN(value) || "Inserisci un numero valido",
     },
     sex: {
       required: "Seleziona un'opzione",

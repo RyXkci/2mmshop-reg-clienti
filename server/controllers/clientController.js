@@ -21,7 +21,7 @@ const createClient = async (req, res) => {
     firstName: Joi.string().required(),
     lastName: Joi.string().required(),
     sex: Joi.string().required(),
-    phoneNumber: Joi.number().required(),
+    phoneNumber: Joi.string().required(),
     sizes: Joi.object({
       tshirtSize: Joi.string().required(),
       trouserSize: Joi.number().required(),

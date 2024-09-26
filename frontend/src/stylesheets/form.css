@@ -150,6 +150,20 @@ form {
 
 }
 
+.flex-row {
+    display: flex;
+}
+
+.has-left-border-radius {
+    border-radius: 10px 0 0 10px;
+    border-right: 1px solid black;
+}
+
+.has-right-border-radius {
+    border-radius: 0 10px 10px 0!important;
+}
+
+
 @media screen and (min-width: 670px) {
     .form-container {
         width: 90%;
