@@ -6,7 +6,7 @@ const ClientSchema = new Schema({
     firstName: String,
     lastName: String,
     sex: String,
-    phoneNumber: Number,
+    phoneNumber: String,
     sizes: {
         tshirtSize: String,
         trouserSize: Number,

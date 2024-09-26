@@ -11,7 +11,6 @@ import { postData } from "../utils/fetches";
 
 import { success, fail } from "../utils/resultText.json";
 
-
 export default function HookForm() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [resultText, setResultText] = useState(null);
@@ -28,21 +27,22 @@ export default function HookForm() {
     defaultValues: values,
   });
 
-  const submitData =  async (formData) => {
-    console.log(formData)
+  const submitData = async (formData) => {
+    console.log(formData);
+    const trimmedPhoneNumber = formData.phoneNumber.replace(/\s+/g, ""); // Remove all spaces
     const newClient = {
       firstName: formData.firstName,
       lastName: formData.lastName,
-      phoneNumber: formData.phoneNumber,
+      phoneNumber: `${formData.phonePrefix}${trimmedPhoneNumber}`,
       sex: formData.sex,
       sizes: {
         tshirtSize: formData.tshirtSize,
         trouserSize: formData.trouserSize,
         shoeSize: formData.shoeSize,
       },
-      givenConsent: formData.givenConsent
+      givenConsent: formData.givenConsent,
     };
-    const response =  await postData(newClient);
+    const response = await postData(newClient);
     if (!response.error) {
       console.log(response);
       setIsSuccess(true);
@@ -54,8 +54,6 @@ export default function HookForm() {
       setResultText(fail);
     }
   };
-
-
 
   const clearResult = () => {
     setIsSubmitted(false);
@@ -103,14 +101,25 @@ export default function HookForm() {
             </div>
             <div className="form-input">
               <label htmlFor="phone">Numero di telefono</label>
-              <input
-                type="input"
-                id="phone"
-                name="phoneNumber"
-                disabled={isSubmitted}
-                {...register("phoneNumber", registerOptions.phoneNumber)}
-              />
-
+              <div className="flex-row dropdown-white">
+                <select
+                  name="phonePrefix"
+                  className="has-left-border-radius"
+                  id="phonePrefix"
+                  disabled={isSubmitted}
+                  {...register("phonePrefix", registerOptions.phonePrefix)}
+                >
+                  <option value="+39">+39</option>
+                </select>
+                <input
+                  type="input"
+                  className="has-right-border-radius"
+                  id="phone"
+                  name="phoneNumber"
+                  disabled={isSubmitted}
+                  {...register("phoneNumber", registerOptions.phoneNumber)}
+                />
+              </div>
               <div className="form-danger">
                 {errors?.phoneNumber && errors.phoneNumber.message}
               </div>
@@ -209,19 +218,19 @@ export default function HookForm() {
             </div>
           </article>
           <div className="form-input row-ls">
-          <label htmlFor="consent">
-            Do il consenso al trattamento dei dati
-          </label>
-          <input
-            id="consent"
-            type="checkbox"
-            name="givenConsent"
-            disabled={isSubmitted}
-            {...register("givenConsent", registerOptions.givenConsent)}
-          />
-          <div className="form-danger">
-            {errors?.givenConsent && errors.givenConsent.message}
-          </div>
+            <label htmlFor="consent">
+              Do il consenso al trattamento dei dati
+            </label>
+            <input
+              id="consent"
+              type="checkbox"
+              name="givenConsent"
+              disabled={isSubmitted}
+              {...register("givenConsent", registerOptions.givenConsent)}
+            />
+            <div className="form-danger">
+              {errors?.givenConsent && errors.givenConsent.message}
+            </div>
           </div>
           <button
             type="submit"
