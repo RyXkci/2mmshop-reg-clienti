@@ -44,7 +44,7 @@ export default function HookForm() {
 
     const response = await postData(newClient);
     if (!response.error) {
-      console.log(response);
+
       setIsSuccess(true);
       setIsSubmitted(!isSubmitted);
       setResultText(success); //dynamic result component

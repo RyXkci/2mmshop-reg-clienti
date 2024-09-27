@@ -16,7 +16,6 @@ const getClients = async (req, res) => {
 
 // Post new client
 const createClient = async (req, res) => {
-  console.log(req.body)
   const clientSchema = Joi.object({
     firstName: Joi.string().required(),
     lastName: Joi.string().required(),
@@ -31,7 +30,7 @@ const createClient = async (req, res) => {
   });
   const result = clientSchema.validate(req.body);
   if (result.error) {
-    console.log(result.error)
+
     return res.status(400).json(result.error);
   }
   try {

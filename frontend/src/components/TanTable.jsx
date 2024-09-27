@@ -33,7 +33,6 @@ export default function TanTable() {
       const response = await getData(admin);
       if (!response.error) {
         setAdmin(admin)
-        console.log(admin)
         setData(response);
       } else {
         return;

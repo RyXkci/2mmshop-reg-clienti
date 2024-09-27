@@ -35,7 +35,6 @@ app.use(cors({
 app.use('/api/clients', clientRoutes)
 app.use('/api/admin', adminRoutes)
 
-console.log(process.env.SECRET)
 
 // FIRING UP SERVER
 app.listen(4000, () => {
