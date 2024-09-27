@@ -24,11 +24,11 @@ const values = {
     phoneNumber: {
       required: "Questo campo è obbligatorio",
       pattern: {
+        // regex to limit number to 10 digits but allow different formats, such as xxx xxx xxxx
         value: /^(?=(?:[^0-9]*[0-9]){10}[^0-9]*$)(?:\d{1,4} ?){2,4}\d{1,4}$/,
         message: 'Inserisci un numero valido',
       }
-      // valueAsNumber: true,
-      // validate: (value) => !isNaN(value) || "Inserisci un numero valido",
+     
     },
     sex: {
       required: "Seleziona un'opzione",

@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import {useNavigate} from 'react-router-dom';
 
+import '../stylesheets/login-form.css'
+
 import {useLogin} from "../hooks/useLogin";
 
 export default function Login() {
@@ -32,7 +34,9 @@ export default function Login() {
   }
 const navigate = useNavigate();
   return (
-    <form onSubmit={onSubmit}>
+    <main>
+      <article className="login-form-container">
+    <form  className="login-form"onSubmit={onSubmit}>
       <label htmlFor="username">Nome utente</label>
       <input
         type="text"
@@ -43,7 +47,7 @@ const navigate = useNavigate();
       />
       <label htmlFor="password">Password</label>
       <input
-        type="text"
+        type="password"
         id="password"
         name="password"
         value={formData.password}
@@ -52,5 +56,7 @@ const navigate = useNavigate();
       
       <button>Login</button>
     </form>
+    </article>
+    </main>
   );
 }
