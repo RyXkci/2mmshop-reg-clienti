@@ -164,7 +164,7 @@ form {
 }
 
 
-@media screen and (min-width: 670px) {
+/* @media screen and (min-width: 670px) {
     .form-container {
         width: 90%;
         max-width: 800px;
@@ -245,7 +245,7 @@ form {
     .form-subtitle {
         font-size: 1.1rem;
     }
-}
+} */
 
 
 
