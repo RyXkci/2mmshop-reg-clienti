@@ -1,18 +1,20 @@
 import { useState, useMemo, useEffect } from "react";
+
+import '../stylesheets/table.css'
+
 import {
   useReactTable,
   getCoreRowModel,
   getFilteredRowModel,
   flexRender,
 } from "@tanstack/react-table";
+
 import { COLUMNS } from "./columns";
 
-import '../stylesheets/navbar.css'
+
 
 import { getData } from "../utils/fetches";
-// import { useLogin } from "./Login";
 
-// import Login from "./Login";
 
 import Navbar from "./Navbar";
 import AccessDenied from './AccessDenied'
@@ -35,7 +37,7 @@ export default function TanTable() {
         setData(response);
       } else {
         return;
-        // console.log(response)
+
       }
     };
 
@@ -73,10 +75,6 @@ export default function TanTable() {
     setSelectValues({}); //reset all select dropdowns to empty
   };
 
-  const logOut = () => {
-    localStorage.removeItem('admin');
-    setAdmin(null)
-  }
 
   return (
     <main className="main">
@@ -84,13 +82,7 @@ export default function TanTable() {
         <>
         <Navbar
         reset={reset} 
-        logOut={logOut}/>
-        {/* <nav className="navbar">
-          <div className="navbar-inner">
-          <button className="nav-button nav-button-light" onClick={reset}>Reset</button>
-          <button className="nav-button nav-button-danger" onClick={logOut}>Log out</button>
-          </div>
-        </nav> */}
+        setAdmin={setAdmin}/>
   
   <table>
     <thead>

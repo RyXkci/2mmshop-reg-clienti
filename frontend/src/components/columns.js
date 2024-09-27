@@ -19,8 +19,8 @@ export const COLUMNS = [
     header: "Telefono",
     accessorKey: "phoneNumber",
     meta: {
-      className: "th-dark",
-      hasFilter: false
+      className: "th-dark", //dynamic classnames
+      hasFilter: false //metadata for filtering.
     },
   },
   {
@@ -34,7 +34,7 @@ export const COLUMNS = [
       selectOptions: [
         "m",
         "f"
-      ]
+      ] //metadata for te dropdown options for filterable columns
     }
   },
   {

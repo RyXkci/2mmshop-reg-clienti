@@ -28,12 +28,11 @@ export default function HookForm() {
   });
 
   const submitData = async (formData) => {
-    console.log(formData);
-    const trimmedPhoneNumber = formData.phoneNumber.replace(/\s+/g, ""); // Remove all spaces
+    const trimmedPhoneNumber = formData.phoneNumber.replace(/\s+/g, ""); // Remove all spaces from number
     const newClient = {
       firstName: formData.firstName,
       lastName: formData.lastName,
-      phoneNumber: `${formData.phonePrefix}${trimmedPhoneNumber}`,
+      phoneNumber: `${formData.phonePrefix}${trimmedPhoneNumber}`, //numbers must be saved as single string plus prefix
       sex: formData.sex,
       sizes: {
         tshirtSize: formData.tshirtSize,
@@ -42,22 +41,23 @@ export default function HookForm() {
       },
       givenConsent: formData.givenConsent,
     };
+
     const response = await postData(newClient);
     if (!response.error) {
       console.log(response);
       setIsSuccess(true);
       setIsSubmitted(!isSubmitted);
-      setResultText(success);
+      setResultText(success); //dynamic result component
     } else {
       setIsSuccess(false);
       setIsSubmitted(!isSubmitted);
-      setResultText(fail);
+      setResultText(fail); //dynamic result component
     }
   };
 
   const clearResult = () => {
     setIsSubmitted(false);
-    isSuccess && reset(values);
+    isSuccess && reset(values); //if result is success, clear form on reset, otherwise keep it
   };
 
   return (
@@ -242,6 +242,7 @@ export default function HookForm() {
         </form>
       </div>
       {isSubmitted && <Result content={resultText} clickFunc={clearResult} />}
+      {/* once submitted, it renders a result page with dynamic text based on whether or not post was succesful */}
     </main>
   );
 }
