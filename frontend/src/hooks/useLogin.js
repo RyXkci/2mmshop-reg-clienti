@@ -1,3 +1,6 @@
+const apiUrl = import.meta.env.VITE_API_URL;
+
+
 import { useState } from "react";
 
 export const useLogin = () => {
@@ -10,7 +13,7 @@ export const useLogin = () => {
         setIsLoading(true);
         setError(null);
 
-        const response = await fetch("http://localhost:4000/api/admin/login", {
+        const response = await fetch(`${apiUrl}/api/admin/login`, {
             method: "POST",
             headers: {
               "Content-Type": "Application/JSON",
