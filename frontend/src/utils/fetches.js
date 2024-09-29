@@ -1,8 +1,10 @@
+const apiUrl = import.meta.env.VITE_API_URL;
+
 //  GETS
 
 const getData = async (admin) => {
   try {
-    const response = await fetch("http://localhost:4000/api/clients", {
+    const response = await fetch(`${apiUrl}/api/clients`, {
       headers: {
         'Authorization': `Bearer ${admin.token}`
       }
@@ -24,7 +26,7 @@ const getData = async (admin) => {
   // POSTS
   const postData = async(newClient) => {
     try {
-        const response = await fetch("http://localhost:4000/api/clients", {
+        const response = await fetch(`${apiUrl}/api/clients`, {
           method: "POST",
           headers: {
             "Content-Type": "Application/JSON",
