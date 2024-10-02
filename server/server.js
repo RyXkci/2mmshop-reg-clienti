@@ -7,10 +7,12 @@ dotenv.config()
 
 const Admin = require('./models/admin');
 
+const PORT = process.env.port || 4000;
+const dbUrl = process.env.MONGOURL;
 
 const mongoose = require('mongoose');
 mongoose
-  .connect("mongodb://localhost:27017/2mmShop")
+  .connect(dbUrl)
   .then(() => {
     console.log("MONGO CONNECTION OPENED!!!");
   })
@@ -37,6 +39,6 @@ app.use('/api/admin', adminRoutes)
 
 
 // FIRING UP SERVER
-app.listen(4000, () => {
+app.listen(PORT, () => {
     console.log('listening on port 4000')
 })
