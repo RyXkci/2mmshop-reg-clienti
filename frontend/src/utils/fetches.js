@@ -11,7 +11,7 @@ const getData = async (admin) => {
     });
  
     if(!response.ok) {
-      throw new Error('testing error msg');
+      throw new Error('error');
     }
     const json = await response.json();
     return json;
