@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 import Result from "./Result";
+import Spinner from "./Spinner";
 
 import { values } from "../utils/formUtils";
 import { registerOptions } from "../utils/formUtils";
@@ -13,6 +14,7 @@ import { success, fail } from "../utils/resultText.json";
 
 export default function HookForm() {
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const[isLoading, setIsLoading] = useState(false)
   const [resultText, setResultText] = useState(null);
   const [isSuccess, setIsSuccess] = useState(true); // STATE TO DETERMINE RESULT COMPONENT RESET
 
@@ -28,6 +30,7 @@ export default function HookForm() {
   });
 
   const submitData = async (formData) => {
+    setIsLoading(true);
     const trimmedPhoneNumber = formData.phoneNumber.replace(/\s+/g, ""); // Remove all spaces from number
     const newClient = {
       firstName: formData.firstName,
@@ -44,11 +47,12 @@ export default function HookForm() {
 
     const response = await postData(newClient);
     if (!response.error) {
-
+      setIsLoading(false);
       setIsSuccess(true);
       setIsSubmitted(!isSubmitted);
       setResultText(success); //dynamic result component
     } else {
+      setIsLoading(false)
       setIsSuccess(false);
       setIsSubmitted(!isSubmitted);
       setResultText(fail); //dynamic result component
@@ -59,8 +63,6 @@ export default function HookForm() {
     setIsSubmitted(false);
     isSuccess && reset(values); //if result is success, clear form on reset, otherwise keep it
   };
-
-
 
   return (
     <main className="main">
@@ -242,6 +244,7 @@ export default function HookForm() {
             Invia
           </button>
         </form>
+        {isLoading && <Spinner/>}
       </div>
       {isSubmitted && <Result content={resultText} clickFunc={clearResult} />}
       {/* once submitted, it renders a result page with dynamic text based on whether or not post was succesful */}
