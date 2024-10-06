@@ -23,6 +23,7 @@ mongoose
 
 const clientRoutes = require('./routes/clients');
 const adminRoutes = require('./routes/admin');
+const pingRoutes = require('./routes/ping');
 
 // MIDDLEWARE
 app.use(express.json());
@@ -36,6 +37,7 @@ app.use(cors({
 // ROUTES
 app.use('/api/clients', clientRoutes)
 app.use('/api/admin', adminRoutes)
+app.use('/api/ping', pingRoutes)
 
 
 // FIRING UP SERVER
