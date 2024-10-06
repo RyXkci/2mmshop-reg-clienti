@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 import Result from "./Result";
@@ -12,11 +12,31 @@ import { postData } from "../utils/fetches";
 
 import { success, fail } from "../utils/resultText.json";
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
 export default function HookForm() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const[isLoading, setIsLoading] = useState(false)
   const [resultText, setResultText] = useState(null);
   const [isSuccess, setIsSuccess] = useState(true); // STATE TO DETERMINE RESULT COMPONENT RESET
+
+  useEffect(() => {
+    const pingServer = async () => {
+      try {
+        // ping server to wake up to diminish spin up time in bg
+        const response = await fetch(`${apiUrl}/api/ping`);
+        if (response.ok) {
+          console.log('Pinged');
+        } else {
+          console.error('Failed to ping the server');
+        }
+      } catch (error) {
+        console.error('Error pinging the server', error);
+      }
+    };
+
+    pingServer();
+  }, [])
 
   const {
     register,
