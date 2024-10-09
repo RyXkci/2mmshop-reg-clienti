@@ -88,8 +88,8 @@ export default function HookForm() {
     <main className="main">
       <div className="form-container">
         <section className="form-header">
-          <h1 className="form-title">Mystilebox</h1>
-          <p className="form-subtitle">Inserisci le tue taglie per ricevere promozioni su misura!</p>
+          <h1 className="form-title">MyStyle<span className="form-title-text-orange">Box</span></h1>
+          <p className="form-subtitle">Inserisci le tue taglie per ricevere <span className="form-title-text-orange">promozioni</span> su <span className="form-title-text-orange">misura!</span></p>
         </section>
 
         <form className="post-form" onSubmit={handleSubmit(submitData)}>
