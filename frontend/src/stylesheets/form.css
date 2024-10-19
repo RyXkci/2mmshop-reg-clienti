@@ -1,57 +1,47 @@
-/* .form-title {
-
-    font-family: "Special Elite", system-ui;
-    font-weight: 400;
-    font-style: normal;
-    font-size: 2rem;
-    text-align:center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    clip-path: polygon(0% 10%, 10% 0%, 20% 10%, 30% 0%, 40% 10%, 50% 0%,
-            60% 10%, 70% 0%, 80% 10%, 90% 0%, 100% 10%,
-            100% 100%, 0% 100%);
-    background: white;
-
+.form-container {
+    width: 100%;
+    max-width: 450px;
+    font-family: "Playfair Display", serif;
+    background-color: var(--primary-600);
 }
 
-.form-subtitle {
-    font-family: "Special Elite", system-ui;
-    font-weight: 400;
-    font-style: normal;
-    font-size: 1.3rem;
-    text-align:center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    clip-path: polygon(0% 10%, 10% 0%, 20% 10%, 30% 0%, 40% 10%, 50% 0%,
-            60% 10%, 70% 0%, 80% 10%, 90% 0%, 100% 10%,
-            100% 100%, 0% 100%);
-    background: white;
-    padding: .3em;
-    margin-top: .5em;
-} OLD*/
 
 /* ǸEW */
-.form-header {
+/* .form-header {
     height: 250px;
     width: 100%;
     padding-left: 1.3em;
     background: white;
     border-bottom-left-radius: 50%;
     border-bottom-right-radius: 50%;
+} */
+
+.form-header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.form-title {
-font-size: 2rem;
+.form-header-subtitle p {
+    color: white;
+    font-size: 2.25rem;
+    width: 60%;
+    margin: 0 auto;
+    text-align: center;
+    font-style: italic;
 }
 
-.form-title::first-letter {
-    font-size: 3.5rem;
+.form-header-description p {
+    color: white;
+    font-size: 2.5rem;
+    text-align: center;
 }
 
-.form-subtitle {
-    max-width: 60%;
-}
-
-.form-title-text-orange {
-    color: var(--primary-500);
+.form-header-description {
+    background-color: var(--primary-300);
+    padding: 0rem 5rem;
+    margin-top: 1rem;
 }
 
 .data-section__title,
@@ -70,41 +60,15 @@ font-size: 2rem;
 }
 
 
+/*  FORM */
 
-.form-container {
-    padding: 1.3em;
-    padding-top: 0px;
-    width: 90%;
-    max-width: 450px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
-    background: var(--primary-500);
-}
-
-form {
+.post-form {
     width:100%;
-    font-family: "Lato", sans-serif;
     font-style: normal;
-    padding: 3rem;
-    color: var(--dark-700);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
-
-    /* Glass effect */
-
-    background: rgba(243, 138, 9, 0.3);
-    border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    border: 1px solid rgba(243, 138, 9, 0.2);
 }
 
 .data-section,
@@ -116,38 +80,57 @@ form {
 }
 
 .data-section {
+    /* height: 100svh; */
+    width: 100%;
+    background: url('../../public/intro-images/contorno-figura-donna.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
     margin-bottom: 2em;
+}
+
+/*  FORM INPUTS*/
+
+label {
+    opacity: 0;
 }
 
 .form-input,
 .form-dropdown {
     display: flex;
     flex-direction: column;
-    font-size: 1.1rem;
+    align-items: center;
+    font-size: 2.25rem;
 }
 
-.form-dropdown select {
-    border-radius: 10px;
-}
-
-.dropdown-white>select {
-    background: white;
-    color: var(--dark-500);
-}
 
 .form-input input {
     border: none;
-    border-radius: 10px;
+    border-radius: 30px;
+    background: var(--primary-300);
+    color: white;
+    padding-left: 2rem;
 }
 
-.form-input::placeholder {
-    color: var(--dark-600);
-    font-size: .5rem;
+.form-input input::placeholder {
+    color: white;
+    font-style: italic;
+    opacity: 1;
 }
 
 .form-input input:focus {
     border-color: black;
     outline: black;
+}
+
+
+.form-dropdown select {
+    border-radius: 30px;
+}
+
+.dropdown-light>select {
+    background: var(--primary-300);
+    color: var(--dark-500);
 }
 
 .sizes-section select {

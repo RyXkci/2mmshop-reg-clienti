@@ -23,6 +23,9 @@ ol[role='list'] {
     list-style: none;
 }
 
+html {
+    font-size: 62.5%;
+}
 
 html:focus-within {
     scroll-behavior: smooth;
