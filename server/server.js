@@ -9,6 +9,7 @@ const Admin = require('./models/admin');
 
 const PORT = process.env.port || 4000;
 const dbUrl = process.env.MONGOURL;
+const CORSURL = process.env.CORSURL;
 
 const mongoose = require('mongoose');
 mongoose
@@ -28,7 +29,7 @@ const pingRoutes = require('./routes/ping');
 // MIDDLEWARE
 app.use(express.json());
 app.use(cors({
-  origin: 'https://2mmshop.netlify.app',
+  origin: CORSURL,
   methods: ['GET', 'POST']
 }));
 
