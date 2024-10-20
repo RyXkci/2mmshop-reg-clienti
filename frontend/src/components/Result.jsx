@@ -1,5 +1,7 @@
 import "../stylesheets/result.css";
 
+import Logo from "./Logo";
+
 export default function Result({ content, clickFunc }) {
   return (
     //   <div className="result-page">
@@ -16,15 +18,19 @@ export default function Result({ content, clickFunc }) {
           <h1 className="result-page__title">{content.title}</h1>
           <p className="result-page__subtitle">{content.body}</p>
         </section>
+
+        <Logo
+        size="bg"
+        />
        
-        <section className="intro-container-circle bg">
-          <h1 className="intro__title">
-            <span className="intro__title-large">2</span>
-            <span className="intro__title-small">mm</span>
-            <span className="intro-title-break">shop</span>
+        {/* <section className="logo-container-circle bg">
+          <h1 className="logo__title">
+            <span className="logo__title-large">2</span>
+            <span className="logo__title-small">mm</span>
+            <span className="logo-title-break">shop</span>
           </h1>
-          <p className="intro__subtitle">MyStyleBox</p>
-        </section>
+          <p className="logo__subtitle">MyStyleBox</p>
+        </section> */}
           <button className="btn-fill has-top-border-shadow" onClick ={clickFunc}>{content.button}</button>
 
       </div>
