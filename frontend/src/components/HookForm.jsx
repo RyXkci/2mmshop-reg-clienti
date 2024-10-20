@@ -18,11 +18,11 @@ import { success, fail } from "../utils/resultText.json";
 const apiUrl = import.meta.env.VITE_API_URL;
 
 export default function HookForm() {
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(true);
 
   const [isIntro, setIsIntro] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [resultText, setResultText] = useState(null);
+  const [resultText, setResultText] = useState(success); //null
   const [isSuccess, setIsSuccess] = useState(true); // STATE TO DETERMINE RESULT COMPONENT RESET
 
   useEffect(() => {
