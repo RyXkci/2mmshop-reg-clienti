@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import Introduction from "./Introduction";
 import Result from "./Result";
 import Spinner from "./Spinner";
+import Logo from "./Logo";
 
 import { values } from "../utils/formUtils";
 import { registerOptions } from "../utils/formUtils";
@@ -20,7 +21,7 @@ const apiUrl = import.meta.env.VITE_API_URL;
 export default function HookForm() {
   const [isSubmitted, setIsSubmitted] = useState(true);
 
-  const [isIntro, setIsIntro] = useState(false);
+  const [isIntro, setIsIntro] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [resultText, setResultText] = useState(success); //null
   const [isSuccess, setIsSuccess] = useState(true); // STATE TO DETERMINE RESULT COMPONENT RESET
@@ -98,14 +99,16 @@ export default function HookForm() {
           <div className="form-container">
             <section className="form-header">
               <div className="form-header-logo">
-                <section className="intro-container-circle sm">
+                {/* <section className="intro-container-circle sm">
                   <h1 className="intro__title">
                     <span className="intro__title-large">2</span>
                     <span className="intro__title-small">mm</span>
                     <span className="intro-title-break">shop</span>
                   </h1>
                   <p className="intro__subtitle">MyStyleBox</p>
-                </section>
+                </section> */}
+                <Logo
+                size="sm" />
               </div> { /*WILL BECOME OWN COMPONENT */}
               <div className="form-header-subtitle">
                 <p>Il piacere di indossare ciò che vi rende unici</p>
@@ -178,14 +181,8 @@ export default function HookForm() {
               </article>
               <section className="form-header">
               <div className="form-header-logo">
-                <section className="intro-container-circle sm">
-                  <h1 className="intro__title">
-                    <span className="intro__title-large">2</span>
-                    <span className="intro__title-small">mm</span>
-                    <span className="intro-title-break">shop</span>
-                  </h1>
-                  <p className="intro__subtitle">MyStyleBox</p>
-                </section>
+              <Logo
+                size="sm" />
               </div> { /*WILL BECOME OWN COMPONENT */}
               <div className="form-header-subtitle">
                 <p>Il piacere di indossare ciò che vi rende unici</p>

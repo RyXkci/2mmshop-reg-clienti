@@ -47,7 +47,7 @@
 
 .result-container {
     width: 100%;
-    height: 100%;
+    height: 100svh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -72,7 +72,7 @@
 
 .result-content.success h1,
 .result-content.success p {
-    color: var(--primary-100);
+    color: white;
 
 }
 
