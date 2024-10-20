@@ -19,12 +19,23 @@ import { success, fail } from "../utils/resultText.json";
 const apiUrl = import.meta.env.VITE_API_URL;
 
 export default function HookForm() {
-  const [isSubmitted, setIsSubmitted] = useState(true);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const [isIntro, setIsIntro] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
-  const [resultText, setResultText] = useState(success); //null
+  const [resultText, setResultText] = useState(null); //initially null, changes to either success or fail after form submit
   const [isSuccess, setIsSuccess] = useState(true); // STATE TO DETERMINE RESULT COMPONENT RESET
+  
+  // INTO PAGE IS SHOWN FOR TWO SECONDS, THEN FORM RENDERS
+  useEffect(() => {
+    // Use setTimeout to update the state after 2000 milliseconds
+    const timeoutId = setTimeout(() => {
+      setIsIntro(false)
+    }, 2000);
+
+    // Cleanup function to clear the timeout if the component unmounts
+    return () => clearTimeout(timeoutId);
+  }, []); // Empty dependency array ensures the effect runs only once
 
   useEffect(() => {
     const pingServer = async () => {
