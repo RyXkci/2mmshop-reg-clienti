@@ -1,6 +1,7 @@
 .form-container {
     width: 100%;
     max-width: 450px;
+    padding: 2rem 0;
     font-family: "Playfair Display", serif;
     background-color: var(--primary-600);
 }
@@ -56,14 +57,14 @@
     font-size: .8rem;
     color: var(--danger);
     text-transform: uppercase;
-    font-weight:bold;
+    font-weight: bold;
 }
 
 
 /*  FORM */
 
 .post-form {
-    width:100%;
+    width: 100%;
     font-style: normal;
     display: flex;
     flex-direction: column;
@@ -71,28 +72,34 @@
     align-items: center;
 }
 
+
+
+.data-section {
+    background: url('../../public/intro-images/contorno-figura-donna.svg');
+}
+.sizes-section {
+    background: url('../../public/intro-images/contorno-figura-uomo.svg');
+}
+
 .data-section,
 .sizes-section {
     display: flex;
     flex-direction: column;
-    gap: .8em;
+    gap: 2em;
+    padding: 2em 0;
     margin-bottom: .8em;
-}
-
-.data-section {
-    /* height: 100svh; */
     width: 100%;
-    background: url('../../public/intro-images/contorno-figura-donna.svg');
     background-repeat: no-repeat;
-    background-size: cover;
+    /* background-size: cover; */
     background-position: center;
     margin-bottom: 2em;
 }
 
 /*  FORM INPUTS*/
 
-label {
-    opacity: 0;
+
+select.max-width {
+    width: 100% !important;
 }
 
 .form-input,
@@ -101,6 +108,8 @@ label {
     flex-direction: column;
     align-items: center;
     font-size: 2.25rem;
+    width: 80%;
+    margin: 0 auto;
 }
 
 
@@ -109,7 +118,8 @@ label {
     border-radius: 30px;
     background: var(--primary-300);
     color: white;
-    padding-left: 2rem;
+    padding: .5rem 0rem .5rem 1.5rem;
+    width: 100%;
 }
 
 .form-input input::placeholder {
@@ -125,18 +135,21 @@ label {
 
 
 .form-dropdown select {
+    border: none;
     border-radius: 30px;
+    width: 100%;
+    padding: .5rem 0rem .5rem 1.5rem;
 }
 
 .dropdown-light>select {
     background: var(--primary-300);
-    color: var(--dark-500);
+    color: white;
 }
 
-.sizes-section select {
-    background: var(--dark-500);
+.consent-section {
+color: white;
+text-align: center;
 }
-
 
 /*  UTILITY */
 .has-top-border-shadow {
@@ -152,11 +165,11 @@ label {
         inset 0 -2px 2px hsla(0, 0%, 100%, .15);
 }
 
-.btn-fill-dark {
-    background: var(--dark-500);
+.btn-fill {
+    background: var(--primary-300);
     color: white;
     padding: .5em 1.3em;
-    border-radius: 10px;
+    border-radius: 30px;
     font-size: 1.3em;
     font-family: inherit;
     margin-top: 1.3em;
@@ -168,12 +181,13 @@ label {
 }
 
 .has-left-border-radius {
-    border-radius: 10px 0 0 10px;
-    border-right: 1px solid black;
+    border-radius: 30px 0 0 30px;
+    border-right: 1px solid rgba(46, 51, 37, .5);
+
 }
 
 .has-right-border-radius {
-    border-radius: 0 10px 10px 0!important;
+    border-radius: 0 30px 30px 0 !important;
 }
 
 

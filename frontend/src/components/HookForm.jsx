@@ -121,7 +121,7 @@ export default function HookForm() {
             <form className="post-form" onSubmit={handleSubmit(submitData)}>
               <article className="data-section has-bottom-border-shadow">
                 <div className="form-input">
-                  <label htmlFor="firstname">Nome</label>
+                  <label className="sr-only" htmlFor="firstname">Nome</label>
                   <input
                     type="text"
                     id="firstname"
@@ -135,7 +135,7 @@ export default function HookForm() {
                   </div>
                 </div>
                 <div className="form-input">
-                  <label htmlFor="lastname">Cognome</label>
+                  <label className="sr-only" htmlFor="lastname">Cognome</label>
                   <input
                     type="text"
                     id="lastname"
@@ -149,8 +149,8 @@ export default function HookForm() {
                   </div>
                 </div>
                 <div className="form-input">
-                  <label htmlFor="phone">Numero di telefono</label>
-                  <div className="flex-row dropdown-white">
+                  <label className="sr-only" htmlFor="phone">Numero di telefono</label>
+                  <div className="flex-row dropdown-light">
                     <select
                       name="phonePrefix"
                       className="has-left-border-radius"
@@ -174,16 +174,40 @@ export default function HookForm() {
                     {errors?.phoneNumber && errors.phoneNumber.message}
                   </div>
                 </div>
-                <div className="form-dropdown dropdown-light">
-                  <label htmlFor="sex">Sesso</label>
+        
+              </article>
+              <section className="form-header">
+              <div className="form-header-logo">
+                <section className="intro-container-circle sm">
+                  <h1 className="intro__title">
+                    <span className="intro__title-large">2</span>
+                    <span className="intro__title-small">mm</span>
+                    <span className="intro-title-break">shop</span>
+                  </h1>
+                  <p className="intro__subtitle">MyStyleBox</p>
+                </section>
+              </div> { /*WILL BECOME OWN COMPONENT */}
+              <div className="form-header-subtitle">
+                <p>Il piacere di indossare ciò che vi rende unici</p>
+              </div>
+              <div className="form-header-description">
+              <p>Compila il form e ricevi offerte su misura</p>
+              </div>
+
+              {/* <h1 className="form-title">MyStyle<span className="form-title-text-orange">Box</span></h1>
+            <p className="form-subtitle">Inserisci le tue taglie per ricevere <span className="form-title-text-orange">promozioni</span> su <span className="form-title-text-orange">misura!</span></p> */}
+            </section>
+              <article className="sizes-section has-bottom-border">
+              <div className="form-dropdown dropdown-light">
+                  <label className="sr-only" htmlFor="sex">Sesso</label>
                   <select
-                    className="form-dropdown has-inner-box-shadow"
+                    className="form-dropdown has-inner-box-shadow max-width"
                     id="sesso"
                     name="sesso"
                     disabled={isSubmitted}
                     {...register("sex", registerOptions.sex)}
                   >
-                    <option value="">Seleziona un'opzione</option>
+                    <option value="">Sesso</option>
                     <option value="m">M</option>
                     <option value="f">F</option>
                   </select>
@@ -191,13 +215,8 @@ export default function HookForm() {
                     {errors?.sex && errors.sex.message}
                   </div>
                 </div>
-              </article>
-              <article className="sizes-section has-bottom-border">
-                <h1 className="sizes-section__title has-bottom-border-shadow">
-                  E inserisci qui le tue taglie!
-                </h1>
-                <div className="form-dropdown">
-                  <label htmlFor="tshirt">Maglietta</label>
+                <div className="form-dropdown dropdown-light">
+                  <label className="sr-only" htmlFor="tshirt">Maglietta</label>
                   <select
                     className="has-top-box-shadow"
                     id="maglietta"
@@ -205,7 +224,7 @@ export default function HookForm() {
                     disabled={isSubmitted}
                     {...register("tshirtSize", registerOptions.tshirtSize)}
                   >
-                    <option value="">Seleziona un'opzione</option>
+                    <option value="">Taglia top</option>
                     <option value="xxs">XXS</option>
                     <option value="xs">XS</option>
                     <option value="s">S</option>
@@ -218,8 +237,8 @@ export default function HookForm() {
                     {errors?.tshirtSize && errors.tshirtSize.message}
                   </div>
                 </div>
-                <div className="form-dropdown">
-                  <label htmlFor="pantaloni">Pantaloni</label>
+                <div className="form-dropdown dropdown-light">
+                  <label className="sr-only" htmlFor="pantaloni">Pantaloni</label>
                   <select
                     className="has-top-box-shadow"
                     id="pantaloni"
@@ -227,7 +246,7 @@ export default function HookForm() {
                     disabled={isSubmitted}
                     {...register("trouserSize", registerOptions.trouserSize)}
                   >
-                    <option value="">Seleziona un'opzione</option>
+                    <option value="">Taglia pantalone</option>
                     <option value="38">38</option>
                     <option value="40">40</option>
                     <option value="42">42</option>
@@ -244,8 +263,8 @@ export default function HookForm() {
                     {errors?.trouserSize && errors.trouserSize.message}
                   </div>
                 </div>
-                <div className="form-dropdown">
-                  <label htmlFor="scarpe">Scarpe</label>
+                <div className="form-dropdown dropdown-light">
+                  <label className="sr-only" htmlFor="scarpe">Scarpe</label>
                   <select
                     className="has-top-box-shadow"
                     id="scarpe"
@@ -253,7 +272,7 @@ export default function HookForm() {
                     disabled={isSubmitted}
                     {...register("shoeSize", registerOptions.shoeSize)}
                   >
-                    <option value="">Seleziona un'opzione</option>
+                    <option value="">Taglia scarpe</option>
                     <option value="36">36</option>
                     <option value="37">37</option>
                     <option value="38">38</option>
@@ -267,7 +286,7 @@ export default function HookForm() {
                   </div>
                 </div>
               </article>
-              <div className="form-input row-ls">
+              <div className="form-input consent-section">
                 <label htmlFor="consent">
                   Do il consenso al trattamento dei dati
                 </label>
@@ -285,7 +304,7 @@ export default function HookForm() {
               <button
                 type="submit"
                 disabled={isSubmitted}
-                className="form-button btn-fill-dark has-top-border-shadow"
+                className="form-button btn-fill has-top-border-shadow"
               >
                 Invia
               </button>
