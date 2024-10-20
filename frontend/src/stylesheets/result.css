@@ -1,0 +1,125 @@
+.result-page {
+    height: 100%;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100svh;
+    background: var(--primary-600);
+    /* background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    height: 100svh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; */
+}
+
+.result-page::before,
+.result-page::after {
+    position: absolute;
+    content: "";
+}
+
+.result-page::before {
+    background: url('../../public/intro-images/contorno-figura-donna.svg');
+    background-repeat: no-repeat;
+    background-position: left;
+    height: 40%;
+    width: 80%;
+    top: 0;
+    left: -11rem;
+}
+
+.result-page::after {
+    background: url('../../public/intro-images/contorno-figura-uomo.svg');
+    background-repeat: no-repeat;
+    background-position: right;
+    height: 40%;
+    width: 80%;
+    bottom: 0;
+    right: -5rem;
+}
+
+.result-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    position: relative;
+}
+
+.result-content {
+    position: absolute;
+    top: 2em;
+    right: 1.3em;
+    width: 150px;
+
+}
+
+.result-page__title,
+.result__page__subtitle {
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+}
+
+.result-content.success h1,
+.result-content.success p {
+    color: var(--primary-100);
+
+}
+
+.intro-container-circle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .8em;
+    background-color: var(--primary-100);
+    height: 200px;
+    width: 300px;
+    /* height: 100px;
+    width: 175px; */
+    border: 3px solid black;
+    border-radius: 50%;
+}
+
+
+
+/* .result-page-inner {
+    width: 80%;
+    height: 80%;
+    padding: .8rem;
+    border-radius: 10px;
+    box-shadow: 0, 0, 3px rgba(0, 0, 0, .1);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+}
+
+.result-page-inner.success {
+    background: var(--primary-700);
+    color: var(--primary-100);
+}
+
+.result-page-inner.fail {
+    background: var(--dark-500);
+}
+
+.result-page-inner.fail button {
+    background: var(--primary-100);
+    color: var(--dark-700);
+}
+
+.result-page__subtitle {
+    font-size: 1.5rem;
+}
+ */
