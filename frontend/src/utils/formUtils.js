@@ -25,18 +25,18 @@ const values = {
 
     },
     dobDay: {
-      required: "Questo campo è obbligatorio",
+      required: "Inserire un giorno valido",
       min: {
         value: 1,
         message: "Inserire un giorno valido"
       },
       max: {
         value: 31,
-        message: "Inserire un giorno valie"
+        message: "Inserire un giorno valido"
       }
     },
     dobMonth: {
-      required: "Questo campo è obbligatorio",
+      required: "Inserire un mese valido",
       min: {
         value: 1,
         message: "Inserire un mese valido"
@@ -47,7 +47,7 @@ const values = {
       }
     },
     dobYear: {
-      required: "Questo campo è obbligatorio",
+      required: "Inserire un anno valido",
       min: {
         value: 1900,
         message: "Inserire un anno valido"
