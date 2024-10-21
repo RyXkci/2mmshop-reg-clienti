@@ -183,7 +183,7 @@ export default function HookForm() {
                 {/* DATE OF BIRTH */}
                 <div className="form-input">
                   <div className="flex-row dob-section">
-                    {/* {isFocused && <span className="dob-placeholder">Data di nascita</span>} */}
+                    {isFocused && <span className="dob-placeholder">Data di nascita</span>}
                     <label htmlFor="dob-day" className="sr-only">
                       Giorno
                     </label>
