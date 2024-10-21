@@ -21,7 +21,7 @@ const apiUrl = import.meta.env.VITE_API_URL;
 export default function HookForm() {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const [isIntro, setIsIntro] = useState(false);
+  const [isIntro, setIsIntro] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [resultText, setResultText] = useState(null); //initially null, changes to either success or fail after form submit
   const [isSuccess, setIsSuccess] = useState(true); // STATE TO DETERMINE RESULT COMPONENT RESET
@@ -72,13 +72,19 @@ export default function HookForm() {
     setIsLoading(true);
     const trimmedPhoneNumber = formData.phoneNumber.replace(/\s+/g, ""); // Remove all spaces from number
     console.log(formData.dobDay, formData.dobMonth, formData.dobYear);
-    const dob = `${formData.dobYear}-${formData.dobMonth.padStart(2, '0')}-${formData.dobDay.padStart(2, '0')}`;
-    console.log(dob)
+    const dob = `${formData.dobYear}-${formData.dobMonth.padStart(
+      2,
+      "0"
+    )}-${formData.dobDay.padStart(2, "0")}`;
+    console.log(dob);
     const newClient = {
       firstName: formData.firstName,
       lastName: formData.lastName,
       phoneNumber: `${formData.phonePrefix}${trimmedPhoneNumber}`, //numbers must be saved as single string plus prefix
-      dateOfBirth: `${formData.dobYear}-${formData.dobMonth.padStart(2, '0')}-${formData.dobDay.padStart(2, '0')}`,
+      dateOfBirth: `${formData.dobYear}-${formData.dobMonth.padStart(
+        2,
+        "0"
+      )}-${formData.dobDay.padStart(2, "0")}`,
       sex: formData.sex,
       sizes: {
         tshirtSize: formData.tshirtSize,
@@ -146,6 +152,7 @@ export default function HookForm() {
                     Nome
                   </label>
                   <input
+                  // style={{outline: errors?.firstName ? "1px solid red" : "none"}}
                     type="text"
                     id="firstname"
                     name="firstName"
@@ -175,25 +182,28 @@ export default function HookForm() {
                 </div>
                 {/* DATE OF BIRTH */}
                 <div className="form-input">
-                  <div className="flex-row dob-input">
-                    {isFocused && <span className="dob-placeholder">Data di nascita</span>}
+                  <div className="flex-row dob-section">
+                    {/* {isFocused && <span className="dob-placeholder">Data di nascita</span>} */}
                     <label htmlFor="dob-day" className="sr-only">
                       Giorno
                     </label>
-                    <input
-                      type="number"
-                      className="num-arrow-hidden has-left-border-radius"
-                      id="dob-day"
-                      name="dobDay"
-                      disabled={isSubmitted}
-                      {...register("dobDay", registerOptions.dobDay)}
-                      placeholder="DD"
-                      onFocus={handleFocus}
-                      onBlur={handleFocus}
-                    />
-                    <div className="form-danger">
-                    {errors?.dobDay && errors.dobDay.message}
-                  </div>
+                    <div className="dob-input">
+                      <input
+                        type="number"
+                        className="num-arrow-hidden has-left-border-radius"
+                        id="dob-day"
+                        name="dobDay"
+                        disabled={isSubmitted}
+                        {...register("dobDay", registerOptions.dobDay)}
+                        placeholder="DD"
+                        onFocus={handleFocus}
+                        onBlur={handleFocus}
+                      />
+                      <div className="form-danger form-danger-sm">
+                        {errors?.dobDay && errors.dobDay.message}
+                      </div>
+                    </div>
+                    <div className="dob-input">
                     <label htmlFor="dob-month" className="sr-only">
                       Giorno
                     </label>
@@ -208,9 +218,11 @@ export default function HookForm() {
                       onFocus={handleFocus}
                       onBlur={handleFocus}
                     />
-                    <div className="form-danger">
-                    {errors?.dobMonth && errors.dobMonth.message}
-                  </div>
+                    <div className="form-danger form-danger-sm">
+                      {errors?.dobMonth && errors.dobMonth.message}
+                    </div>
+                    </div>
+                    <div className="dob-input">
                     <label htmlFor="dob-year" className="sr-only">
                       Giorno
                     </label>
@@ -225,10 +237,13 @@ export default function HookForm() {
                       onFocus={handleFocus}
                       onBlur={handleFocus}
                     />
-                    <div className="form-danger">
-                    {errors?.dobYear && errors.dobYear.message}
+                    <div className="form-danger form-danger-sm">
+                      {errors?.dobYear && errors.dobYear.message}
+                    </div>
                   </div>
-                  </div>
+                    </div>
+                    
+                  
                 </div>
                 <div className="form-input">
                   <label className="sr-only" htmlFor="phone">

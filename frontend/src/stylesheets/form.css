@@ -49,15 +49,21 @@
 .sizes-section__title {
     text-align: center;
     font-size: 1.3rem;
-    /* color: var(--dark-600); */
     color: var(--primary-300);
 }
 
 .form-danger {
-    font-size: .8rem;
-    color: var(--danger);
+    font-size: 1.2rem;
+    /* background: var(--danger); */
+    color: white;
     text-transform: uppercase;
     font-weight: bold;
+    margin-top: .3em;
+    /* border-radius: 30px; */
+}
+
+.form-danger-sm {
+    font-size: 1rem;
 }
 
 
@@ -207,7 +213,7 @@ text-align: center;
 
 /* POSITIONING DATE OF BIRTH FAKE PLACEHOLDER */
 
-.dob-input {
+.dob-section {
     position: relative;
 }
 
@@ -317,7 +323,7 @@ text-align: center;
 
 /*    SUCCESS PAGE */
 
-.success-page {
+/* .success-page {
     height: 100%;
     position: fixed;
     top: 0;
@@ -351,7 +357,7 @@ text-align: center;
 
 .success-page__subtitle {
     font-size: 1.5rem;
-}
+} */
 
 /* .has-text-stroke-dark {
     -webkit-text-stroke-width: 1px;
