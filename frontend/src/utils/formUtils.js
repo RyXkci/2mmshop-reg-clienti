@@ -1,6 +1,9 @@
 const values = {
     firstName: "",
     lastName: "",
+    dobDay: "",
+    dobMonth: "",
+    dobYear: "",
     phonePrefix: "+39",
     phoneNumber: "",
     sex: "",
@@ -20,6 +23,39 @@ const values = {
     phonePrefix: {
       required: "Questo campo è obbligatorio",
 
+    },
+    dobDay: {
+      required: "Questo campo è obbligatorio",
+      min: {
+        value: 1,
+        message: "Inserire un giorno valido"
+      },
+      max: {
+        value: 31,
+        message: "Inserire un giorno valie"
+      }
+    },
+    dobMonth: {
+      required: "Questo campo è obbligatorio",
+      min: {
+        value: 1,
+        message: "Inserire un mese valido"
+      },
+      max: {
+        value: 12,
+        message: "Inserire un mese valido"
+      }
+    },
+    dobYear: {
+      required: "Questo campo è obbligatorio",
+      min: {
+        value: 1900,
+        message: "Inserire un anno valido"
+      },
+      max: {
+        value: new Date().getFullYear(),
+        message: "Inserire un anno valido"
+      }
     },
     phoneNumber: {
       required: "Questo campo è obbligatorio",

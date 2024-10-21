@@ -21,16 +21,16 @@ const apiUrl = import.meta.env.VITE_API_URL;
 export default function HookForm() {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const [isIntro, setIsIntro] = useState(true);
+  const [isIntro, setIsIntro] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [resultText, setResultText] = useState(null); //initially null, changes to either success or fail after form submit
   const [isSuccess, setIsSuccess] = useState(true); // STATE TO DETERMINE RESULT COMPONENT RESET
-  
+
   // INTO PAGE IS SHOWN FOR TWO SECONDS, THEN FORM RENDERS
   useEffect(() => {
     // Use setTimeout to update the state after 2000 milliseconds
     const timeoutId = setTimeout(() => {
-      setIsIntro(false)
+      setIsIntro(false);
     }, 2000);
 
     // Cleanup function to clear the timeout if the component unmounts
@@ -69,10 +69,14 @@ export default function HookForm() {
   const submitData = async (formData) => {
     setIsLoading(true);
     const trimmedPhoneNumber = formData.phoneNumber.replace(/\s+/g, ""); // Remove all spaces from number
+    console.log(formData.dobDay, formData.dobMonth, formData.dobYear);
+    const dob = `${formData.dobYear}-${formData.dobMonth.padStart(2, '0')}-${formData.dobDay.padStart(2, '0')}`;
+    console.log(dob)
     const newClient = {
       firstName: formData.firstName,
       lastName: formData.lastName,
       phoneNumber: `${formData.phonePrefix}${trimmedPhoneNumber}`, //numbers must be saved as single string plus prefix
+      dob: `${formData.dobYear}-${formData.dobMonth.padStart(2, '0')}-${formData.dobDay.padStart(2, '0')}`,
       sex: formData.sex,
       sizes: {
         tshirtSize: formData.tshirtSize,
@@ -118,16 +122,15 @@ export default function HookForm() {
                   </h1>
                   <p className="intro__subtitle">MyStyleBox</p>
                 </section> */}
-                <Logo
-                size="sm" />
-              </div> { /*WILL BECOME OWN COMPONENT */}
+                <Logo size="sm" />
+              </div>{" "}
+              {/*WILL BECOME OWN COMPONENT */}
               <div className="form-header-subtitle">
                 <p>Il piacere di indossare ciò che vi rende unici</p>
               </div>
               <div className="form-header-description">
-              <p>Compila il form e ricevi offerte su misura</p>
+                <p>Compila il form e ricevi offerte su misura</p>
               </div>
-
               {/* <h1 className="form-title">MyStyle<span className="form-title-text-orange">Box</span></h1>
             <p className="form-subtitle">Inserisci le tue taglie per ricevere <span className="form-title-text-orange">promozioni</span> su <span className="form-title-text-orange">misura!</span></p> */}
             </section>
@@ -135,7 +138,9 @@ export default function HookForm() {
             <form className="post-form" onSubmit={handleSubmit(submitData)}>
               <article className="data-section has-bottom-border-shadow">
                 <div className="form-input">
-                  <label className="sr-only" htmlFor="firstname">Nome</label>
+                  <label className="sr-only" htmlFor="firstname">
+                    Nome
+                  </label>
                   <input
                     type="text"
                     id="firstname"
@@ -149,7 +154,9 @@ export default function HookForm() {
                   </div>
                 </div>
                 <div className="form-input">
-                  <label className="sr-only" htmlFor="lastname">Cognome</label>
+                  <label className="sr-only" htmlFor="lastname">
+                    Cognome
+                  </label>
                   <input
                     type="text"
                     id="lastname"
@@ -162,8 +169,60 @@ export default function HookForm() {
                     {errors?.lastName && errors.lastName.message}
                   </div>
                 </div>
+                {/* DATE OF BIRTH */}
                 <div className="form-input">
-                  <label className="sr-only" htmlFor="phone">Numero di telefono</label>
+                  <div className="flex-row">
+                    <label htmlFor="dob-day" className="sr-only">
+                      Giorno
+                    </label>
+                    <input
+                      type="number"
+                      className="num-arrow-hidden has-left-border-radius"
+                      id="dob-day"
+                      name="dobDay"
+                      disabled={isSubmitted}
+                      {...register("dobDay", registerOptions.dobDay)}
+                      placeholder="DD"
+                    />
+                    <div className="form-danger">
+                    {errors?.dobDay && errors.dobDay.message}
+                  </div>
+                    <label htmlFor="dob-month" className="sr-only">
+                      Giorno
+                    </label>
+                    <input
+                      type="number"
+                      className="num-arrow-hidden has-no-border-radius"
+                      id="dob-month"
+                      name="dobMonth"
+                      disabled={isSubmitted}
+                      {...register("dobMonth", registerOptions.dobMonth)}
+                      placeholder="MM"
+                    />
+                    <div className="form-danger">
+                    {errors?.dobMonth && errors.dobMonth.message}
+                  </div>
+                    <label htmlFor="dob-year" className="sr-only">
+                      Giorno
+                    </label>
+                    <input
+                      type="number"
+                      className="num-arrow-hidden has-right-border-radius"
+                      id="dob-year"
+                      name="dobYear"
+                      disabled={isSubmitted}
+                      {...register("dobYear", registerOptions.dobYear)}
+                      placeholder="YYYY"
+                    />
+                    <div className="form-danger">
+                    {errors?.dobYear && errors.dobYear.message}
+                  </div>
+                  </div>
+                </div>
+                <div className="form-input">
+                  <label className="sr-only" htmlFor="phone">
+                    Numero di telefono
+                  </label>
                   <div className="flex-row dropdown-light">
                     <select
                       name="phonePrefix"
@@ -188,26 +247,26 @@ export default function HookForm() {
                     {errors?.phoneNumber && errors.phoneNumber.message}
                   </div>
                 </div>
-        
               </article>
               <section className="form-header">
-              <div className="form-header-logo">
-              <Logo
-                size="sm" />
-              </div> { /*WILL BECOME OWN COMPONENT */}
-              <div className="form-header-subtitle">
-                <p>Il piacere di indossare ciò che vi rende unici</p>
-              </div>
-              <div className="form-header-description">
-              <p>Compila il form e ricevi offerte su misura</p>
-              </div>
-
-              {/* <h1 className="form-title">MyStyle<span className="form-title-text-orange">Box</span></h1>
+                <div className="form-header-logo">
+                  <Logo size="sm" />
+                </div>{" "}
+                {/*WILL BECOME OWN COMPONENT */}
+                <div className="form-header-subtitle">
+                  <p>Il piacere di indossare ciò che vi rende unici</p>
+                </div>
+                <div className="form-header-description">
+                  <p>Compila il form e ricevi offerte su misura</p>
+                </div>
+                {/* <h1 className="form-title">MyStyle<span className="form-title-text-orange">Box</span></h1>
             <p className="form-subtitle">Inserisci le tue taglie per ricevere <span className="form-title-text-orange">promozioni</span> su <span className="form-title-text-orange">misura!</span></p> */}
-            </section>
+              </section>
               <article className="sizes-section has-bottom-border">
-              <div className="form-dropdown dropdown-light">
-                  <label className="sr-only" htmlFor="sex">Sesso</label>
+                <div className="form-dropdown dropdown-light">
+                  <label className="sr-only" htmlFor="sex">
+                    Sesso
+                  </label>
                   <select
                     className="form-dropdown has-inner-box-shadow max-width"
                     id="sesso"
@@ -224,7 +283,9 @@ export default function HookForm() {
                   </div>
                 </div>
                 <div className="form-dropdown dropdown-light">
-                  <label className="sr-only" htmlFor="tshirt">Maglietta</label>
+                  <label className="sr-only" htmlFor="tshirt">
+                    Maglietta
+                  </label>
                   <select
                     className="has-top-box-shadow"
                     id="maglietta"
@@ -246,7 +307,9 @@ export default function HookForm() {
                   </div>
                 </div>
                 <div className="form-dropdown dropdown-light">
-                  <label className="sr-only" htmlFor="pantaloni">Pantaloni</label>
+                  <label className="sr-only" htmlFor="pantaloni">
+                    Pantaloni
+                  </label>
                   <select
                     className="has-top-box-shadow"
                     id="pantaloni"
@@ -272,7 +335,9 @@ export default function HookForm() {
                   </div>
                 </div>
                 <div className="form-dropdown dropdown-light">
-                  <label className="sr-only" htmlFor="scarpe">Scarpe</label>
+                  <label className="sr-only" htmlFor="scarpe">
+                    Scarpe
+                  </label>
                   <select
                     className="has-top-box-shadow"
                     id="scarpe"
