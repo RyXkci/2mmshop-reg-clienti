@@ -29,7 +29,7 @@ const pingRoutes = require('./routes/ping');
 // MIDDLEWARE
 app.use(express.json());
 app.use(cors({
-  origin: CORSURL,
+  origin: 'https://2mmshop.netlify.app/',
   methods: ['GET', 'POST']
 }));
 
