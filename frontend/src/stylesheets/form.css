@@ -205,6 +205,30 @@ text-align: center;
     -moz-appearance: textfield;
 }
 
+/* POSITIONING DATE OF BIRTH FAKE PLACEHOLDER */
+
+.dob-input {
+    position: relative;
+}
+
+.dob-placeholder {
+    position: absolute;
+    inset: 0;
+    background: black;
+    color: white;
+    pointer-events: none;
+    /* margin-left: 2em; */
+}
+
+.dob-placeholder {
+    padding-left: 1.5rem;
+    font-style: italic;
+    border: none;
+    border-radius: 30px;
+    background: var(--primary-300);
+    color: white;
+}
+
 
 /* @media screen and (min-width: 670px) {
     .form-container {
