@@ -181,13 +181,28 @@ text-align: center;
 }
 
 .has-left-border-radius {
-    border-radius: 30px 0 0 30px;
-    border-right: 1px solid rgba(46, 51, 37, .5);
+    border-radius: 30px 0 0 30px!important;
+    border-right: 1px solid rgba(46, 51, 37, .5)!important;
 
 }
 
 .has-right-border-radius {
     border-radius: 0 30px 30px 0 !important;
+    border-left: 1px solid rgba(46, 51, 37, .5)!important;
+}
+
+.has-no-border-radius {
+    border-radius: 0!important;
+}
+
+.num-arrow-hidden::-webkit-outer-spin-button,
+.num-arrow.hidden::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  margin: 0;
+}
+
+.num-arrow-hidden {
+    -moz-appearance: textfield;
 }
 
 
