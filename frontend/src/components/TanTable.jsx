@@ -42,6 +42,7 @@ export default function TanTable() {
 
     if (admin) {
       fetchData();
+      console.log(data)
     }
   }, []);
 

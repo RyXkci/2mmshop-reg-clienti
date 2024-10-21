@@ -76,7 +76,7 @@ export default function HookForm() {
       firstName: formData.firstName,
       lastName: formData.lastName,
       phoneNumber: `${formData.phonePrefix}${trimmedPhoneNumber}`, //numbers must be saved as single string plus prefix
-      dob: `${formData.dobYear}-${formData.dobMonth.padStart(2, '0')}-${formData.dobDay.padStart(2, '0')}`,
+      dateOfBirth: `${formData.dobYear}-${formData.dobMonth.padStart(2, '0')}-${formData.dobDay.padStart(2, '0')}`,
       sex: formData.sex,
       sizes: {
         tshirtSize: formData.tshirtSize,
