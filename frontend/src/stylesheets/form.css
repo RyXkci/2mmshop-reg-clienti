@@ -65,7 +65,7 @@
 }
 
 .form-danger-sm {
-    font-size: 1rem;
+    font-size: .9rem;
     border-radius: 0;
     position: relative;
     z-index: 2;
@@ -146,6 +146,7 @@ select.max-width {
 
 
 .form-dropdown select {
+    font-style: italic;
     border: none;
     border-radius: 30px;
     width: 100%;
