@@ -191,9 +191,10 @@ useEffect(() => {
                     {...register("firstName", registerOptions.firstName)}
                     placeholder="Nome"
                   />
-                  <div className="form-danger">
+                  {errors?.firstName && <div className="form-danger"> {errors.firstName.message}</div>}
+                 {/* { <div className="form-danger">
                     {errors?.firstName && errors.firstName.message}
-                  </div>
+                  </div>} */}
                 </div>
                 <div className="form-input">
                   <label className="sr-only" htmlFor="lastname">
@@ -207,14 +208,16 @@ useEffect(() => {
                     {...register("lastName", registerOptions.lastName)}
                     placeholder="Cognome"
                   />
-                  <div className="form-danger">
+                  {errors?.lastName && <div className="form-danger"> {errors.lastName.message}</div>}
+                  {/* <div className="form-danger">
                     {errors?.lastName && errors.lastName.message}
-                  </div>
+                  </div> */}
                 </div>
                 {/* DATE OF BIRTH */}
                 <div className="form-input">
                   <div className="flex-row dob-section">
                     {isFocused && <span onClick={handleFocus} className="dob-placeholder">Data di nascita</span>}
+                     
                     <label htmlFor="dob-day" className="sr-only">
                       Giorno
                     </label>
@@ -231,9 +234,10 @@ useEffect(() => {
                         // onFocus={handleFocus}
                         // onBlur={handleFocus}
                       />
-                      <div className="form-danger form-danger-sm">
+                      {errors?.dobDay && <div className="form-danger form-danger-sm"> {errors.dobDay.message}</div>}
+                      {/* {<div className="form-danger form-danger-sm">
                         {errors?.dobDay && errors.dobDay.message}
-                      </div>
+                      </div>} */}
                     </div>
                     <div className="dob-input">
                     <label htmlFor="dob-month" className="sr-only">
@@ -250,9 +254,10 @@ useEffect(() => {
                       // onFocus={handleFocus}
                       // onBlur={handleFocus}
                     />
-                    <div className="form-danger form-danger-sm">
+                    {errors?.dobMonth && <div className="form-danger form-danger-sm"> {errors.dobMonth.message}</div>}
+                    {/* <div className="form-danger form-danger-sm">
                       {errors?.dobMonth && errors.dobMonth.message}
-                    </div>
+                    </div> */}
                     </div>
                     <div className="dob-input">
                     <label htmlFor="dob-year" className="sr-only">
@@ -269,9 +274,10 @@ useEffect(() => {
                       // onFocus={handleFocus}
                       // onBlur={handleFocus}
                     />
-                    <div className="form-danger form-danger-sm">
+                    {errors?.dobYear && <div className="form-danger form-danger-sm"> {errors.dobYear.message}</div>}
+                    {/* <div className="form-danger form-danger-sm">
                       {errors?.dobYear && errors.dobYear.message}
-                    </div>
+                    </div> */}
                   </div>
                     </div>
                     
@@ -303,9 +309,10 @@ useEffect(() => {
                       placeholder="Cellulare"
                     />
                   </div>
-                  <div className="form-danger">
+                  {errors?.phoneNumber && <div className="form-danger"> {errors.phoneNumber.message}</div>}
+                  {/* <div className="form-danger">
                     {errors?.phoneNumber && errors.phoneNumber.message}
-                  </div>
+                  </div> */}
                 </div>
               </article>
               <section className="form-header">
@@ -338,9 +345,10 @@ useEffect(() => {
                     <option value="m">M</option>
                     <option value="f">F</option>
                   </select>
-                  <div className="form-danger">
+                  {errors?.sex && <div className="form-danger"> {errors.sex.message}</div>}
+                  {/* <div className="form-danger">
                     {errors?.sex && errors.sex.message}
-                  </div>
+                  </div> */}
                 </div>
                 <div className="form-dropdown dropdown-light">
                   <label className="sr-only" htmlFor="tshirt">
@@ -362,9 +370,10 @@ useEffect(() => {
                     <option value="xl">XL</option>
                     <option value="xxl">XXL</option>
                   </select>
-                  <div className="form-danger">
+                  {errors?.tshirtSize && <div className="form-danger"> {errors.tshirtSize.message}</div>}
+                  {/* <div className="form-danger">
                     {errors?.tshirtSize && errors.tshirtSize.message}
-                  </div>
+                  </div> */}
                 </div>
                 <div className="form-dropdown dropdown-light">
                   <label className="sr-only" htmlFor="pantaloni">
@@ -390,9 +399,10 @@ useEffect(() => {
                     <option value="56">56</option>
                     <option value="58">58</option>
                   </select>
-                  <div className="form-danger">
+                  {errors?.trouserSize && <div className="form-danger"> {errors.trouserSize.message}</div>}
+                  {/* <div className="form-danger">
                     {errors?.trouserSize && errors.trouserSize.message}
-                  </div>
+                  </div> */}
                 </div>
                 <div className="form-dropdown dropdown-light">
                   <label className="sr-only" htmlFor="scarpe">
@@ -414,9 +424,10 @@ useEffect(() => {
                     <option value="44">44</option>
                     <option value="46">46</option>
                   </select>
-                  <div className="form-danger">
+                  {errors?.shoeSize && <div className="form-danger"> {errors.shoeSize.message}</div>}
+                  {/* <div className="form-danger">
                     {errors?.shoeSize && errors.shoeSize.message}
-                  </div>
+                  </div> */}
                 </div>
               </article>
               <div className="form-input consent-section">
@@ -430,9 +441,10 @@ useEffect(() => {
                   disabled={isSubmitted}
                   {...register("givenConsent", registerOptions.givenConsent)}
                 />
-                <div className="form-danger">
+                {errors?.givenConsent && <div className="form-danger"> {errors.givenConsent.message}</div>}
+                {/* <div className="form-danger">
                   {errors?.givenConsent && errors.givenConsent.message}
-                </div>
+                </div> */}
               </div>
               <button
                 type="submit"
