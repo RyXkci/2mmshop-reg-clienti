@@ -221,6 +221,7 @@ useEffect(() => {
                     <div className="dob-input">
                       <input
                         type="number"
+                        pattern="\d*"
                         className="num-arrow-hidden has-left-border-radius"
                         id="dob-day"
                         name="dobDay"
@@ -291,7 +292,9 @@ useEffect(() => {
                       <option value="+39">+39</option>
                     </select>
                     <input
-                      type="input"
+                      type="text"
+                      inputMode="numeric"
+                      pattern="\d*"
                       className="has-right-border-radius"
                       id="phone"
                       name="phoneNumber"

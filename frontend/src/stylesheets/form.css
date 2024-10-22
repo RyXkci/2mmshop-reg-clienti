@@ -147,6 +147,10 @@ select.max-width {
     padding: .5rem 0rem .5rem 1.5rem;
 }
 
+.form-dropdown option {
+    font-style: italic;
+}
+
 .dropdown-light>select {
     background: var(--primary-300);
     color: white;
