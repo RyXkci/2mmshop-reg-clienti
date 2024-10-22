@@ -1,5 +1,6 @@
 table {
     border-collapse: collapse;
+    max-width: 1200px;
     /* border: none; */
 }
 
@@ -14,28 +15,28 @@ td {
 }
 
 td {
-    border: 1px solid var(--dark-700);
+    border: 1px solid var(--table-700);
 }
 
 
 
 .th-dark {
-    background-color: var(--dark-500);
+    background-color: var(--table-500);
     color: white;
 }
 
 .th-light {
-    background-color: var(--primary-500);
-    border-right: 1px solid var(--dark-700);
+    background-color: var(--table-300);
+    border-right: 1px solid var(--table-700);
     color: white;
 }
 .th-light select {
-    background: var(--primary-600);
+    background: var(--table-200);
 }
 
 tbody {
     background-color: white;
-    color: var(--dark-700);
+    color: var(--table-700);
     font-weight: 700;
 }
 
@@ -62,7 +63,7 @@ label {
 }
 
 select {
-    background: var(--dark-600);
+    background: var(--table-600);
     border: none;
     border-radius: 5px;
     color: white;
