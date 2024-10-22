@@ -62,11 +62,39 @@ export default function HookForm() {
     control,
     handleSubmit,
     reset,
+    setFocus,
     watch,
     formState: { errors },
   } = useForm({
     defaultValues: values,
   });
+
+  //  SETTING THE AUTOMATIC FOCUS SHIFTING ON DATE INPUT
+
+const watchDay = watch('dobDay');
+const watchMonth = watch('dobMonth');
+const watchYear = watch('dobYear');
+
+useEffect(() => {
+  if (watchDay && watchDay.length === 2) {
+    setFocus('dobMonth'); // Move to month field after day is completed
+    setIsFocused(false);
+  }
+}, [watchDay, setFocus]);
+
+useEffect(() => {
+  if (watchMonth && watchMonth.length === 2) {
+    setFocus('dobYear'); // Move to year field after month is completed
+    setIsFocused(false);
+  }
+}, [watchMonth, setFocus]);
+
+useEffect(() => {
+  if (watchYear && watchYear.length === 4) {
+    setFocus('phoneNumber'); // Move to year field after month is completed
+    setIsFocused(false);
+  }
+}, [watchYear, setFocus]);
 
   const submitData = async (formData) => {
     setIsLoading(true);
@@ -113,7 +141,10 @@ export default function HookForm() {
     isSuccess && reset(values); //if result is success, clear form on reset, otherwise keep it
   };
 
-  const handleFocus = () => setIsFocused(!isFocused);
+  const handleFocus = () => {
+    setIsFocused(!isFocused);
+    setFocus('dobDay')
+  }
   // const handleBlur = () => setIsFocused(day || month || year);
   return (
     <main className="main">
@@ -183,7 +214,7 @@ export default function HookForm() {
                 {/* DATE OF BIRTH */}
                 <div className="form-input">
                   <div className="flex-row dob-section">
-                    {isFocused && <span className="dob-placeholder">Data di nascita</span>}
+                    {isFocused && <span onClick={handleFocus} className="dob-placeholder">Data di nascita</span>}
                     <label htmlFor="dob-day" className="sr-only">
                       Giorno
                     </label>
@@ -196,8 +227,8 @@ export default function HookForm() {
                         disabled={isSubmitted}
                         {...register("dobDay", registerOptions.dobDay)}
                         placeholder="DD"
-                        onFocus={handleFocus}
-                        onBlur={handleFocus}
+                        // onFocus={handleFocus}
+                        // onBlur={handleFocus}
                       />
                       <div className="form-danger form-danger-sm">
                         {errors?.dobDay && errors.dobDay.message}
@@ -215,8 +246,8 @@ export default function HookForm() {
                       disabled={isSubmitted}
                       {...register("dobMonth", registerOptions.dobMonth)}
                       placeholder="MM"
-                      onFocus={handleFocus}
-                      onBlur={handleFocus}
+                      // onFocus={handleFocus}
+                      // onBlur={handleFocus}
                     />
                     <div className="form-danger form-danger-sm">
                       {errors?.dobMonth && errors.dobMonth.message}
@@ -234,8 +265,8 @@ export default function HookForm() {
                       disabled={isSubmitted}
                       {...register("dobYear", registerOptions.dobYear)}
                       placeholder="YYYY"
-                      onFocus={handleFocus}
-                      onBlur={handleFocus}
+                      // onFocus={handleFocus}
+                      // onBlur={handleFocus}
                     />
                     <div className="form-danger form-danger-sm">
                       {errors?.dobYear && errors.dobYear.message}
