@@ -222,7 +222,7 @@ text-align: center;
     inset: 0;
     background: black;
     color: white;
-    pointer-events: none;
+    /* pointer-events: none; */
     /* margin-left: 2em; */
 }
 

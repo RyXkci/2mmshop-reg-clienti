@@ -26,6 +26,9 @@ const values = {
     },
     dobDay: {
       required: "Inserire un giorno valido",
+      maxLength: {
+        value: 2
+      },
       min: {
         value: 1,
         message: "Inserire un giorno valido"
@@ -37,6 +40,9 @@ const values = {
     },
     dobMonth: {
       required: "Inserire un mese valido",
+      maxLength: {
+        value: 2
+      },
       min: {
         value: 1,
         message: "Inserire un mese valido"
@@ -48,6 +54,9 @@ const values = {
     },
     dobYear: {
       required: "Inserire un anno valido",
+      maxLength: {
+        value: 4
+      },
       min: {
         value: 1900,
         message: "Inserire un anno valido"
