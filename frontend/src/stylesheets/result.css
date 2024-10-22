@@ -77,7 +77,7 @@
 }
 .result-content.fail h1,
 .result-content.fail p {
-    color: white;
+    color: var(--danger-light);
 
 }
 
