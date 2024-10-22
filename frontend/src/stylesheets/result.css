@@ -75,6 +75,11 @@
     color: white;
 
 }
+.result-content.fail h1,
+.result-content.fail p {
+    color: white;
+
+}
 
 .intro-container-circle {
     display: flex;

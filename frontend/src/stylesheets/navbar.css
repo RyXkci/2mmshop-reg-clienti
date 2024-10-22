@@ -24,7 +24,7 @@
 }
 
 .nav-button-light {
-    background: var(--dark-500);
+    background: var(--table-500);
     color: var(--primary-100);
 }
 
