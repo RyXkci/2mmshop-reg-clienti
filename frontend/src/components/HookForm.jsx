@@ -429,7 +429,7 @@ useEffect(() => {
                   </div> */}
                 </div>
               </article>
-              <div className="form-input consent-section">
+              <div className="form-input consent-section flex-row">
                 <label htmlFor="consent">
                   Do il consenso al trattamento dei dati
                 </label>
