@@ -31,12 +31,15 @@
     margin: 0 auto;
     text-align: center;
     font-style: italic;
+    line-height: 1.35;
 }
 
 .form-header-description p {
     color: white;
     font-size: 2.5rem;
     text-align: center;
+    line-height: 1.35;
+    padding: 1.1rem 0;
 }
 
 .form-header-description {
@@ -45,12 +48,12 @@
     margin-top: 1rem;
 }
 
-.data-section__title,
+/* .data-section__title,
 .sizes-section__title {
     text-align: center;
     font-size: 1.3rem;
     color: var(--primary-300);
-}
+} */
 
 .form-danger {
     font-size: 1.2rem;
@@ -88,6 +91,7 @@
 .data-section {
     background: url('../../public/intro-images/contorno-figura-donna.svg');
 }
+
 .sizes-section {
     background: url('../../public/intro-images/contorno-figura-uomo.svg');
 }
@@ -163,8 +167,10 @@ select.max-width {
 }
 
 .consent-section {
-color: white;
-text-align: center;
+    font-family: "Lato", sans-serif;
+    font-size: 1.2rem;
+    color: white;
+    text-align: center;
 }
 
 /*  UTILITY */
@@ -197,24 +203,24 @@ text-align: center;
 }
 
 .has-left-border-radius {
-    border-radius: 30px 0 0 30px!important;
-    border-right: 1px solid rgba(46, 51, 37, .5)!important;
+    border-radius: 30px 0 0 30px !important;
+    border-right: 1px solid rgba(46, 51, 37, .5) !important;
 
 }
 
 .has-right-border-radius {
     border-radius: 0 30px 30px 0 !important;
-    border-left: 1px solid rgba(46, 51, 37, .5)!important;
+    border-left: 1px solid rgba(46, 51, 37, .5) !important;
 }
 
 .has-no-border-radius {
-    border-radius: 0!important;
+    border-radius: 0 !important;
 }
 
 .num-arrow-hidden::-webkit-outer-spin-button,
 .num-arrow.hidden::-webkit-inner-spin-button {
     -webkit-appearance: none;
-  margin: 0;
+    margin: 0;
 }
 
 .num-arrow-hidden {
