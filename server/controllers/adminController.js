@@ -4,7 +4,7 @@ const Admin= require("../models/admin");
 const jwt = require('jsonwebtoken');
 
 const createToken = (_id) => {
-return jwt.sign({_id}, process.env.SECRET, {expiresIn: '3d'})
+return jwt.sign({_id}, process.env.SECRET, {expiresIn: '30d'})
 }
 
 const loginAdmin = async(req, res) => {
@@ -17,6 +17,7 @@ const loginAdmin = async(req, res) => {
 
         res.status(200).json({username, token})
     } catch(error) {
+        console.log(error);
         res.status(400).json({error: error.message})
     }
 

@@ -1,8 +1,10 @@
 const apiUrl = import.meta.env.VITE_API_URL;
+// import { useLogout } from '../hooks/useLogout'
 
 //  GETS
 
 const getData = async (admin) => {
+  // const {logout} = useLogout(setAdmin);
   try {
     const response = await fetch(`${apiUrl}/api/clients`, {
       headers: {
@@ -11,6 +13,8 @@ const getData = async (admin) => {
     });
  
     if(!response.ok) {
+      localStorage.removeItem("admin");
+    setAdmin(null);
       throw new Error('error');
     }
     const json = await response.json();
