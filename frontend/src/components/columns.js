@@ -46,6 +46,7 @@ export const COLUMNS = [
       className: "th-light",
       hasFilter: true,
       selectOptions: [
+        "xxs",
         "xs",
         "s",
         "m",
