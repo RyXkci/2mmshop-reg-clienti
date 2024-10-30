@@ -18,20 +18,24 @@ td {
     border: 1px solid var(--table-700);
 }
 
+tr:nth-child(even) {
+    background-color: var(--table-100);
+}
+
 
 
 .th-dark {
-    background-color: var(--table-500);
+    background-color: var(--primary-300);
     color: white;
 }
 
 .th-light {
-    background-color: var(--table-300);
+    background-color: var(--danger-light);
     border-right: 1px solid var(--table-700);
     color: white;
 }
 .th-light select {
-    background: var(--table-200);
+    background: #b66933;
 }
 
 tbody {
