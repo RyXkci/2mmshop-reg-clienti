@@ -23,14 +23,14 @@ const createClient = async (req, res) => {
     sex: Joi.string().required(),
     phoneNumber: Joi.string().required(),
     dateOfBirth: Joi.date()
-    .iso() // Validates an ISO 8601 date format (like yyyy-mm-dd)
-    .max('now') // Ensures the date is not in the future
-    .messages({
-      'date.base': 'Date of Birth must be a valid date',
-      'date.format': 'Date of Birth must be in yyyy-mm-dd format',
-      'date.max': 'Date of Birth cannot be in the future',
-    })
-    .required(),
+      .iso() // Validates an ISO 8601 date format (like yyyy-mm-dd)
+      .max("now") // Ensures the date is not in the future
+      .messages({
+        "date.base": "Date of Birth must be a valid date",
+        "date.format": "Date of Birth must be in yyyy-mm-dd format",
+        "date.max": "Date of Birth cannot be in the future",
+      })
+      .required(),
     sizes: Joi.object({
       tshirtSize: Joi.string().required(),
       trouserSize: Joi.number().required(),
@@ -40,9 +40,8 @@ const createClient = async (req, res) => {
   });
   const result = clientSchema.validate(req.body);
   if (result.error) {
-
     return res.status(400).json(result.error);
-    console.log(result.error)
+    console.log(result.error);
   }
   try {
   
@@ -54,6 +53,7 @@ const createClient = async (req, res) => {
     res.status(200).json(client);
     console.log(client)
   } catch (error) {
+    console.log({error})
     res.status(500).json({ error: error.message });
     console.log(error)
   }

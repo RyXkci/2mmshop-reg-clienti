@@ -1,5 +1,8 @@
 const mongoose = require("mongoose");
-const Client = require('../models/clients')
+const { v4: uuidv4 } = require('uuid');
+
+const Client = require('../models/clients');
+
 mongoose
   .connect("mongodb://localhost:27017/2mmShop")
   .then(() => {
@@ -25,6 +28,7 @@ function getRandomItem(arr) {
 
     for (let i = 0; i < 50; i++) {
         const client = new Client({
+          id: uuidv4(),
             firstName: getRandomItem(names),
             lastName: getRandomItem(surnames),
             sex: getRandomItem(sexes),
