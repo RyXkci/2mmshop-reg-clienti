@@ -114,3 +114,4 @@ module.exports.names = [
     shoeSizes: [36, 37, 28, 39, 40, 41, 42, 43, 44, 45, 46],
   };
   
+  module.exports.types = ['top', 'trousers', 'shoes'];
