@@ -8,14 +8,21 @@ export default function ClothesPage() {
 
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const topSize = searchParams.get("topSize");
-  const trouserWaist = searchParams.get("trouserWaist");
-  const shoeSize = searchParams.get("shoeSize");
+  const topSize = searchParams.get('top');
+  const trouserWaist = searchParams.get('tp');
+  const shoeSize = searchParams.get('ts');
+  const sex = searchParams.get('s');
+  const id = searchParams.get('id')
 
-  console.log(topSize);
+  console.log('top size is:', topSize);
+  console.log('waist is:', trouserWaist);
+  console.log('shoe is:', shoeSize);
+  console.log('sex is', sex);
+  console.log('id is', id);
 
   const [clothes, setClothes] = useState([]);
-  const [filteredClothes, setFilteredClothes] = useState([])
+  const [filteredClothes, setFilteredClothes] = useState([]);
+  const [clientName, setClientName] = useState('');
  
 
   useEffect(() => {
@@ -30,12 +37,23 @@ export default function ClothesPage() {
     fetchClothes()
   }, [])
 
+  useEffect(() => {
+    const fetchClientName = async() => {
+      const response = await fetch(`${apiUrl}/api/clients/${id}`);
+      const json = await response.json();
+      setClientName(json);
+      
+    }
+
+    fetchClientName()
+  })
+
   const applyFilters = (data) => {
 
-    const topSize = searchParams.get("topSize");
-    const trouserWaist = searchParams.get("trouserWaist");
-    const shoeSize = searchParams.get("shoeSize");
-    const sex = searchParams.get("sex")
+    // const topSize = searchParams.get("topSize");
+    // const trouserWaist = searchParams.get("trouserWaist");
+    // const shoeSize = searchParams.get("shoeSize");
+    // const sex = searchParams.get("sex")
   
     const filtered = data.filter((cloth) => {
       if (sex && cloth.sex !== sex) return false;
@@ -86,7 +104,9 @@ export default function ClothesPage() {
 
   
   return (
+    
     <div>
+    {clientName && <p>Ciao {clientName}!</p>}
       <ul>
         {filteredClothes.map((cloth) => {
           return (
