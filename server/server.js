@@ -26,6 +26,7 @@ const clientRoutes = require('./routes/clients');
 const adminRoutes = require('./routes/admin');
 const clothingRoutes = require('./routes/clothing');
 const pingRoutes = require('./routes/ping');
+const matchRoutes = require('./routes/clientMatch');
 
 // MIDDLEWARE
 app.use(express.json());
@@ -42,6 +43,7 @@ app.use('/api/clients', clientRoutes)
 app.use('/api/admin', adminRoutes)
 app.use('/api/clothing', clothingRoutes)
 app.use('/api/ping', pingRoutes)
+app.use('/api/matchclient', matchRoutes)
 
 
 // FIRING UP SERVER

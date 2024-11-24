@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const { v4: uuidv4 } = require("uuid");
 
-const Clothing = require('../models/Clothing');
+const Clothing = require('../models/clothing');
 
 const { sexes, sizesOptions, types} = require("./seedHelper");
 
