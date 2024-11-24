@@ -15,6 +15,19 @@ const getClients = async (req, res) => {
   }
 };
 
+// Get single client
+const getClient = async(req, res) => {
+  try {
+    const id = req.params.id
+    const client = await Client.findOne({id: id});
+    res.status(200).json(client.firstName)
+    console.log(client)
+  } catch (error) {
+    console.log(error)
+    res.sendStatus(500)
+  }
+}
+
 // Post new client
 const createClient = async (req, res) => {
   const clientSchema = Joi.object({
@@ -59,4 +72,4 @@ const createClient = async (req, res) => {
   }
 };
 
-module.exports = { getClients, createClient };
+module.exports = { getClients, getClient, createClient };

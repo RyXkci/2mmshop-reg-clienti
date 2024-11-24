@@ -5,12 +5,14 @@ const router = express.Router();
 
 
 
-const {getClients, createClient} = require('../controllers/clientController');
+const {getClients, getClient, createClient} = require('../controllers/clientController');
 
 
 
 // GET ALL CLIENTS
 router.get('/', getClients) //requireAuth,
+
+router.get('/:id', getClient)
 
 // POST NEW CLIENT
 router.post('/', createClient)
