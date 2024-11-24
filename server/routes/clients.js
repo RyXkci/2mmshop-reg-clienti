@@ -10,7 +10,7 @@ const {getClients, createClient} = require('../controllers/clientController');
 
 
 // GET ALL CLIENTS
-router.get('/', requireAuth, getClients)
+router.get('/', getClients) //requireAuth,
 
 // POST NEW CLIENT
 router.post('/', createClient)
