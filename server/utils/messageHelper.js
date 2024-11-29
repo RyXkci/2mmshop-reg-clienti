@@ -24,6 +24,12 @@ const makeLink = (obj) => {
   return link;
 }
 
+const makeFakeText= (parsedClient) => {
+  const name = parsedClient.firstName;
+  const link = makeLink(parsedClient.params);
+  console.log(`Ciao ${name}! Questo mese in negozio abbiao sconti su articoi mirati per te! ${link}`)
+}
+
 
 // const makeLink = (obj) => {
 //   let baseLink = "http://localhost:5173/promo";
@@ -39,6 +45,7 @@ const makeLink = (obj) => {
 //     console.log(`LINK IS ${link}`)
 //     return link
 //   }
+
 
 const getTextMessageInput = (messageVariables) => {
     console.log(messageVariables)
@@ -84,4 +91,5 @@ const getTextMessageInput = (messageVariables) => {
 module.exports = {
   sendMessage,
   getTextMessageInput,
+  makeFakeText
 };

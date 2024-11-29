@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 const Clothing = require("../models/clothing");
 
+
+
 // get all clothing
 
 const getClothing = async (req, res) => {
@@ -12,4 +14,9 @@ const getClothing = async (req, res) => {
     }
   };
 
-  module.exports = {getClothing};
+  const postClothing = async(req, res) => {
+    res.status(200)
+    console.log(req.body, req.files)
+  }
+
+  module.exports = {getClothing, postClothing};

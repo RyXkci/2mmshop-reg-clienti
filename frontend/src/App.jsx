@@ -12,6 +12,7 @@ import "./App.css";
 import TanTable from "./components/TanTable";
 import HookForm from "./components/HookForm";
 import ClothesPage from "./components/ClothesPage";
+import ClothesUpload from "./components/ClothesUpload";
 
 import AuthWrapper from "./components/AuthWrapper";
 import Login from "./components/Login";
@@ -33,6 +34,7 @@ function App() {
               </AuthWrapper>
             }
           />
+          <Route path="/caricavestiti" element={<ClothesUpload />} />
           <Route path="/promo" element={<ClothesPage />} />
         </Routes>
       </BrowserRouter>
