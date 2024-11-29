@@ -16,7 +16,7 @@ const bodyParser = require('body-parser');
 // const dotenv = require("dotenv");
 // dotenv.config();
 
-const { sendMessage, getTextMessageInput } = require("../utils/messageHelper");
+const { sendMessage, getTextMessageInput, makeFakeText } = require("../utils/messageHelper");
 // console.log(getTextMessageInput);
 router.use(bodyParser.json());
 
@@ -50,8 +50,11 @@ router.use(bodyParser.json());
 //   });
 // })
 
+
 const messageClient = (parsedClient) => {
     const data = getTextMessageInput(parsedClient);
+    makeFakeText(parsedClient)
+    console.log(data)
     console.log(data)
 //     sendMessage(data)
 //   .then((response) => {
