@@ -14,9 +14,37 @@ const getClothing = async (req, res) => {
     }
   };
 
-  const postClothing = async(req, res) => {
-    res.status(200)
-    console.log(req.body, req.files)
-  }
+  const postClothing = async (req, res, next) => {
+    try {
+      // Parse the nested fields
+      const clothing = req.body.clothing; // Parse from FormData JSON
+      console.log("CLOTHING IS", typeof(clothing), clothing)
+      const files = req.files;
+  console.log("IMAGES ARE:", files)
+      // Map files to their respective clothing items
+      const structuredClothing = clothing.map((item, index) => {
+        const itemImages = files.filter(
+          (file) => file.fieldname === `clothing[${index}][images]`
+        )
+        // console.log(itemImages)
+  
+        return {
+          ...item,
+          images: itemImages,
+        };
+      });
+
+      console.log('Structured Clothing:', structuredClothing);
+      structuredClothing.forEach((item) => {
+        console.log("ITEM IMAGES ARE", item.images)
+      })
+  
+      // Respond with success
+      res.status(200).json({ message: 'Clothing uploaded successfully', data: structuredClothing });
+    } catch (error) {
+      console.error('Error processing clothing:', error);
+      res.status(500).json({ error: 'Failed to upload clothing' });
+    }
+  };
 
   module.exports = {getClothing, postClothing};
