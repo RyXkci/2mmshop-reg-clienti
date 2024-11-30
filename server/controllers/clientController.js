@@ -30,6 +30,7 @@ const getClient = async(req, res) => {
 
 // Post new client
 const createClient = async (req, res) => {
+
   const clientSchema = Joi.object({
     firstName: Joi.string().required(),
     lastName: Joi.string().required(),

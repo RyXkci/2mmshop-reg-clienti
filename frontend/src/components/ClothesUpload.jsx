@@ -1,10 +1,14 @@
 import { useState } from "react";
+import {v4 as uuid} from "uuid";
 
 import '../stylesheets/clothes-upload.css'
 
 export default function ClothesUpload() {
   const apiUrl = import.meta.env.VITE_API_URL;
   const [clothesImages, setClothesImages] = useState([]);
+
+  const [clothes, setClothes] = useState([]);
+
   const [clothesData, setClothesData] = useState({
     type: "",
     sex: "",
@@ -19,13 +23,18 @@ export default function ClothesUpload() {
 
   const [status, setStatus] = useState("initial");
 
-  const testImages = [];
 
   const handleFileChange = (e) => {
     if (e.target.files) {
       let imageArr = [];
       setStatus("initial");
       setClothesImages(e.target.files);
+      setClothesData((prevClothesData) => {
+        return {
+          ...prevClothesData,
+          images: e.target.files
+        }
+      })
       for (let i = 0; i < e.target.files.length; i++) {
         imageArr.push(URL.createObjectURL(e.target.files[i]));
       }
@@ -43,6 +52,16 @@ export default function ClothesUpload() {
     })
   }
 
+  const handleSave = (newClothes) => {
+  console.log(newClothes)
+    setClothes((prevClothes) => {
+      return [
+        ...prevClothes,
+        newClothes
+      ]
+    })
+  }
+
   const handleDiscountChange = (e) => {
     const discount = parseFloat(e.target.value) || 0; // Treat input as a number
     const price = parseFloat(clothesData.price) || 0; // Ensure price is a number
@@ -56,41 +75,94 @@ export default function ClothesUpload() {
   };
 
   const handleUpload = async () => {
-    if (clothesImages) {
-      setStatus("uploading");
+    const formData = new FormData();
 
-      const formData = new FormData();
-      [...clothesImages].forEach((image) => {
-        formData.append("files", image);
+    // Prepare the array of objects
+  //   const payload = clothes.map((item) => ({
+  //     type: item.type,
+  //     size: item.size,
+  //     price: item.price,
+  //     discountedPrice: item.discountedPrice,
+  //     sex: item.sex,
+  //     // images: Array.from(item.images || []).forEach((image, imgIndex) => {
+  //     //   formData.append("images", image);
+  //     // }) // Ensure images are an array
+  //   }));
+  // console.log("Payload is",payload)
+  //   // Append the array as JSON
+  //   formData.append("data", JSON.stringify(payload));
+  //   console.log("FORM DATA BEFORE IMAGES IS:", formData)
+  
+  //   // Append all files
+  //   clothes.forEach((item, index) => {
+  //     const images = Array.from(item.images || []);
+  //     images.forEach((image, imgIndex) => {
+  //       formData.append("images", image);
+  //     });
+  //   });
+  // console.log("FORMDATA AFTER IMAGES IS:", formData)
+  // clothes.forEach((item, index) => {
+  //   // Append the clothing object's metadata
+  //   formData.append(`clothing[${index}][type]`, item.type);
+  //   formData.append(`clothing[${index}][size]`, item.size);
+  //   formData.append(`clothing[${index}][price]`, item.price);
+  //   formData.append(`clothing[${index}][discountedPrice]`, item.discountedPrice);
+  //   formData.append(`clothing[${index}][sex]`, item.sex);
+  
+  //   // Append each image for the current clothing object
+  //   Array.from(item.images).forEach((image, imgIndex) => {
+  //     formData.append(`clothing[${index}][images][${imgIndex}]`, image);
+  //   });
+  // });
+  
+  clothes.forEach((item, index) => {
+    // Append the clothing object's metadata
+    formData.append(`clothing[${index}][type]`, item.type);
+    formData.append(`clothing[${index}][size]`, item.size);
+    formData.append(`clothing[${index}][price]`, item.price);
+    formData.append(`clothing[${index}][discountedPrice]`, item.discountedPrice);
+    formData.append(`clothing[${index}][sex]`, item.sex);
+  
+    // Append each image for the current clothing object
+    Array.from(item.images).forEach((image, imgIndex) => {
+      formData.append(`clothing[${index}][images]`, image);
+
+    });
+  });
+  console.log(formData)
+  for (let [key, value] of formData.entries()) {
+    console.log(key, value);
+  }
+    try {
+      const response = await fetch(`${apiUrl}/api/clothing`, {
+        method: "POST",
+
+        body: formData,
       });
-      console.log(formData);
-      try {
-        const result = await fetch(`${apiUrl}/api/clothing`, {
-          method: "POST",
-          body: formData,
-        });
-
-        const data = await result.json();
-
-        console.log(data);
-        setStatus("success");
-      } catch (error) {
-        console.error(error);
-        setStatus("fail");
+  
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
+  
+      const result = await response.json();
+      console.log("Response:", result);
+    } catch (error) {
+      console.error("Error uploading data:", error);
     }
   };
+
+  
   return (
     <main className="main">
       <h1 className="title">
         Ciao Giordano! Inizia a caricare la promo del mese!
       </h1>
 
-      {/* {clothesImages && (
+      {clothes && (
           <button onClick={handleUpload} className="submit">
             Upload {clothesImages.length > 1 ? "files" : "a file"}
           </button>
-        )} */}
+        )}
 
       <section className="clothes-upload-section">
         {images && (
@@ -101,6 +173,7 @@ export default function ClothesUpload() {
                   src={image}
                   alt=""
                   style={{ width: "100px", display: "block" }}
+                  key={uuid()}
                 />
               );
             })}
@@ -130,6 +203,8 @@ export default function ClothesUpload() {
         onChange={handleDiscountChange}
         placeholder="Inserisci sconto"
       />
+
+      <button onClick={() =>handleSave(clothesData)}>Salva</button>
 
         <div className="clothes-upload-container">
           <div className="input-group">
