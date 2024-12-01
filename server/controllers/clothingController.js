@@ -25,7 +25,7 @@ const getClothing = async (req, res) => {
       const structuredClothing = clothing.map((item, index) => {
         const itemImages = files.filter(
           (file) => file.fieldname === `clothing[${index}][images]`
-        )
+        ).map((im) => ({url: im.path, filename: im.filename}))
         // console.log(itemImages)
   
         return {
