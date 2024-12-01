@@ -37,7 +37,7 @@ export default function HookForm() {
 
     // Cleanup function to clear the timeout if the component unmounts
     return () => clearTimeout(timeoutId);
-  }, []); // Empty dependency array ensures the effect runs only once
+  }, []);
 
 
 
