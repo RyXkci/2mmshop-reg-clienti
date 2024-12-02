@@ -1,13 +1,13 @@
 import { useForm } from "react-hook-form";
 
-export default function ClothesForm({sizes, values, registerOptions, handleSave}) {
+export default function ClothesForm({sizes, values, registerOptions, handleFileChange, handleSave}) {
 
 // const sizeOptions = sizes.top;
 console.log("SIZES IN FORM:", sizes)
 
-const testData = (data) => {
-    console.log("DATA IS:", data)
-}
+// const testData = (data) => {
+//     console.log("DATA IS:", data)
+// }
 
 const {
     register,
@@ -20,34 +20,22 @@ const {
   } = useForm({
     defaultValues: values,
   });
+  console.log(handleFileChange)
 
     return (
         <section className="clothes-upload-section">
-        <div className="clothes-details" onSubmit={handleSubmit(testData)}>
-          <form className="clothes-form">
+        <div className="clothes-details">
+          <form className="clothes-form" onSubmit={handleSubmit(handleSave)}>
             <div className="image-input">
               <input
                 id="file"
                 type="file"
                 multiple
                 {...register("images", registerOptions.images)}
-                // onChange={handleFileChange}
+                onChange={handleFileChange}
               />
             </div>
-            {/* {images && (
-          <div className="images-container">
-            {images.map((image) => {
-              return (
-                <img
-                  src={image}
-                  alt=""
-                  style={{ width: "100px", display: "block" }}
-                  key={uuid()}
-                />
-              );
-            })}
-          </div>
-        )} */}
+          
 
             <div className="clothes-type-input">
               <label htmlFor="clothesType">Tipo:</label>

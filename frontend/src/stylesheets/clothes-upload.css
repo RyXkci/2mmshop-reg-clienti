@@ -13,3 +13,14 @@ input[type='file'] {
     flex-direction: column;
     gap: 1.3em;
   }
+
+  .clothes-upload-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .clothes-section {
+    margin-top: 2em;
+  }
