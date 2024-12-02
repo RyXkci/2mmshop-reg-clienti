@@ -18,7 +18,7 @@ export default function ClothesUpload() {
 
   const [sizeOptions, setSizeOptions] = useState([]);
 
-  const [isToggled, setIsToggled] = useState(false)
+  const [isToggled, setIsToggled] = useState(false);
 
   const [clothesData, setClothesData] = useState({
     type: "",
@@ -34,64 +34,55 @@ export default function ClothesUpload() {
 
   const [status, setStatus] = useState("initial");
 
-  // const handleFileChange = (e) => {
-  //   if (e.target.files) {
-  //     let imageArr = [];
-  //     setStatus("initial");
-  //     setClothesImages(e.target.files);
+  const handleFileChange = (e) => {
+    if (e.target.files) {
+      let imageArr = [];
+      setStatus("initial");
+      for (let i = 0; i < e.target.files.length; i++) {
+        imageArr.push(URL.createObjectURL(e.target.files[i]));
+      }
+      console.log(imageArr);
+      setImages(imageArr);
+    }
+  };
 
-  //     // setClothesData((prevClothesData) => {
-  //     //   return {
-  //     //     ...prevClothesData,
-  //     //     images: e.target.files,
-  //     //   };
-  //     // });
-  //     for (let i = 0; i < e.target.files.length; i++) {
-  //       imageArr.push(URL.createObjectURL(e.target.files[i]));
-  //     }
-  //     console.log(imageArr);
-  //     setImages(imageArr);
-  //   }
-  // };
-
-  // const handleChange = (e) => {
-  //   setClothesData((prevClothesData) => {
-  //     return {
-  //       ...prevClothesData,
-  //       [e.target.name]: e.target.value,
-  //     };
-  //   });
-  // };
 
   const handleToggle = (type) => {
-    console.log(type)
-setSizeOptions(clothesSizes[type]);
-console.log(sizeOptions)
-clothesValues.type = type
-console.log(clothesValues)
-setIsToggled(!isToggled)
-// console.log(sizeOptions)
-  }
-
+    console.log(type);
+    setSizeOptions(clothesSizes[type]);
+    console.log(sizeOptions);
+    clothesValues.type = type;
+    console.log(clothesValues);
+    setIsToggled(!isToggled);
+    // console.log(sizeOptions)
+  };
 
   const handleSave = (newClothes) => {
-    console.log(newClothes);
+    console.log("Clothes are", newClothes);
+    // CALCULATING AND SAVING THE DISCOUNTED PROCE
+    const price = parseFloat(newClothes.price);
+    const discount = parseFloat(newClothes.discount);
+    newClothes.discountedPrice = price - (price * discount) / 100;
+
+    //ADDING IMAGE PREVIEW ARR
+    let imageArr = [];
+    setStatus("initial");
+    for (let i = 0; i < newClothes.images.length; i++) {
+      imageArr.push(URL.createObjectURL(newClothes.images[i]));
+    }
+    console.log(imageArr);
+    newClothes.imgPreviews = imageArr;
+    // ADDING THE NEW OBJECT TO CLOTHES STATE
     setClothes((prevClothes) => {
       return [...prevClothes, newClothes];
     });
+    // SETTING THE INITIAL PREVIEW BACK TO EMPTY ARRAY
+    setImages([]);
+
+    // REMOVING AND EMPTYING FORM
+    setIsToggled(false);
   };
 
-  const handleDiscountChange = (e) => {
-    const discount = parseFloat(e.target.value) || 0; // Treat input as a number
-    const price = parseFloat(clothesData.price) || 0; // Ensure price is a number
-
-    const newDiscountedPrice = price - (price * discount) / 100;
-
-    setClothesData((prevData) => ({
-      ...prevData,
-      discountedPrice: newDiscountedPrice.toFixed(2), // Format to 2 decimal places
-    }));
-  };
 
   const handleUpload = async () => {
     const formData = new FormData();
@@ -135,32 +126,116 @@ setIsToggled(!isToggled)
 
   return (
     <main className="main">
+      <section className="clothes-upload-section">
       <h1 className="title">
         Ciao Giordano! Inizia a caricare la promo del mese!
       </h1>
 
       <section className="clothes-upload-buttons">
-        <button onClick={() => handleToggle('top')}>Carica top</button>
-        <button onClick={() => handleToggle('trousers')}> Carica pantalone</button>
-        <button onClick={() => handleToggle('shoes')}>Carica scarpe</button>
+        <button onClick={() => handleToggle("top")}>Carica top</button>
+        <button onClick={() => handleToggle("trousers")}>
+          {" "}
+          Carica pantalone
+        </button>
+        <button onClick={() => handleToggle("shoes")}>Carica scarpe</button>
       </section>
 
-      {/* {clothes && (
-        <button onClick={handleUpload} className="submit">
-          Invia {clothesImages.length > 1 ? "files" : "file"}
-        </button>
-      )} */}
 
       <section className="clothes-upload-section">
+        {images.length > 1 && (
+          <div className="images-container">
+            {images.map((image) => {
+              return (
+                <img
+                  src={image}
+                  alt=""
+                  style={{ width: "100px", display: "block" }}
+                  key={uuid()}
+                />
+              );
+            })}
+          </div>
+        )}
         <div className="clothes-details">
           {isToggled && (
             <ClothesForm
               sizes={sizeOptions}
               values={clothesValues}
               registerOptions={registerOptions}
+              handleFileChange={handleFileChange}
               handleSave={handleSave}
             />
           )}
+          </div>
+          </section>
+
+          {clothes && (
+            <section className="clothes-section">
+              <h1>Vestiti caricati:</h1>
+              {clothes.map((item) => {
+                return (
+                  <div key={uuid()} className="clothes-container">
+                    <div
+                      key={uuid()}
+                      className="clothes-images images-container"
+                    >
+                      {console.log("ITEM IS", item)}
+                      {item.imgPreviews.map((img) => (
+                        <img
+                          src={img}
+                          alt=""
+                          style={{ width: "100px", display: "block" }}
+                          key={uuid()}
+                        />
+                      ))}
+                    </div>
+                    <div key={uuid()} className="clothes-details">
+                      <p className="clothes-details-text type">
+                        Tipo: {item.type}
+                      </p>
+                      <p className="clothes-details-text size">
+                        Taglia: {item.size}
+                      </p>
+                      <p className="clothes-details-text sex">
+                        Sesso: {item.sex}
+                      </p>
+                      <p className="clothes-details-text price">
+                        Prezzo: {item.price}
+                      </p>
+                      <p className="clothes-details-text discounted-price">
+                        Sconto: {item.discountedPrice}
+                      </p>
+                    </div>
+                    </div>
+                );
+              })}
+            </section>
+          )}
+      </section>
+    </main>
+  );
+}
+
+  // const handleDiscountChange = (e) => {
+  //   const discount = parseFloat(e.target.value) || 0; // Treat input as a number
+  //   const price = parseFloat(clothesData.price) || 0; // Ensure price is a number
+
+  //   const newDiscountedPrice = price - (price * discount) / 100;
+
+  //   setClothesData((prevData) => ({
+  //     ...prevData,
+  //     discountedPrice: newDiscountedPrice.toFixed(2), // Format to 2 decimal places
+  //   }));
+  // };
+
+  // const handleChange = (e) => {
+  //   setClothesData((prevClothesData) => {
+  //     return {
+  //       ...prevClothesData,
+  //       [e.target.name]: e.target.value,
+  //     };
+  //   });
+  // };
 
           {/* <form className="clothes-form">
             <div className="image-input">
@@ -262,29 +337,3 @@ setIsToggled(!isToggled)
         onChange={handleDiscountChange}
         placeholder="Inserisci sconto"
       /> */}
-        </div>
-
-        <div className="clothes-upload-container">
-          {/* <div className="input-group">
-            <input id="file" type="file" multiple onChange={handleFileChange} />
-          </div> */}
-        </div>
-        {/* 
-        {images && (
-          <div className="images-container">
-            {images.map((image) => {
-              return (
-                <img
-                  src={image}
-                  alt=""
-                  style={{ width: "100px", display: "block" }}
-                  key={uuid()}
-                />
-              );
-            })}
-          </div>
-        )} */}
-      </section>
-    </main>
-  );
-}
