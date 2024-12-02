@@ -20,14 +20,14 @@ export default function ClothesUpload() {
 
   const [isToggled, setIsToggled] = useState(false)
 
-  // const [clothesData, setClothesData] = useState({
-  //   type: "",
-  //   sex: "",
-  //   size: "",
-  //   images: [],
-  //   price: "",
-  //   discountedPrice: "",
-  // });
+  const [clothesData, setClothesData] = useState({
+    type: "",
+    sex: "",
+    size: "",
+    images: [],
+    price: "",
+    discountedPrice: "",
+  });
 
   // const [image, setImage] = useState();
   const [images, setImages] = useState([]);

@@ -56,16 +56,13 @@ const {
                 id="clothesType"
                 name="type"
                 {...register('type', registerOptions.type)}
-                // value={clothesData.type}
-                // onChange={handleChange}
+  
               />
             </div>
             <div className="clothes-size-input">
               <label htmlFor="clothesSize">Misura</label>
               <select
                 name="size"
-                // value={clothesData.size}
-                // onChange={handleChange}
                 id="clothesSize"
                 {...register('size', registerOptions.size)}
               >
@@ -78,8 +75,6 @@ const {
               <label htmlFor="clothesSex">Sesso:</label>
               <select
                 name="sex"
-                // value={clothesData.sex}
-                // onChange={handleChange}
                 id="clothesSex"
                 {...register('sex', registerOptions.sex)}
               >
@@ -92,8 +87,6 @@ const {
               <input
                 type="number"
                 name="price"
-                // value={clothesData.price}
-                // onChange={handleChange}
                 {...register('price',registerOptions.price)}
               />
               <label htmlFor="discount">Sconto (%):</label>
