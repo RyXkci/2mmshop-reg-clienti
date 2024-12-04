@@ -30,7 +30,7 @@ const registerOptions = {
         required: "Questo campo è obbligatorio"
     },
     images: {
-        required: "Questo campo è obbligatorio"
+        required: "Immagini sono obbligatorie"
     }
 };
 

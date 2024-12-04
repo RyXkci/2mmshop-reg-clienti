@@ -2,12 +2,6 @@ import { useForm } from "react-hook-form";
 
 export default function ClothesForm({sizes, values, registerOptions, handleFileChange, handleSave}) {
 
-// const sizeOptions = sizes.top;
-console.log("SIZES IN FORM:", sizes)
-
-// const testData = (data) => {
-//     console.log("DATA IS:", data)
-// }
 
 const {
     register,
@@ -16,28 +10,40 @@ const {
     reset,
     setFocus,
     watch,
+    setValue,
     formState: { errors },
   } = useForm({
     defaultValues: values,
   });
-  console.log(handleFileChange)
+  // console.log(handleFileChange)
+  const testData=(formData) => {
+    console.log("FORDATA IS:". formData)
+  }
+
+  const handleFileInputChange = (e) => {
+    const files = e.target.files;
+    setValue("images", files); // Update react-hook-form state
+    handleFileChange(files); // Call parent's handler to update external state
+  };
 
     return (
-        <section className="clothes-upload-section">
-        <div className="clothes-details">
           <form className="clothes-form" onSubmit={handleSubmit(handleSave)}>
             <div className="image-input">
+              <label className="img-upload-btn" htmlFor="imgUpload">Carica immagini</label>
               <input
-                id="file"
+                id="imgUpload"
                 type="file"
+                name="images"
                 multiple
-                {...register("images", registerOptions.images)}
-                onChange={handleFileChange}
+                {...register("images")}
+          onChange={handleFileInputChange}
+                
               />
+              {errors?.images && <div className="form-danger"> {errors.images.message}</div>}
             </div>
           
 
-            <div className="clothes-type-input">
+            <div className="clothes-input clothes-type-input">
               <label htmlFor="clothesType">Tipo:</label>
               <input
                 type="text"
@@ -47,7 +53,7 @@ const {
   
               />
             </div>
-            <div className="clothes-size-input">
+            <div className="clothes-input clothes-size-input">
               <label htmlFor="clothesSize">Misura</label>
               <select
                 name="size"
@@ -59,7 +65,7 @@ const {
                 })}
               </select>
             </div>
-            <div className="clothes-sex-input">
+            <div className="clothes-input clothes-sex-input">
               <label htmlFor="clothesSex">Sesso:</label>
               <select
                 name="sex"
@@ -70,7 +76,7 @@ const {
                 <option value="f">f</option>
               </select>
             </div>
-            <div className="clothes-price-input">
+            <div className="clothes-input clothes-price-input">
               <label htmlFor="price">Prezzo</label>
               <input
                 type="number"
@@ -89,8 +95,5 @@ const {
             {/* <button onClick={() => handleSave(clothesData)}>Salva</button> */}
             <button type="submit">Salva</button>
           </form>
-          </div>
-
-          </section>
     )
 }

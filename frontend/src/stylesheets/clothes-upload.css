@@ -1,26 +1,132 @@
-.images-container {
-    display: flex;
-    gap: 1.3em;
-    justify-content: center;
+/* Typography */
+input[type='file'] {
+  color: rgba(0, 0, 0, 0);
+  opacity: 0;
+  display: none;
 }
 
-input[type='file'] {
-    color: rgba(0, 0, 0, 0)
-  }
+.img-upload-btn {
+  background: var(--primary-300);
+  color: white;
+  padding: .5em 1em;
+  border-radius: 30px;
+  display: inline-block;
+}
 
-  .clothes-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.3em;
-  }
+.clothes-upload-main {
+  font-family: "Playfair Display", serif;
+}
 
-  .clothes-upload-section {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
+.clothes-upload-main__title {
+  color: var(--primary-600);
+  font-weight: 900;
+  font-size: 3rem;
+}
 
-  .clothes-section {
-    margin-top: 2em;
-  }
+.clothes-details__title {
+  font-size: 2.5rem;
+  color: var(--primary-600);
+}
+
+.clothes-upload-main {
+width: 80%;
+max-width: 1200px;
+  display: flex;
+  gap: 1.3em;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1.3em;
+}
+
+
+.clothes-upload-section {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.clothes-upload-buttons {
+  display: flex;
+  gap: 1.3em;
+}
+
+.clothes-upload-button {
+  border-radius: 30px;
+  padding: .8em 1em;
+}
+
+.btn-top {
+  background-color: var(--primary-600);
+  color: white;
+}
+
+.btn-trouser {
+  background-color: var(--table-500);
+}
+
+.btn-shoe {
+  background-color: var(--primary-300);
+} 
+
+.clothes-details {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2em;
+}
+
+.images-container {
+  display: flex;
+  gap: 1.3em;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.images-container img {
+  width: 150px;
+}
+
+.clothes-price-input {
+  display: flex;
+  flex-direction: column;
+}
+
+.clothes-input > select {
+  width: 100%;
+}
+
+.clothes-input > select,
+.clothes-input > input {
+  border-radius: 30px;
+  border: none;
+  background: var(--primary-300);
+  color: white;
+}
+
+
+.clothes-form {
+  padding:1.3em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.3em;
+  border: 1px solid var(--primary-300);
+  width: 100%;
+}
+
+.clothes-form > div {
+  width: 80%;
+  display: flex;
+  margin: 0 auto;
+}
+
+
+.clothes-section {
+  margin-top: 2em;
+}
