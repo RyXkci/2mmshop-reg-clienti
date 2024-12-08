@@ -5,8 +5,11 @@ const Schema = mongoose.Schema;
 const ClothingSchema = new Schema({
     id: String,
     type: String,
-    size: mongoose.Schema.Types.Mixed,
+    category: String,
+    description: String,
+    sizes: Array,
     sex: String,
+    images: Array,
     price: Number,
     discountedPrice: Number
 })
