@@ -109,9 +109,15 @@ module.exports.names = [
   
   
   module.exports.sizesOptions = {
-    tShirtSizes: ["xs", "s", "m", "l", "xl", "xxl"],
+    top: ["xs", "s", "m", "l", "xl", "xxl"],
     trousersSizes: [38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58],
     shoeSizes: [36, 37, 28, 39, 40, 41, 42, 43, 44, 45, 46],
   };
+
+  module.exports.categories = {
+    top: ['piumino', 'giacca', 'cappotto', 'shirt'],
+    middle: ['pantaloni', 'denim', 'bermuda', 'costume da bagno'],
+    shoe: ['sneaker', 'scarpa elegante', 'scarpa casual']
+  }
   
   module.exports.types = ['top', 'trousers', 'shoes'];
