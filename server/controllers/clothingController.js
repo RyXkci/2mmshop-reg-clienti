@@ -15,6 +15,10 @@ const getClothing = async (req, res) => {
   };
 
   const postClothing = async (req, res, next) => {
+    
+// const clothing = req.body.clothing;
+// console.log("CLOTHING IS", clothing)
+
     try {
       // Parse the nested fields
       const clothing = req.body.clothing; // Parse from FormData JSON
@@ -34,10 +38,15 @@ const getClothing = async (req, res) => {
         };
       });
 
-      console.log('Structured Clothing:', structuredClothing);
-      structuredClothing.forEach((item) => {
-        console.log("ITEM IMAGES ARE", item.images)
-      })
+      // console.log('Structured Clothing:', structuredClothing);
+      // structuredClothing.forEach((item, index) => {
+      //   console.log("ITEM IMAGES ARE", item.images)
+      // })
+
+      structuredClothing.forEach((item, index) => {
+             console.log(`CLOTHING ${index + 1} is`, item)
+             console.log(`CLOTHING ${index +1} IMAGES ARE`, item.images)
+           })
   
       // Respond with success
       res.status(200).json({ message: 'Clothing uploaded successfully', data: structuredClothing });

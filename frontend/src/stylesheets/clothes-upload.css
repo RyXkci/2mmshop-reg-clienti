@@ -108,6 +108,13 @@ max-width: 1200px;
   color: white;
 }
 
+.size-checkboxes {
+  display: flex;
+  gap: 1.3em;
+}
+.size-checkbox {
+  border-right: 1px solid var(--primary-300);
+}
 
 .clothes-form {
   padding:1.3em;

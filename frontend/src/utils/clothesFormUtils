@@ -1,7 +1,7 @@
 const clothesValues = {
     type: "",
     sex: "",
-    size: "",
+    sizes: [],
     price: "",
     discount: "",
     images: []
@@ -20,7 +20,7 @@ const registerOptions = {
     sex: {
         required: "Questo campo è obbligatorio"
     },
-    size: {
+    sizes: {
         required: "Questo campo è obbligatorio"
     },
     price: {

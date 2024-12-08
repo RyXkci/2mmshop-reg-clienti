@@ -93,15 +93,17 @@ export default function ClothesUpload() {
 
   const handleUpload = async () => {
     const formData = new FormData();
+    console.log("CLOTHES IN UPLOAD:", clothes)
     clothes.forEach((item, index) => {
       // Append the clothing object's metadata
       formData.append(`clothing[${index}][type]`, item.type);
-      formData.append(`clothing[${index}][size]`, item.size);
+      // formData.append(`clothing[${index}][sizes]`, item.sizes);
       formData.append(`clothing[${index}][price]`, item.price);
       formData.append(
         `clothing[${index}][discountedPrice]`,
         item.discountedPrice
       );
+      item.sizes.forEach(size => {formData.append(`clothing[${index}][sizes]`, size)})
       formData.append(`clothing[${index}][sex]`, item.sex);
 
       // Append each image for the current clothing object
@@ -113,6 +115,7 @@ export default function ClothesUpload() {
     for (let [key, value] of formData.entries()) {
       console.log(key, value);
     }
+    console.log(formData)
     try {
       const response = await fetch(`${apiUrl}/api/clothing`, {
         method: "POST",

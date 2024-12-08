@@ -22,9 +22,13 @@ export default function ClothingItem({item}) {
                       <p key={uuid()}  className="clothes-details-text type">
                         Tipo: {item.type}
                       </p>
-                      <p key={uuid()}  className="clothes-details-text size">
+                      {/* <p key={uuid()}  className="clothes-details-text size">
                         Taglia: {item.size}
-                      </p>
+                      </p> */}
+                      <div className="clothes-sizes">
+                        <p>Taglie:</p>
+                        {item.sizes.map((size) => <p className="clothing-size">{size}</p>)}
+                      </div>
                       <p key={uuid()}  className="clothes-details-text sex">
                         Sesso: {item.sex}
                       </p>
