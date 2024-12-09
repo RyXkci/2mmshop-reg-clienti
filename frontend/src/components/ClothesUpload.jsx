@@ -9,6 +9,7 @@ import ClothesForm from "./ClothesForm";
 import {
   clothesValues,
   clothesSizes,
+  clothesCategories,
   registerOptions,
 } from "../utils/clothesFormUtils";
 
@@ -20,6 +21,10 @@ export default function ClothesUpload() {
   const [clothes, setClothes] = useState([]);
 
   const [sizeOptions, setSizeOptions] = useState([]);
+  
+  const [categories, setCategories] = useState([]);
+
+  const [formType, setFormType] = useState(""); //state to determine whether form will be clothes or accessory, as accessory doesn't have sizes.
 
   const [isToggled, setIsToggled] = useState(false);
 
@@ -56,13 +61,24 @@ export default function ClothesUpload() {
   };
 
   const handleToggle = (type) => {
-    console.log(type);
-    setSizeOptions(clothesSizes[type]); //SETS SIZE OPTIONS ACCORDING TO WHICH BUTTON IS PRESSED TO RENDER FORM DYNAMICALLY
-    console.log(sizeOptions);
-    clothesValues.type = type; //SETS THE TYPE IN HOOK FORM DEFAULT VALUES ACCRDING TO WHICH BUTTON IS PRESSED TO PRE-FILL FORM
-    console.log(clothesValues);
-    setIsToggled(!isToggled);
-    // console.log(sizeOptions)
+    if (type = "accessory") {
+      setSizeOptions(['all']);
+      setCategories(clothesCategories.accessories)
+      setFormType('accessory');
+      setIsToggled(!isToggled)
+    } else {
+      console.log(type);
+      setFormType('clothes');
+      setSizeOptions(clothesSizes[type]); //SETS SIZE OPTIONS ACCORDING TO WHICH BUTTON IS PRESSED TO RENDER FORM DYNAMICALLY
+      console.log(sizeOptions);
+      clothesValues.type = type; //SETS THE TYPE IN HOOK FORM DEFAULT VALUES ACCRDING TO WHICH BUTTON IS PRESSED TO PRE-FILL FORM
+      console.log(clothesValues);
+      setCategories(clothesCategories[type])
+      console.log(categories)
+      setIsToggled(!isToggled);
+      // console.log(sizeOptions)
+    }
+    
   };
 
   const handleSave = (newClothes) => {
@@ -97,12 +113,13 @@ export default function ClothesUpload() {
     clothes.forEach((item, index) => {
       // Append the clothing object's metadata
       formData.append(`clothing[${index}][type]`, item.type);
-      // formData.append(`clothing[${index}][sizes]`, item.sizes);
+      formData.append(`clothing[${index}][category]`, item.category);
       formData.append(`clothing[${index}][price]`, item.price);
       formData.append(
         `clothing[${index}][discountedPrice]`,
         item.discountedPrice
       );
+      formData.append(`clothing[${index}][description]`, item.description)
       item.sizes.forEach(size => {formData.append(`clothing[${index}][sizes]`, size)})
       formData.append(`clothing[${index}][sex]`, item.sex);
 
@@ -160,6 +177,13 @@ export default function ClothesUpload() {
           >
             Carica scarpe
           </button>
+          
+          <button
+            className="clothes-upload-button btn-accessory"
+            onClick={() => handleToggle("accessory")}
+          >
+            Carica accessorio
+          </button>
         </section>
 
         <section className="clothes-upload-section">
@@ -184,6 +208,7 @@ export default function ClothesUpload() {
                 <ClothesForm
                   sizes={sizeOptions}
                   values={clothesValues}
+                  categories={categories}
                   registerOptions={registerOptions}
                   handleFileChange={handleFileChange}
                   handleSave={handleSave}

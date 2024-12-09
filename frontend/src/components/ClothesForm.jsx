@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 export default function ClothesForm({
   sizes,
   values,
+  categories,
   registerOptions,
   handleFileChange,
   handleSave,
@@ -41,8 +42,8 @@ export default function ClothesForm({
           type="file"
           name="images"
           multiple
-          {...register("images")}
-          onChange={handleFileInputChange}
+          {...register("images", registerOptions.images)}
+          // onChange={handleFileInputChange}
         />
         {errors?.images && (
           <div className="form-danger"> {errors.images.message}</div>
@@ -58,6 +59,47 @@ export default function ClothesForm({
           {...register("type", registerOptions.type)}
         />
       </div>
+
+      <div className="clothes-input clothes-category-input">
+      <label htmlFor="clothesCategory">Nome</label>
+        <select
+          name="category"
+          id="clothesCategory"
+          {...register("category", registerOptions.category)}
+        >
+          {categories.map(category => {
+          return <option key={category}>{category}</option>
+         })}
+        </select>
+        
+      </div>
+
+      <div className="clothes-input clothes-description-container">
+              <label htmlFor="clothesDescription">Descrizione</label>
+              <textarea
+                id="clothesDescripton"
+                name="description"
+                cols="30"
+                rows="10"
+                {...register("description", registerOptions.description)}
+              />
+             {errors?.description && (
+          <div className="form-danger"> {errors.description.message}</div>
+        )}
+            </div>
+
+           {/* <label htmlFor="clothesSize">Misura</label>
+        
+        {/* <select
+                name="size"
+                id="clothesSize"
+                {...register('size', registerOptions.size)}
+              >
+                {sizes.map(size => {
+                    return <option key={size} value={size}>{size}</option>
+                })}
+              </select> */}
+
       <div className="clothes-input clothes-size-input">
         <fieldset>
           <legend>Taglie</legend>
@@ -80,17 +122,7 @@ export default function ClothesForm({
         })}
            </div>
         </fieldset>
-        {/* <label htmlFor="clothesSize">Misura</label>
-        
-        {/* <select
-                name="size"
-                id="clothesSize"
-                {...register('size', registerOptions.size)}
-              >
-                {sizes.map(size => {
-                    return <option key={size} value={size}>{size}</option>
-                })}
-              </select> */}
+
       </div>
       <div className="clothes-input clothes-sex-input">
         <label htmlFor="clothesSex">Sesso:</label>
