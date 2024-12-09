@@ -16,9 +16,7 @@ const getClothing = async (req, res) => {
 
   const postClothing = async (req, res, next) => {
     
-// const clothing = req.body.clothing;
-// console.log("CLOTHING IS", clothing)
-
+console.log("BEGINNING OF CONTROLLER", req.body.clothing)
     try {
       // Parse the nested fields
       const clothing = req.body.clothing; // Parse from FormData JSON

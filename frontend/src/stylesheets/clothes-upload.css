@@ -71,6 +71,10 @@ max-width: 1200px;
   background-color: var(--primary-300);
 } 
 
+.btn-accessory {
+  background-color: var(--table-300);
+}
+
 .clothes-details {
   width: 100%;
   display: flex;
