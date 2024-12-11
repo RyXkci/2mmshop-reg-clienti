@@ -1,6 +1,8 @@
 import { useForm } from "react-hook-form";
+import { v4 as uuid } from "uuid";
 
 export default function ClothesForm({
+  formType,
   sizes,
   values,
   categories,
@@ -8,6 +10,9 @@ export default function ClothesForm({
   handleFileChange,
   handleSave,
 }) {
+
+console.log(formType)
+
   const {
     register,
     control,
@@ -60,35 +65,43 @@ export default function ClothesForm({
         />
       </div>
 
-      <div className="clothes-input clothes-category-input">
-      <label htmlFor="clothesCategory">Nome</label>
+      {/* <div className="clothes-input clothes-category-input">
+        <label htmlFor="clothesCategory">Nome</label>
         <select
           name="category"
           id="clothesCategory"
           {...register("category", registerOptions.category)}
         >
-          {categories.map(category => {
-          return <option key={category}>{category}</option>
-         })}
+          {categories.map((category) => {
+            return <option key={category}>{category}</option>;
+          })}
         </select>
-        
+      </div> */}
+
+      <div className="clothes-input clothes-category-input">
+        <label htmlFor="clothesCategory">Nome:</label>
+      <input type="text"
+      id="clothesCategory"
+      name="category"
+      {...register("category", registerOptions.category)}
+      />
       </div>
 
       <div className="clothes-input clothes-description-container">
-              <label htmlFor="clothesDescription">Descrizione</label>
-              <textarea
-                id="clothesDescripton"
-                name="description"
-                cols="30"
-                rows="10"
-                {...register("description", registerOptions.description)}
-              />
-             {errors?.description && (
+        <label htmlFor="clothesDescription">Descrizione</label>
+        <textarea
+          id="clothesDescripton"
+          name="description"
+          cols="30"
+          rows="10"
+          {...register("description", registerOptions.description)}
+        />
+        {errors?.description && (
           <div className="form-danger"> {errors.description.message}</div>
         )}
-            </div>
+      </div>
 
-           {/* <label htmlFor="clothesSize">Misura</label>
+      {/* <label htmlFor="clothesSize">Misura</label>
         
         {/* <select
                 name="size"
@@ -104,25 +117,22 @@ export default function ClothesForm({
         <fieldset>
           <legend>Taglie</legend>
           <div className="size-checkboxes">
-          {sizes.map((size) => {
-          return (
-           <div className="size-checkbox">
-              <label htmlFor="{size}">{size}</label>
-            <input
-            id={size}
-              type="checkbox"
-              key={size}
-              value={size}
-              {...register("sizes", registerOptions.sizes)}
-            />
-           </div>
-          
-        
-          );
-        })}
-           </div>
+            {sizes.map((size) => {
+              return (
+                <div key={uuid()} className="size-checkbox">
+                  <label htmlFor="{size}">{size}</label>
+                  <input
+                    id={size}
+                    type="checkbox"
+                    key={size}
+                    value={size}
+                    {...register("sizes", registerOptions.sizes)}
+                  />
+                </div>
+              );
+            })}
+          </div>
         </fieldset>
-
       </div>
       <div className="clothes-input clothes-sex-input">
         <label htmlFor="clothesSex">Sesso:</label>
