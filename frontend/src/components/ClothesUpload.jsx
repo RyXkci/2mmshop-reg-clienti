@@ -3,10 +3,12 @@ import { v4 as uuid } from "uuid";
 
 import "../stylesheets/clothes-upload.css";
 
+import ClothingPicker from "./ClothingPicker";
 import ClothingItem from "./ClothingItem";
 
 import ClothesForm from "./ClothesForm";
 import {
+  clothesOptions,
   clothesValues,
   clothesSizes,
   clothesCategories,
@@ -16,13 +18,97 @@ import {
 export default function ClothesUpload() {
   const apiUrl = import.meta.env.VITE_API_URL;
 
+  // BEGIN SAVE STUFF
+
+const handleSave = (newClothes) => {
+  console.log("Clothes are", newClothes);
+  // CALCULATING AND SAVING THE DISCOUNTED PRiCE
+  const price = parseFloat(newClothes.price);
+  const discount = parseFloat(newClothes.discount);
+  newClothes.discountedPrice = price - (price * discount) / 100;
+
+  //ADDING IMAGE PREVIEW ARR
+  let imageArr = [];
+  setStatus("initial");
+  for (let i = 0; i < newClothes.images.length; i++) {
+    imageArr.push(URL.createObjectURL(newClothes.images[i]));
+  }
+  console.log(imageArr);
+  newClothes.imgPreviews = imageArr;
+  // ADDING THE NEW OBJECT TO CLOTHES STATE
+  setClothes((prevClothes) => {
+    return [...prevClothes, newClothes];
+  });
+  // SETTING THE INITIAL PREVIEW BACK TO EMPTY ARRAY
+  setImages([]);
+
+  // REMOVING AND EMPTYING FORM
+  setIsToggled(false);
+};
+
+const handleUpload = async () => {
+  const formData = new FormData();
+  console.log("CLOTHES IN UPLOAD:", clothes)
+  clothes.forEach((item, index) => {
+    // Append the clothing object's metadata
+    formData.append(`clothing[${index}][type]`, item.type);
+    formData.append(`clothing[${index}][category]`, item.category);
+    formData.append(`clothing[${index}][price]`, item.price);
+    formData.append(
+      `clothing[${index}][discountedPrice]`,
+      item.discountedPrice
+    );
+    formData.append(`clothing[${index}][description]`, item.description)
+    item.sizes.forEach(size => {formData.append(`clothing[${index}][sizes]`, size)})
+    formData.append(`clothing[${index}][sex]`, item.sex);
+
+    // Append each image for the current clothing object
+    Array.from(item.images).forEach((image, imgIndex) => {
+      formData.append(`clothing[${index}][images]`, image);
+    });
+  });
+  // console.log(formData)
+  for (let [key, value] of formData.entries()) {
+    console.log(key, value);
+  }
+  console.log(formData)
+  try {
+    const response = await fetch(`${apiUrl}/api/clothing`, {
+      method: "POST",
+
+      body: formData,
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const result = await response.json();
+    console.log("Response:", result);
+  } catch (error) {
+    console.error("Error uploading data:", error);
+  }
+};
+
+
+//END SAVE STUFF
+
+  console.log(clothesOptions)
+
   const [clothesImages, setClothesImages] = useState([]);
+
+  const [clothingSelector, setClothingSelector] = useState(false)
 
   const [clothes, setClothes] = useState([]);
 
+  // cont [clothesChoices, setClothesChoices] = useState(clothesOptions)
+
   const [sizeOptions, setSizeOptions] = useState([]);
   
+  const [clothesType, setClothesType] = useState("");
+
   const [categories, setCategories] = useState([]);
+
 
   const [formType, setFormType] = useState(""); //state to determine whether form will be clothes or accessory, as accessory doesn't have sizes.
 
@@ -60,99 +146,76 @@ export default function ClothesUpload() {
     setImages(imageUrls); // Update preview state
   };
 
-  const handleToggle = (type) => {
-    if (type = "accessory") {
-      setSizeOptions(['all']);
-      setCategories(clothesCategories.accessories)
-      setFormType('accessory');
-      setIsToggled(!isToggled)
-    } else {
-      console.log(type);
-      setFormType('clothes');
-      setSizeOptions(clothesSizes[type]); //SETS SIZE OPTIONS ACCORDING TO WHICH BUTTON IS PRESSED TO RENDER FORM DYNAMICALLY
-      console.log(sizeOptions);
-      clothesValues.type = type; //SETS THE TYPE IN HOOK FORM DEFAULT VALUES ACCRDING TO WHICH BUTTON IS PRESSED TO PRE-FILL FORM
-      console.log(clothesValues);
-      setCategories(clothesCategories[type])
-      console.log(categories)
-      setIsToggled(!isToggled);
-      // console.log(sizeOptions)
-    }
+
+   // const handleToggle = (formType, type) => {
+  //   console.log(formType)
+  //   // console.log(type)
+  //   if (formType === "accessory") {
+  //     console.log(type)
+  //     setSizeOptions(['all']);
+  //     clothesValues.type = "accessorio"
+  //     clothesValues.name = type
+  //     setCategories(clothesCategories.accessories)
+  //     setFormType('accessory');
+  //     setIsToggled(!isToggled)
+  //   } else if (formType === "clothing") {
+  //     console.log(type);
+  //     // setFormType('clothes');
+  //     setSizeOptions(clothesSizes[type]); //SETS SIZE OPTIONS ACCORDING TO WHICH BUTTON IS PRESSED TO RENDER FORM DYNAMICALLY
+  //     console.log(sizeOptions);
+  //     clothesValues.type = type; //SETS THE TYPE IN HOOK FORM DEFAULT VALUES ACCRDING TO WHICH BUTTON IS PRESSED TO PRE-FILL FORM
+  //     console.log(clothesValues);
+  //     setFormType('clothing')
+  //     setCategories(clothesCategories[type])
+  //     console.log(categories)
+  //     setIsToggled(!isToggled);
+  //     // console.log(sizeOptions)
+  //   }
     
-  };
+  // };
 
-  const handleSave = (newClothes) => {
-    console.log("Clothes are", newClothes);
-    // CALCULATING AND SAVING THE DISCOUNTED PRiCE
-    const price = parseFloat(newClothes.price);
-    const discount = parseFloat(newClothes.discount);
-    newClothes.discountedPrice = price - (price * discount) / 100;
+  const handleFormRender = (type, category) => {
+    console.log("AFTER CLICK I GET:", type);
+    console.log("I ALSO GET", category)
+    setSizeOptions(clothesSizes[type]);
+    console.log(clothesSizes)
+    clothesValues.type = type;
+    clothesValues.category = category;
+    console.log("VALUES ARE", clothesValues)
+    setIsToggled(!isToggled)
+  
+  }
+ 
 
-    //ADDING IMAGE PREVIEW ARR
-    let imageArr = [];
-    setStatus("initial");
-    for (let i = 0; i < newClothes.images.length; i++) {
-      imageArr.push(URL.createObjectURL(newClothes.images[i]));
-    }
-    console.log(imageArr);
-    newClothes.imgPreviews = imageArr;
-    // ADDING THE NEW OBJECT TO CLOTHES STATE
-    setClothes((prevClothes) => {
-      return [...prevClothes, newClothes];
-    });
-    // SETTING THE INITIAL PREVIEW BACK TO EMPTY ARRAY
-    setImages([]);
+  const handleToggle = (type) => {
+    console.log("TYPE IN HANDLE TOGGLE IS:", type)
+    setCategories(clothesOptions[type].categories)
+    setClothesType(type)
 
-    // REMOVING AND EMPTYING FORM
-    setIsToggled(false);
-  };
+    setClothingSelector(!clothingSelector)
+    // console.log(clothesSizes[type])
+    // setCategories(clothesCategories[type])
+    // setSizeOptions(clothesSizes[type])
+    // setClothingSelector(!clothingSelector)
+  }
 
-  const handleUpload = async () => {
-    const formData = new FormData();
-    console.log("CLOTHES IN UPLOAD:", clothes)
-    clothes.forEach((item, index) => {
-      // Append the clothing object's metadata
-      formData.append(`clothing[${index}][type]`, item.type);
-      formData.append(`clothing[${index}][category]`, item.category);
-      formData.append(`clothing[${index}][price]`, item.price);
-      formData.append(
-        `clothing[${index}][discountedPrice]`,
-        item.discountedPrice
-      );
-      formData.append(`clothing[${index}][description]`, item.description)
-      item.sizes.forEach(size => {formData.append(`clothing[${index}][sizes]`, size)})
-      formData.append(`clothing[${index}][sex]`, item.sex);
-
-      // Append each image for the current clothing object
-      Array.from(item.images).forEach((image, imgIndex) => {
-        formData.append(`clothing[${index}][images]`, image);
-      });
-    });
-    // console.log(formData)
-    for (let [key, value] of formData.entries()) {
-      console.log(key, value);
-    }
-    console.log(formData)
-    try {
-      const response = await fetch(`${apiUrl}/api/clothing`, {
-        method: "POST",
-
-        body: formData,
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const result = await response.json();
-      console.log("Response:", result);
-    } catch (error) {
-      console.error("Error uploading data:", error);
-    }
-  };
-
+  
   return (
     <main className="main">
+      {clothingSelector && 
+      <ClothingPicker
+      clothesOptions = {clothesOptions}
+      clothesType={clothesType}
+      // clothingArr = {categories}
+      handleClick={handleFormRender}
+      
+      />}
+
+      {/* <div className="accessory-picker">
+        {clothesCategories.accessories.map((accessory) => {
+          return <button onClick={() => handleToggle('accessory', accessory)} key={accessory}>{accessory}</button>
+        })}
+      </div> */}
       <section className="clothes-upload-main">
         <h1 className="clothes-upload-main__title">
           Ciao Giordano! Inizia a caricare la promo del mese!
@@ -180,7 +243,7 @@ export default function ClothesUpload() {
           
           <button
             className="clothes-upload-button btn-accessory"
-            onClick={() => handleToggle("accessory")}
+            onClick={() => handleToggle("accessories")}
           >
             Carica accessorio
           </button>
@@ -206,6 +269,7 @@ export default function ClothesUpload() {
                   </div>
                 )}
                 <ClothesForm
+                formType={formType}
                   sizes={sizeOptions}
                   values={clothesValues}
                   categories={categories}
@@ -231,6 +295,9 @@ export default function ClothesUpload() {
     </main>
   );
 }
+
+
+
 
 // const handleDiscountChange = (e) => {
 //   const discount = parseFloat(e.target.value) || 0; // Treat input as a number
