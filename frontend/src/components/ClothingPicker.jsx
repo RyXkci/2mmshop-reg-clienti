@@ -1,4 +1,6 @@
-import { useState } from "react"
+import { useState } from "react";
+
+import '../stylesheets/clothing-picker.css'
 
 export default function ClothingPicker({clothesOptions, clothesType, handleClick}) {
 
@@ -13,14 +15,20 @@ const testFunc = (param, category) => {
     console.log(category)
 }
     return (
-        <div className="accessory-picker">
+        <div className="clothing-picker-container">
+        <div className="clothing-picker">
+            <p className="clothing-picker__title">Seleziona il tipo di {clothesType}!</p>
+            <div className="clothing-picker__btns">
             {categories.map((category) => {
-                return <button onClick={()=> handleClick(clothesType, category)} key={category}>{category}</button>
+                return <button className="clothing-picker__btn" onClick={()=> handleClick(clothesType, category)} key={category}>{category}</button>
             })}
+            </div>
+          
         
         {/* {clothesType.categories.map((clothing) => {
           return <button onClick={() => handleClick(clothing, clothesType)} key={clothing}>{clothing}</button>
         })} */}
+      </div>
       </div>
     )
 }

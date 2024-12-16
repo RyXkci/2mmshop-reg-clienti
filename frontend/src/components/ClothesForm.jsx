@@ -5,13 +5,13 @@ export default function ClothesForm({
   formType,
   sizes,
   values,
+  imgPreviews,
   categories,
   registerOptions,
   handleFileChange,
   handleSave,
 }) {
-
-console.log(formType)
+  console.log(formType);
 
   const {
     register,
@@ -47,13 +47,21 @@ console.log(formType)
           type="file"
           name="images"
           multiple
-          {...register("images", registerOptions.images)}
-          // onChange={handleFileInputChange}
+          {...register("images")}
+          onChange={handleFileInputChange}
         />
         {errors?.images && (
           <div className="form-danger"> {errors.images.message}</div>
         )}
       </div>
+
+      {imgPreviews.length > 1 && (
+        <div className="images-container">
+          {imgPreviews.map((img) => {
+            return <img src={img} alt="" key={uuid()} />;
+          })}
+        </div>
+      )}
 
       <div className="clothes-input clothes-type-input">
         <label htmlFor="clothesType">Tipo:</label>
@@ -80,11 +88,12 @@ console.log(formType)
 
       <div className="clothes-input clothes-category-input">
         <label htmlFor="clothesCategory">Nome:</label>
-      <input type="text"
-      id="clothesCategory"
-      name="category"
-      {...register("category", registerOptions.category)}
-      />
+        <input
+          type="text"
+          id="clothesCategory"
+          name="category"
+          {...register("category", registerOptions.category)}
+        />
       </div>
 
       <div className="clothes-input clothes-description-container">
@@ -113,27 +122,30 @@ console.log(formType)
                 })}
               </select> */}
 
-      <div className="clothes-input clothes-size-input">
-        <fieldset>
-          <legend>Taglie</legend>
-          <div className="size-checkboxes">
-            {sizes.map((size) => {
-              return (
-                <div key={uuid()} className="size-checkbox">
-                  <label htmlFor="{size}">{size}</label>
-                  <input
-                    id={size}
-                    type="checkbox"
-                    key={size}
-                    value={size}
-                    {...register("sizes", registerOptions.sizes)}
-                  />
-                </div>
-              );
-            })}
-          </div>
-        </fieldset>
-      </div>
+      {formType !== "accessories" && (
+        <div className="clothes-input clothes-size-input">
+          <fieldset>
+            <legend>Taglie</legend>
+            <div className="size-checkboxes">
+              {sizes.map((size) => {
+                return (
+                  <div key={uuid()} className="size-checkbox">
+                    <label htmlFor="{size}">{size}</label>
+                    <input
+                      id={size}
+                      type="checkbox"
+                      key={size}
+                      value={size}
+                      {...register("sizes", registerOptions.sizes)}
+                    />
+                  </div>
+                );
+              })}
+            </div>
+          </fieldset>
+        </div>
+      )}
+
       <div className="clothes-input clothes-sex-input">
         <label htmlFor="clothesSex">Sesso:</label>
         <select
@@ -162,7 +174,9 @@ console.log(formType)
         />
       </div>
       {/* <button onClick={() => handleSave(clothesData)}>Salva</button> */}
-      <button type="submit">Salva</button>
+      <button className="clothes-form__btn" type="submit">
+        Salva
+      </button>
     </form>
   );
 }
