@@ -15,6 +15,7 @@ input[type='file'] {
 
 .clothes-upload-main {
   font-family: "Playfair Display", serif;
+  text-align: center;
 }
 
 .clothes-upload-main__title {
@@ -26,6 +27,9 @@ input[type='file'] {
 .clothes-details__title {
   font-size: 2.5rem;
   color: var(--primary-600);
+  position: absolute;
+  top: -1.2rem;
+  background: white;
 }
 
 .clothes-upload-main {
@@ -36,7 +40,7 @@ max-width: 1200px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 1.3em;
+  padding: 3em;
 }
 
 
@@ -75,13 +79,19 @@ max-width: 1200px;
   background-color: var(--table-300);
 }
 
-.clothes-details {
+.clothes-upload-details {
+  padding: 1em;
+  /* border: 1px solid var(--primary-300); */
+  outline: 2px solid var(--primary-300);
+  outline-offset: -1rem;
+  border-radius: 30px;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 2em;
+  position: relative;
 }
 
 .images-container {
@@ -95,9 +105,29 @@ max-width: 1200px;
   width: 150px;
 }
 
+.clothes-sex-input {
+  display: flex;
+  flex-direction: column;
+}
 .clothes-price-input {
   display: flex;
   flex-direction: column;
+}
+
+/* .clothes-sex-input > input,
+.clothes-price-input > input {
+  max-width: 250px;
+  margin: 0 auto;
+} */
+
+.clothes-description-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.clothes-description-container > textarea {
+  border: 1px solid var(--primary-300);
+  border-radius: 10px;
 }
 
 .clothes-input > select {
@@ -106,10 +136,17 @@ max-width: 1200px;
 
 .clothes-input > select,
 .clothes-input > input {
+  max-width: 250px;
+  margin: 0 auto;
   border-radius: 30px;
+  padding: .1em 3em;
   border: none;
   background: var(--primary-300);
   color: white;
+}
+
+.clothes-input > fieldset {
+  border: 1px solid var(--primary-300);
 }
 
 .size-checkboxes {
@@ -120,6 +157,19 @@ max-width: 1200px;
   border-right: 1px solid var(--primary-300);
 }
 
+.clothes-form__btn {
+  background: var(--table-500);
+  padding: .8em 2em;
+  border-radius: 30px;
+  color: black;
+  font-size: 1.9rem;
+  transition: all 150ms ease-in-out;
+}
+
+
+.clothes-form__btn:hover {
+  transform: scale(1.1);
+}
 .clothes-form {
   padding:1.3em;
   display: flex;
@@ -127,17 +177,61 @@ max-width: 1200px;
   justify-content: center;
   align-items: center;
   gap: 1.3em;
-  border: 1px solid var(--primary-300);
+  /* border: 1px solid var(--primary-300); */
   width: 100%;
 }
 
 .clothes-form > div {
   width: 80%;
   display: flex;
+  justify-content: center;
   margin: 0 auto;
 }
 
 
 .clothes-section {
+  display: flex;
+  flex-direction:column;
+  gap: 2.4em;
+  width: 100%;
   margin-top: 2em;
+}
+
+.clothes-upload-save-btn {
+  background: var(--primary-300);
+  color: var(--primary-600);
+  padding: .5em 1.3em;
+  border-radius: 30px;
+  font-size: 1.9rem;
+}
+
+
+/*  CLOTHES DETAILS */
+
+.clothes-section {
+  border: 2px solid var(--primary-300);
+  border-radius: 30px;
+  padding: 1.3em;
+}
+
+.clothes-section__title {
+  font-size: 2.7rem;
+  color: var(--primary-600);
+  margin-bottom: .8em;
+}
+.clothes-details {
+  width: 100%;
+
+}
+
+.clothes-details-text__title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--primary-300);
+}
+
+.clothes-container {
+  outline: 1px solid var(--primary-300);
+  outline-offset: 1rem;
+  border-radius: 30px;
 }

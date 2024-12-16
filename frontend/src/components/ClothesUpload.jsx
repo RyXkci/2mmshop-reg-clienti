@@ -20,95 +20,95 @@ export default function ClothesUpload() {
 
   // BEGIN SAVE STUFF
 
-const handleSave = (newClothes) => {
-  console.log("Clothes are", newClothes);
-  // CALCULATING AND SAVING THE DISCOUNTED PRiCE
-  const price = parseFloat(newClothes.price);
-  const discount = parseFloat(newClothes.discount);
-  newClothes.discountedPrice = price - (price * discount) / 100;
+  const handleSave = (newClothes) => {
+    console.log("Clothes are", newClothes);
+    // CALCULATING AND SAVING THE DISCOUNTED PRiCE
+    const price = parseFloat(newClothes.price);
+    const discount = parseFloat(newClothes.discount);
+    newClothes.discountedPrice = price - (price * discount) / 100;
 
-  //ADDING IMAGE PREVIEW ARR
-  let imageArr = [];
-  setStatus("initial");
-  for (let i = 0; i < newClothes.images.length; i++) {
-    imageArr.push(URL.createObjectURL(newClothes.images[i]));
-  }
-  console.log(imageArr);
-  newClothes.imgPreviews = imageArr;
-  // ADDING THE NEW OBJECT TO CLOTHES STATE
-  setClothes((prevClothes) => {
-    return [...prevClothes, newClothes];
-  });
-  // SETTING THE INITIAL PREVIEW BACK TO EMPTY ARRAY
-  setImages([]);
-
-  // REMOVING AND EMPTYING FORM
-  setIsToggled(false);
-};
-
-const handleUpload = async () => {
-  const formData = new FormData();
-  console.log("CLOTHES IN UPLOAD:", clothes)
-  clothes.forEach((item, index) => {
-    // Append the clothing object's metadata
-    formData.append(`clothing[${index}][type]`, item.type);
-    formData.append(`clothing[${index}][category]`, item.category);
-    formData.append(`clothing[${index}][price]`, item.price);
-    formData.append(
-      `clothing[${index}][discountedPrice]`,
-      item.discountedPrice
-    );
-    formData.append(`clothing[${index}][description]`, item.description)
-    item.sizes.forEach(size => {formData.append(`clothing[${index}][sizes]`, size)})
-    formData.append(`clothing[${index}][sex]`, item.sex);
-
-    // Append each image for the current clothing object
-    Array.from(item.images).forEach((image, imgIndex) => {
-      formData.append(`clothing[${index}][images]`, image);
-    });
-  });
-  // console.log(formData)
-  for (let [key, value] of formData.entries()) {
-    console.log(key, value);
-  }
-  console.log(formData)
-  try {
-    const response = await fetch(`${apiUrl}/api/clothing`, {
-      method: "POST",
-
-      body: formData,
-    });
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+    //ADDING IMAGE PREVIEW ARR
+    let imageArr = [];
+    setStatus("initial");
+    for (let i = 0; i < newClothes.images.length; i++) {
+      imageArr.push(URL.createObjectURL(newClothes.images[i]));
     }
+    console.log(imageArr);
+    newClothes.imgPreviews = imageArr;
+    // ADDING THE NEW OBJECT TO CLOTHES STATE
+    setClothes((prevClothes) => {
+      return [...prevClothes, newClothes];
+    });
+    // SETTING THE INITIAL PREVIEW BACK TO EMPTY ARRAY
+    setImages([]);
 
-    const result = await response.json();
-    console.log("Response:", result);
-  } catch (error) {
-    console.error("Error uploading data:", error);
-  }
-};
+    // REMOVING AND EMPTYING FORM
+    setIsToggled(false);
+  };
 
+  const handleUpload = async () => {
+    const formData = new FormData();
+    console.log("CLOTHES IN UPLOAD:", clothes);
+    clothes.forEach((item, index) => {
+      // Append the clothing object's metadata
+      formData.append(`clothing[${index}][type]`, item.type);
+      formData.append(`clothing[${index}][category]`, item.category);
+      formData.append(`clothing[${index}][price]`, item.price);
+      formData.append(
+        `clothing[${index}][discountedPrice]`,
+        item.discountedPrice
+      );
+      formData.append(`clothing[${index}][description]`, item.description);
+      item.sizes.forEach((size) => {
+        formData.append(`clothing[${index}][sizes]`, size);
+      });
+      formData.append(`clothing[${index}][sex]`, item.sex);
 
-//END SAVE STUFF
+      // Append each image for the current clothing object
+      Array.from(item.images).forEach((image, imgIndex) => {
+        formData.append(`clothing[${index}][images]`, image);
+      });
+    });
+    // console.log(formData)
+    for (let [key, value] of formData.entries()) {
+      console.log(key, value);
+    }
+    console.log(formData);
+    try {
+      const response = await fetch(`${apiUrl}/api/clothing`, {
+        method: "POST",
 
-  console.log(clothesOptions)
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const result = await response.json();
+      console.log("Response:", result);
+    } catch (error) {
+      console.error("Error uploading data:", error);
+    }
+  };
+
+  //END SAVE STUFF
+
+  console.log(clothesOptions);
 
   const [clothesImages, setClothesImages] = useState([]);
 
-  const [clothingSelector, setClothingSelector] = useState(false)
+  const [clothingSelector, setClothingSelector] = useState(false);
 
   const [clothes, setClothes] = useState([]);
 
   // cont [clothesChoices, setClothesChoices] = useState(clothesOptions)
 
   const [sizeOptions, setSizeOptions] = useState([]);
-  
+
   const [clothesType, setClothesType] = useState("");
 
   const [categories, setCategories] = useState([]);
-
 
   const [formType, setFormType] = useState(""); //state to determine whether form will be clothes or accessory, as accessory doesn't have sizes.
 
@@ -142,12 +142,13 @@ const handleUpload = async () => {
   // };
 
   const handleFileChange = (files) => {
-    const imageUrls = Array.from(files).map((file) => URL.createObjectURL(file));
+    const imageUrls = Array.from(files).map((file) =>
+      URL.createObjectURL(file)
+    );
     setImages(imageUrls); // Update preview state
   };
 
-
-   // const handleToggle = (formType, type) => {
+  // const handleToggle = (formType, type) => {
   //   console.log(formType)
   //   // console.log(type)
   //   if (formType === "accessory") {
@@ -171,45 +172,46 @@ const handleUpload = async () => {
   //     setIsToggled(!isToggled);
   //     // console.log(sizeOptions)
   //   }
-    
+
   // };
 
   const handleFormRender = (type, category) => {
     console.log("AFTER CLICK I GET:", type);
-    console.log("I ALSO GET", category)
+    console.log("I ALSO GET", category);
     setSizeOptions(clothesSizes[type]);
-    console.log(clothesSizes)
+    console.log(clothesSizes);
     clothesValues.type = type;
     clothesValues.category = category;
-    console.log("VALUES ARE", clothesValues)
-    setIsToggled(!isToggled)
-  
-  }
- 
+    console.log("VALUES ARE", clothesValues);
+    setIsToggled(!isToggled);
+    setClothingSelector(!clothingSelector);
+  };
 
   const handleToggle = (type) => {
-    console.log("TYPE IN HANDLE TOGGLE IS:", type)
-    setCategories(clothesOptions[type].categories)
-    setClothesType(type)
-
-    setClothingSelector(!clothingSelector)
+    console.log("TYPE IN HANDLE TOGGLE IS:", type);
+    setCategories(clothesOptions[type].categories);
+    setClothesType(type);
+    setFormType(type)
+    // only removes is toggled status IF form has already rendered in case user makes mistake
+    // if the isToggled short-circuit isn't there it toggles both the form and the clothesPicker causing an overlay.
+    isToggled && setIsToggled(!isToggled); 
+    setClothingSelector(!clothingSelector);
     // console.log(clothesSizes[type])
     // setCategories(clothesCategories[type])
     // setSizeOptions(clothesSizes[type])
     // setClothingSelector(!clothingSelector)
-  }
+  };
 
-  
   return (
     <main className="main">
-      {clothingSelector && 
-      <ClothingPicker
-      clothesOptions = {clothesOptions}
-      clothesType={clothesType}
-      // clothingArr = {categories}
-      handleClick={handleFormRender}
-      
-      />}
+      {clothingSelector && (
+        <ClothingPicker
+          clothesOptions={clothesOptions}
+          clothesType={clothesType}
+          // clothingArr = {categories}
+          handleClick={handleFormRender}
+        />
+      )}
 
       {/* <div className="accessory-picker">
         {clothesCategories.accessories.map((accessory) => {
@@ -240,7 +242,7 @@ const handleUpload = async () => {
           >
             Carica scarpe
           </button>
-          
+
           <button
             className="clothes-upload-button btn-accessory"
             onClick={() => handleToggle("accessories")}
@@ -250,11 +252,11 @@ const handleUpload = async () => {
         </section>
 
         <section className="clothes-upload-section">
-          <div className="clothes-details">
+          <div className="clothes-upload-details">
             {isToggled && (
               <>
                 <h2 className="clothes-details__title">Inizia a caricare!</h2>
-                {images.length > 1 && (
+                {/* {images.length > 1 && (
                   <div className="images-container">
                     {images.map((image) => {
                       return (
@@ -267,12 +269,13 @@ const handleUpload = async () => {
                       );
                     })}
                   </div>
-                )}
+                )} */}
                 <ClothesForm
-                formType={formType}
+                  formType={formType}
                   sizes={sizeOptions}
                   values={clothesValues}
                   categories={categories}
+                  imgPreviews={images}
                   registerOptions={registerOptions}
                   handleFileChange={handleFileChange}
                   handleSave={handleSave}
@@ -284,20 +287,17 @@ const handleUpload = async () => {
 
         {clothes && (
           <section className="clothes-section">
-            <h1>Vestiti caricati:</h1>
+            <h1 className="clothes-section__title">Vestiti caricati:</h1>
             {clothes.map((item) => {
               return <ClothingItem item={item} />;
             })}
           </section>
         )}
       </section>
-      <button onClick={handleUpload}>Salva tutto</button>
+      <button className="clothes-upload-save-btn" onClick={handleUpload}>Salva tutto</button>
     </main>
   );
 }
-
-
-
 
 // const handleDiscountChange = (e) => {
 //   const discount = parseFloat(e.target.value) || 0; // Treat input as a number

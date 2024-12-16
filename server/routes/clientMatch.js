@@ -97,8 +97,8 @@ router.get('/', async (req, res) => {
             // console.log("CLIENT IS:", client)
             // console.log(typeof(client))
             const parsedClient = client.toObject();
-            console.log("PARSED CLIENT IS:", client)
-            console.log(typeof(parsedClient))
+            // console.log("PARSED CLIENT IS:", client)
+            // console.log(typeof(parsedClient))
             const parsedClientSex = client.sex;
             const parsedClientSizes = client.sizes;
         
@@ -107,21 +107,23 @@ router.get('/', async (req, res) => {
             
         
             clothing.forEach(item => {
-
+/
                 if (item.sex === parsedClientSex) {
                     // Check for matches based on item type
-                    if (item.type === "shoes" && item.size === parsedClientSizes.shoeSize) {
-                        parsedClient.params.ts = item.size;
+                    // console.log(item.sizes, parsedClientSizes)
+                    if (item.type === "shoes" && item.sizes.includes(parsedClientSizes.shoeSize)) {
+
+                        parsedClient.params.ts = parsedClientSizes.shoeSize;
                         parsedClient.params.s = parsedClient.sex;
                         parsedClient.params.id = parsedClient.id;
                     }
-                    if (item.type === "trousers" && item.size === parsedClientSizes.trouserSize) {
-                        parsedClient.params.tp = item.size;
+                    if (item.type === "trousers" && item.sizes.includes(parsedClientSizes.trouserSize)) {
+                        parsedClient.params.tp = parsedClientSizes.ClothingtrouserSize;
                         parsedClient.params.s = parsedClient.sex;
                         parsedClient.params.id = parsedClient.id;
                     }
-                    if (item.type === "top" && item.size === parsedClientSizes.tshirtSize) {
-                        parsedClient.params.top = item.size;
+                    if (item.type === "top" && item.sizes.includes(parsedClientSizes.topSize)) {
+                        parsedClient.params.top = parsedClientSizes.topSize;
                         parsedClient.params.s = parsedClient.sex;
                         parsedClient.params.id = parsedClient.id;
                     }
