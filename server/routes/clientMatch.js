@@ -107,7 +107,7 @@ router.get('/', async (req, res) => {
             
         
             clothing.forEach(item => {
-/
+
                 if (item.sex === parsedClientSex) {
                     // Check for matches based on item type
                     // console.log(item.sizes, parsedClientSizes)
