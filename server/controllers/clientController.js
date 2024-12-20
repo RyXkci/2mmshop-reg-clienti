@@ -52,6 +52,7 @@ const createClient = async (req, res) => {
     });
     await client.save();
     res.status(200).json(client);
+    console.log(client)
   } catch (error) {
     res.status(500).json({ error: error.message });
     console.log(error)
