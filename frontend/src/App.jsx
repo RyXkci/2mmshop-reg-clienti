@@ -14,7 +14,7 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/formdati" element={<HookForm />} />
+          <Route path="/" element={<HookForm />} />
           <Route 
           path="/admin/login" element={<Login/>}
           />
