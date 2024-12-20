@@ -299,7 +299,7 @@ useEffect(() => {
                     <input
                       type="text"
                       inputMode="numeric"
-                      pattern="\d*"
+                      // pattern="\d*"
                       className="has-right-border-radius"
                       id="phone"
                       name="phoneNumber"
