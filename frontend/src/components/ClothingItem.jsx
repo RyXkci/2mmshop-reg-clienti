@@ -16,17 +16,21 @@ export default function ClothingItem({ item }) {
       </div>
       <div key={uuid()} className="clothes-details">
         <p key={uuid()} className="clothes-details-text type">
-          <span className="clothes-details-text__title">Tipo:</span> {item.type}
+          <span className="clothes-details-text__title">Tipo: </span> {item.type}
         </p>
         {/* <p key={uuid()}  className="clothes-details-text size">
                         Taglia: {item.size}
                       </p> */}
-        <p className="clothes-details-text name">
-          <span className="clothes-details-text__title">Nome: </span>
+        <p className="clothes-details-text category">
+          <span className="clothes-details-text__title">Categoria: </span>
           {item.category}
         </p>
+        <p className="clothes-details-text name">
+          <span className="clothes-details-text__title">Nome: </span>
+          {item.name}
+        </p>
         <div className="clothes-sizes">
-          <p className="clothes-details-text__title">Taglie:</p>
+          <p className="clothes-details-text__title">Taglie: </p>
           {item.sizes.map((size) => (
             <p className="clothing-size">{size}</p>
           ))}

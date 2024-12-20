@@ -117,7 +117,61 @@ module.exports.names = [
   module.exports.categories = {
     top: ['piumino', 'giacca', 'cappotto', 'shirt'],
     middle: ['pantaloni', 'denim', 'bermuda', 'costume da bagno'],
-    shoe: ['sneaker', 'scarpa elegante', 'scarpa casual']
+    shoe: ['sneaker', 'scarpa elegante', 'scarpa casual'],
+    accessory: ['cintura', 'calze', 'borsa', 'sciarpa', 'cappellino', 'cravatta']
   }
+
+
+    module.exports.names = {
+      top: [
+        "Alba",
+        "Brezza",
+        "Sogno",
+        "Eclisse",
+        "Aurora",
+        "Lucea",
+        "Silvano",
+        "Velluto",
+        "Nebbia",
+        "Solare"
+      ],
+      trousers: [
+        "Tempesta",
+        "Riflesso",
+        "Ombra",
+        "Cenere",
+        "Selvaggio",
+        "Bruma",
+        "Zefiro",
+        "Tramonto",
+        "Giada",
+        "Fosco"
+      ],
+      shoes: [
+        "Fiamma",
+        "Vortice",
+        "Lampo",
+        "Corallo",
+        "Alveo",
+        "Drago",
+        "Pietra",
+        "Onda",
+        "Rubino",
+        "Vega"
+      ],
+    accessories: [
+      "Lunaria",
+      "Fiordaliso",
+      "Soleado",
+      "Velvetto",
+      "Brumale",
+      "Crisantemo",
+      "Girasole",
+      "Nebula",
+      "Aurora",
+      "Zaffiro"
+    ]
+  };
   
-  module.exports.types = ['top', 'trousers', 'shoes'];
+  
+  module.exports.types = ['top', 'trousers', 'shoes', 'accessory'];

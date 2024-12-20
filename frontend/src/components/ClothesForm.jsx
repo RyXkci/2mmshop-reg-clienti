@@ -87,12 +87,22 @@ export default function ClothesForm({
       </div> */}
 
       <div className="clothes-input clothes-category-input">
-        <label htmlFor="clothesCategory">Nome:</label>
+        <label htmlFor="clothesCategory">Categoria:</label>
         <input
           type="text"
           id="clothesCategory"
           name="category"
           {...register("category", registerOptions.category)}
+        />
+      </div>
+
+      <div className="clothes-input clothes-category-input">
+        <label htmlFor="clothesName">Nome:</label>
+        <input
+          type="text"
+          id="clothesCategory"
+          name="name"
+          {...register("name", registerOptions.name)}
         />
       </div>
 
