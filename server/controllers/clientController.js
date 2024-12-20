@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { v4: uuidv4 } = require('uuid');
 const Client = require("../models/clients");
 const Joi = require("joi");
 
@@ -45,11 +46,15 @@ const createClient = async (req, res) => {
   }
   try {
   
-    const client = new Client(req.body);
+    const client = new Client({
+      id: uuidv4(),
+      ...req.body
+    });
     await client.save();
     res.status(200).json(client);
   } catch (error) {
     res.status(500).json({ error: error.message });
+    console.log(error)
   }
 };
 

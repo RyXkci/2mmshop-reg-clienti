@@ -456,7 +456,7 @@ useEffect(() => {
             {isLoading && <Spinner />}
           </div>
           {isSubmitted && (
-            <Result content={resultText} clickFunc={clearResult} />
+            <Result content={resultText} clickFunc={clearResult}  />
           )}
         </>
       )}
