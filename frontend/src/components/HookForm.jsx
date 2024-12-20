@@ -19,12 +19,12 @@ import { success, fail } from "../utils/resultText.json";
 const apiUrl = import.meta.env.VITE_API_URL;
 
 export default function HookForm() {
-  const [isSubmitted, setIsSubmitted] = useState(true);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const [isIntro, setIsIntro] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
-  const [resultText, setResultText] = useState(success); //initially null, changes to either success or fail after form submit
-  const [isSuccess, setIsSuccess] = useState(true); // STATE TO DETERMINE RESULT COMPONENT RESET
+  const [resultText, setResultText] = useState(null); //initially null, changes to either success or fail after form submit
+  const [isSuccess, setIsSuccess] = useState(null); // STATE TO DETERMINE RESULT COMPONENT RESET
 
   const [isFocused, setIsFocused] = useState(true);
 
