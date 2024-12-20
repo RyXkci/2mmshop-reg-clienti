@@ -3,6 +3,7 @@ const clothesValues = {
   sex: "",
   sizes: [],
   category: "",
+  name: "",
   description: "",
   price: "",
   discount: "",
@@ -12,11 +13,11 @@ const clothesValues = {
 const clothesOptions = {
   top: {
     sizes: ["xs", "s", "m", "l", "xl", "xxl"],
-    categories: ["piumino", "giacca", "cappotto", "camicia", "tshirt"],
+    categories: ["piumino", "giacca", "cappotto", "felpa", "maglia", "camicia", "tshirt"],
   },
   trousers: {
     sizes: ["38", "40", "42", "44", "46", "48", "50"],
-    categories: ["pantaloni", "denim", "bermuda", "costume da bagno"],
+    categories: ["pantalone", "denim", "bermuda", "costume da bagno"],
   },
   shoes: {
     sizes: ["36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46"],
@@ -24,7 +25,7 @@ const clothesOptions = {
   },
   accessories: {
     sizes: ["all"],
-    categories:["cinture", "calze", "borse", "sciarpe", "cappellini", "scarpe"]
+    categories:["cintura", "calza", "borsa", "sciarpa", "cappellino"]
   }
 }
 
@@ -54,6 +55,9 @@ const registerOptions = {
   },
   category: {
     required: "Questo campo è obbligatorio",
+  },
+  name: {
+    required: "Questo campo è obbligatorio"
   },
   description: {
     required: "Questo campo è obbligatorio",

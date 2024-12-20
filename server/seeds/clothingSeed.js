@@ -3,7 +3,7 @@ const { v4: uuidv4 } = require("uuid");
 
 const Clothing = require('../models/clothing');
 
-const { sexes, sizesOptions, types, categories} = require("./seedHelper");
+const { sexes, sizesOptions, types, categories, names} = require("./seedHelper");
 
 function getRandomItem(arr) {
     return arr[Math.floor(Math.random() * arr.length)];
@@ -44,18 +44,27 @@ const seedClothing = async() => {
     const type = getRandomItem(types);
     let sizes;
     let category;
+    let name;
 
     if (type === 'top') {
       sizes = arrPusher(sizesOptions.top);
-      category = getRandomItem(categories.top)
+      category = getRandomItem(categories.top);
+      name= getRandomItem(names.top);
     }
     if (type === 'trousers') {
       sizes = arrPusher(sizesOptions.trousersSizes);
       category = getRandomItem(categories.middle);
+      name= getRandomItem(names.trousers);
     }
     if (type === 'shoes') {
       sizes = arrPusher(sizesOptions.shoeSizes);
-      category = getRandomItem(categories.shoe)
+      category = getRandomItem(categories.shoe);
+      name = getRandomItem(names.shoes)
+    }
+    if (type === 'accessory') {
+      sizes = ['all'],
+      category = getRandomItem(categories.accessory),
+      name=getRandomItem(names.accessories)
     }
 
     const clothing = new Clothing({
@@ -63,6 +72,7 @@ const seedClothing = async() => {
       type: type,
       description: "Facilisis rutrum purus hendrerit enim phasellus condimentum tempus quis congue varius bibendum leo fusce gravida arcu sollicitudin maecenas fusce nec bibendum bibendum facilisis morbi nisi.",
       category: category,
+      name: name,
       sizes: sizes,
       sex: getRandomItem(sexes),
       price: 50,

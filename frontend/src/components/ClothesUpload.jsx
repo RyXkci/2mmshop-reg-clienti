@@ -53,6 +53,7 @@ export default function ClothesUpload() {
       // Append the clothing object's metadata
       formData.append(`clothing[${index}][type]`, item.type);
       formData.append(`clothing[${index}][category]`, item.category);
+      formData.append(`clothing[${index}][name]`, item.name)
       formData.append(`clothing[${index}][price]`, item.price);
       formData.append(
         `clothing[${index}][discountedPrice]`,

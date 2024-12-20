@@ -38,16 +38,16 @@ export default function ClothesPage() {
     fetchClothes()
   }, [])
 
-  // useEffect(() => {
-  //   const fetchClientName = async() => {
-  //     const response = await fetch(`${apiUrl}/api/clients/${id}`);
-  //     const json = await response.json();
-  //     setClientName(json);
+  useEffect(() => {
+    const fetchClientName = async() => {
+      const response = await fetch(`${apiUrl}/api/clients/${id}`);
+      const json = await response.json();
+      setClientName(json);
       
-  //   }
+    }
 
-  //   fetchClientName()
-  // })
+    fetchClientName()
+  })
 
   const applyFilters = (data) => {
 
@@ -75,7 +75,7 @@ export default function ClothesPage() {
       if (cloth.type === "trousers" && trouserSize) {
         return {...cloth, sizes: [parseInt(trouserSize, 10)] }
       }
-      // return cloth; // For trousers or unfiltered items, return as is
+     return cloth;
     });
 
     setFilteredClothes(filtered); // Update displayed data
@@ -128,18 +128,21 @@ return sizes.filter((item) => item === clientSize)
   return (
     
     <div>
-    {clientName && <p>Ciao {clientName}!</p>}
+    {clientName && <p>Ciao {clientName} Ecco i capi in promozion su misura per te!</p>}
       <ul>
         {filteredClothes.map((cloth) => {
           return (
             <li key={cloth.id}>
-              <p>name: {cloth.category}</p>
-              <p>type:{cloth.type}</p>
-              <p>size: {cloth.sizes.join(',')}</p>
+              {/* <p>name: {cloth.category}</p> */}
+              <p>TIPO:{cloth.type}</p>
+              <p>CATEGORIA:{cloth.category}</p>
+              <p>NOME: {cloth.name}</p>
+              <p>TAGLIA: {cloth.sizes.join(',')}</p>
+              <p>SEX: {cloth.sex}</p>
+              <p>PREZZO: {cloth.price}</p>
+              <p>PREZZO SCONTATO: {cloth.discountedPrice}</p>
               {/* <p>size: {filterSize(cloth.sizes, topSize).join()}</p> */}
             
-              <p>sex: {cloth.sex}</p>
-              <p>price:{cloth.price}</p>
             </li>
           );
         })}

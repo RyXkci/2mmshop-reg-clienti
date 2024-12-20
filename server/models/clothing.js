@@ -6,6 +6,7 @@ const ClothingSchema = new Schema({
     id: String,
     type: String,
     category: String,
+    name: String,
     description: String,
     sizes: Array,
     sex: String,

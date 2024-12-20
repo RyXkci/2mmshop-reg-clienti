@@ -101,6 +101,7 @@ router.get('/', async (req, res) => {
             // console.log(typeof(parsedClient))
             const parsedClientSex = client.sex;
             const parsedClientSizes = client.sizes;
+            console.log("CLIENT SIZES IS", parsedClientSizes)
         
             // Initialize an empty matches object on the client
             parsedClient.params = {};
@@ -118,12 +119,12 @@ router.get('/', async (req, res) => {
                         parsedClient.params.id = parsedClient.id;
                     }
                     if (item.type === "trousers" && item.sizes.includes(parsedClientSizes.trouserSize)) {
-                        parsedClient.params.tp = parsedClientSizes.ClothingtrouserSize;
+                        parsedClient.params.tp = parsedClientSizes.trouserSize;
                         parsedClient.params.s = parsedClient.sex;
                         parsedClient.params.id = parsedClient.id;
                     }
-                    if (item.type === "top" && item.sizes.includes(parsedClientSizes.topSize)) {
-                        parsedClient.params.top = parsedClientSizes.topSize;
+                    if (item.type === "top" && item.sizes.includes(parsedClientSizes.tshirtSize)) {
+                        parsedClient.params.top = parsedClientSizes.tshirtSize;
                         parsedClient.params.s = parsedClient.sex;
                         parsedClient.params.id = parsedClient.id;
                     }
@@ -134,7 +135,7 @@ router.get('/', async (req, res) => {
             if (Object.keys(parsedClient.params).length > 0) {
                 
                 matchedClients.push(parsedClient);
-                messageClient(parsedClient)
+                // messageClient(parsedClient)
                 // doSomething(parsedClient);
             }
         });
