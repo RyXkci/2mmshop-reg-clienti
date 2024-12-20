@@ -100,8 +100,12 @@
 }
 
 .result-page__icon-container__title {
+    text-align: center;
     color: white;
     font-size: 2.4rem;
+}
+.title-sm {
+    font-size: 2rem
 }
 
 .social-icons {

@@ -44,9 +44,12 @@ export default function Result({ content, clickFunc, isSuccess }) {
 
         {isSuccess && (
           <div className="result-page__icon-container">
-            <h2 className="result-page__icon-container__title result-page__title">
+            <p className="result-page__icon-container__title result-page__title">
+              Ma davvero non ci segui ancora sui social?
+            </p>
+            <p className="result-page__icon-container__title result-page__title title-sm">
               Seguici su:
-            </h2>
+            </p>
             <div className="social-icons">
               <a
                 href="https://www.instagram.com/2mmshop.it?igsh=MWdocndzNmducXhoaA=="
@@ -65,9 +68,10 @@ export default function Result({ content, clickFunc, isSuccess }) {
             </div>
           </div>
         )}
-        {/* <span>{instaIcon}</span>
-          <span>{facebookIcon}</span>
-          <a href="">Hello</a> */}
+
+        {!isSuccess && (
+         <button className="btn-fill has-top-border-shadow" onClick ={clickFunc}>{content.button}</button>
+        )}
       </div>
     </main>
   );
