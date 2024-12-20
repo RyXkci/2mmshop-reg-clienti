@@ -95,6 +95,25 @@
     border-radius: 50%;
 }
 
+.result-page__icon-container {
+    margin-top: 2em;
+}
+
+.result-page__icon-container__title {
+    color: white;
+    font-size: 2.4rem;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 2em;
+}
+
+.social-icon {
+    color: white;
+    font-size: 3.2rem;
+}
 
 
 /* .result-page-inner {
