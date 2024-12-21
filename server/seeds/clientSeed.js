@@ -26,7 +26,7 @@ function getRandomItem(arr) {
   const seedClient = async() => {
     await Client.deleteMany({});
 
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < 10; i++) {
         const client = new Client({
           id: uuidv4(),
             firstName: getRandomItem(names),
@@ -35,7 +35,7 @@ function getRandomItem(arr) {
             phoneNumber: "+39123456789",
             givenConsent: false,
             sizes: {
-                tshirtSize: getRandomItem(sizesOptions.tShirtSizes),
+                tshirtSize: getRandomItem(sizesOptions.topSizes),
                 trouserSize: getRandomItem(sizesOptions.trousersSizes),
                 shoeSize: getRandomItem(sizesOptions.shoeSizes)
             },

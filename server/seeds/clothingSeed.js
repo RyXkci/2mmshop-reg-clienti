@@ -3,7 +3,7 @@ const { v4: uuidv4 } = require("uuid");
 
 const Clothing = require('../models/clothing');
 
-const { sexes, sizesOptions, types, categories, names} = require("./seedHelper");
+const { sexes, sizesOptions, types, categories, clothesNames} = require("./seedHelper");
 
 function getRandomItem(arr) {
     return arr[Math.floor(Math.random() * arr.length)];
@@ -37,7 +37,7 @@ mongoose
 const seedClothing = async() => {
   await Clothing.deleteMany({})
 
-    for (let i = 0; i<30; i++) {
+    for (let i = 0; i<10; i++) {
     // iterate over list of types and pick a random one
     // for each type, iterate over sizesoptions and pick one
 
@@ -47,24 +47,24 @@ const seedClothing = async() => {
     let name;
 
     if (type === 'top') {
-      sizes = arrPusher(sizesOptions.top);
+      sizes = arrPusher(sizesOptions.topSizes);
       category = getRandomItem(categories.top);
-      name= getRandomItem(names.top);
+      name= getRandomItem(clothesNames.top);
     }
     if (type === 'trousers') {
       sizes = arrPusher(sizesOptions.trousersSizes);
       category = getRandomItem(categories.middle);
-      name= getRandomItem(names.trousers);
+      name= getRandomItem(clothesNames.trousers);
     }
     if (type === 'shoes') {
       sizes = arrPusher(sizesOptions.shoeSizes);
       category = getRandomItem(categories.shoe);
-      name = getRandomItem(names.shoes)
+      name = getRandomItem(clothesNames.shoes)
     }
     if (type === 'accessory') {
       sizes = ['all'],
       category = getRandomItem(categories.accessory),
-      name=getRandomItem(names.accessories)
+      name=getRandomItem(clothesNames.accessories)
     }
 
     const clothing = new Clothing({
