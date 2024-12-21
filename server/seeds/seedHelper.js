@@ -1,3 +1,4 @@
+
 module.exports.names = [
     "Luca",
     "Giulia",
@@ -109,7 +110,7 @@ module.exports.names = [
   
   
   module.exports.sizesOptions = {
-    top: ["xs", "s", "m", "l", "xl", "xxl"],
+    topSizes: ["xs", "s", "m", "l", "xl", "xxl"],
     trousersSizes: [38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58],
     shoeSizes: [36, 37, 28, 39, 40, 41, 42, 43, 44, 45, 46],
   };
@@ -122,7 +123,7 @@ module.exports.names = [
   }
 
 
-    module.exports.names = {
+    module.exports.clothesNames = {
       top: [
         "Alba",
         "Brezza",
