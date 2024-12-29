@@ -1,3 +1,5 @@
+
+
 :root { 
     /* --primary-100: hsl(32, 98%, 93%);
     --primary-300: hsl(27, 74%, 25%);
@@ -33,7 +35,7 @@
 
 
 body {
-    font-family: "Lato", sans-serif;
+    font-family: 'Playfair Display Variable', serif;
     font-weight: 400;
     font-style: normal;
     font-size: 16px;

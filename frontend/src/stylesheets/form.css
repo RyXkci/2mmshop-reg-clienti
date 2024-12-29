@@ -2,7 +2,7 @@
     width: 100%;
     max-width: 450px;
     padding: 2rem 0;
-    font-family: "Playfair Display", serif;
+    font-family: 'Playfair Display Variable', serif;
     background-color: var(--primary-600);
 }
 
