@@ -39,23 +39,7 @@ export default function HookForm() {
     return () => clearTimeout(timeoutId);
   }, []); // Empty dependency array ensures the effect runs only once
 
-  useEffect(() => {
-    const pingServer = async () => {
-      try {
-        // ping server to wake up to diminish spin up time in bg
-        const response = await fetch(`${apiUrl}/api/ping`);
-        if (response.ok) {
-          console.log("Pinged");
-        } else {
-          console.error("Failed to ping the server");
-        }
-      } catch (error) {
-        console.error("Error pinging the server", error);
-      }
-    };
 
-    pingServer();
-  }, []);
 
   const {
     register,
@@ -99,12 +83,12 @@ useEffect(() => {
   const submitData = async (formData) => {
     setIsLoading(true);
     const trimmedPhoneNumber = formData.phoneNumber.replace(/\s+/g, ""); // Remove all spaces from number
-    console.log(formData.dobDay, formData.dobMonth, formData.dobYear);
+
     const dob = `${formData.dobYear}-${formData.dobMonth.padStart(
       2,
       "0"
     )}-${formData.dobDay.padStart(2, "0")}`;
-    console.log(dob);
+  
     const newClient = {
       firstName: formData.firstName,
       lastName: formData.lastName,

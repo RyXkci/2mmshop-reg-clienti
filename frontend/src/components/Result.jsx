@@ -7,13 +7,10 @@ import { faInstagram, faFacebook } from "@fortawesome/free-brands-svg-icons";
 const instaIcon = <FontAwesomeIcon icon={faInstagram} />;
 const facebookIcon = <FontAwesomeIcon icon={faFacebook} />;
 
-console.log(instaIcon);
-console.log(facebookIcon);
 
 import Logo from "./Logo";
 
 export default function Result({ content, clickFunc, isSuccess }) {
-  console.log(isSuccess);
   return (
     //   <div className="result-page">
     //   <div className={`result-page-inner ${content.class}`}>
