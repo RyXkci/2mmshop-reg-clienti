@@ -59,7 +59,7 @@
 
 /*  TYPOHRAPHY */
 .intro__title {
-    font-family: "Playfair Display", serif;
+    font-family: 'Playfair Display Variable', serif;
     font-weight: 400;
     line-height: .9;
 }
@@ -98,7 +98,7 @@
 }
 
 .intro__subtitle {
-    font-family: "Playfair Display", serif;
+    font-family: 'Playfair Display Variable', serif;
     font-style: italic;
     font-size: 3.25em;
 }

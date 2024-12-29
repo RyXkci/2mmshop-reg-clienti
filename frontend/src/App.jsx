@@ -1,7 +1,13 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import reactLogo from "./assets/react.svg";
+
+import '@fontsource-variable/playfair-display';
+import '@fontsource-variable/playfair-display/wght-italic.css';
+import '@fontsource/lato';
 import "./App.css";
+
+
 
 import TanTable from "./components/TanTable";
 import HookForm from "./components/HookForm";

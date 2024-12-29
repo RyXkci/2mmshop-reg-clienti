@@ -14,7 +14,7 @@
 
 /*  TYPOHRAPHY */
 .logo__title {
-    font-family: "Playfair Display", serif;
+    font-family: 'Playfair Display Variable', serif;
     font-weight: 400;
     line-height: .9;
 }
@@ -57,7 +57,7 @@
 }
 
 .logo__subtitle {
-    font-family: "Playfair Display", serif;
+    font-family: 'Playfair Display Variable', serif;
     font-style: italic;
     font-size: 3.25em;
 }
