@@ -19,12 +19,12 @@ import { success, fail } from "../utils/resultText.json";
 const apiUrl = import.meta.env.VITE_API_URL;
 
 export default function HookForm() {
-  const [isSubmitted, setIsSubmitted] = useState(true);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const [isIntro, setIsIntro] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
-  const [resultText, setResultText] = useState(success); //initially null, changes to either success or fail after form submit
-  const [isSuccess, setIsSuccess] = useState(true); // STATE TO DETERMINE RESULT COMPONENT RESET
+  const [resultText, setResultText] = useState(null); //initially null, changes to either success or fail after form submit
+  const [isSuccess, setIsSuccess] = useState(null); // STATE TO DETERMINE RESULT COMPONENT RESET
 
   const [isFocused, setIsFocused] = useState(true);
 
@@ -418,9 +418,13 @@ useEffect(() => {
                     <option value="36">36</option>
                     <option value="37">37</option>
                     <option value="38">38</option>
+                    <option value="39">39</option>
                     <option value="40">40</option>
+                    <option value="41">41</option>
                     <option value="42">42</option>
+                    <option value="43">43</option>
                     <option value="44">44</option>
+                    <option value="45">45</option>
                     <option value="46">46</option>
                   </select>
                   {errors?.shoeSize && <div className="form-danger"> {errors.shoeSize.message}</div>}
