@@ -10,7 +10,7 @@ const ClothingSchema = new Schema({
     description: String,
     sizes: Array,
     sex: String,
-    images: Array,
+    images: Object,
     price: Number,
     discountedPrice: Number
 })
