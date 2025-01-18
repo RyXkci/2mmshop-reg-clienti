@@ -113,7 +113,7 @@ mongoose
 const seedClothing = async () => {
   await Clothing.deleteMany({});
 
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 50; i++) {
     // iterate over list of types and pick a random one
     // for each type, iterate over sizesoptions and pick one
 
