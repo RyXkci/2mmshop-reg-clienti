@@ -1,0 +1,36 @@
+.clothes-category {
+    padding: .8em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .5em;
+    width: 90%;
+    max-width: 600px;
+    margin: 0 auto;
+
+}
+
+.clothes-category-title {
+    background: white;
+    z-index: 2;
+}
+
+.clothes-show {
+ display: grid;
+ grid-template-columns: 1fr 1fr;
+ gap: 1.3em;
+ place-items: center;
+ outline: 1px solid black;
+outline-offset: 2rem;
+}
+
+.cloth-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.clothes-category {
+    font-family: 'Playfair Display Variable', serif;
+    font-weight: regular;
+}
