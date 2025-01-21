@@ -144,15 +144,15 @@ export default function ClothesPage() {
             <h1 className="clothes-category-title">{category}</h1>
             <article className="clothes-show">
               {groupedClothes[category].map((cloth) => (
-                <div className="cloth-card">
+                <div className="clothes-card">
                   <div className="clothes-card-img">
                     <img src={cloth.images.featured} alt="" />
                   </div>
                   <div className="clothes-card-details">
                     {" "}
-                    <h2 className="cloth-card-title">{cloth.name}</h2>
-                    <p className="cloth-card-price">{cloth.price}</p>
-                    <a href="" className="cloth-card-btn">
+                    <h2 className="clothes-card-details__title">{cloth.name}</h2>
+                    <p className="clothes-card-details__price"><span>{cloth.price}€</span> {cloth.discountedPrice}€</p>
+                    <a href="" className="clothes-card-details__btn">
                       Vedi di più
                     </a>
                   </div>
