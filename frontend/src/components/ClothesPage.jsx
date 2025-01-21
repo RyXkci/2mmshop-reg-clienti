@@ -1,7 +1,10 @@
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 
+
+//components
 import { groupClothes } from "../utils/clothesUtils";
+import ClothesShowHeader from "./ClothesShowHeader";
 
 import "../stylesheets/clothes-page.css";
 
@@ -137,6 +140,7 @@ export default function ClothesPage() {
   return (
     <>
       {/* {clientName && <p>Ciao {clientName} Ecco i capi in promozion su misura per te!</p>} */}
+      {<ClothesShowHeader />}
       {Object.keys(groupedClothes).map((category) => {
         console.log("CLOTH CATEGORY:", category);
         return (

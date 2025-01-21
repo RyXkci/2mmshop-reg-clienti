@@ -16,6 +16,10 @@
     z-index: 2;
 }
 
+.clothes-category-title::first-letter {
+    text-transform: uppercase;
+}
+
 .clothes-show {
  display: grid;
  grid-template-columns: 1fr 1fr;

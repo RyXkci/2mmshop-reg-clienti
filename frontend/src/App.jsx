@@ -4,6 +4,7 @@ import reactLogo from "./assets/react.svg";
 
 import '@fontsource-variable/playfair-display';
 import '@fontsource-variable/playfair-display/wght-italic.css';
+import '@fontsource-variable/montserrat';
 import '@fontsource/lato';
 import "./App.css";
 

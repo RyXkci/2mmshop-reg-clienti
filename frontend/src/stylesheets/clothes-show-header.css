@@ -1,0 +1,67 @@
+.clothes-show-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.3em;
+    text-align: center;
+}
+
+.clothes-show-header__logo {
+    text-align: center;
+}
+
+.clothes-show-header__logo img {
+    height: 100px;
+    margin: 0 auto;
+}
+
+.clothes-show-header-logo__text {
+    font-family: 'Montserrat Variable', sans-serif;
+    font-weight: 300;
+    position: relative;
+}
+
+.clothes-show-header-logo__text::after {
+    position: absolute;
+    content: "";
+    left: -3em;
+    right: -3em;
+    bottom: 0;
+    background: black;
+    height: 3px;
+}
+
+.clothes-show-header__title {
+    width: 100%;
+    background: black;
+}
+
+.clothes-show-header__title p {
+    font-size: 2rem;
+    color: white;
+    font-style: italic;
+}
+
+.clothes-show-header__intro {
+    /* background: rgb(0,0,0);
+    background: linear-gradient(180deg, rgba(0,0,0,1) 74%, rgba(194,197,170,1) 100%);  */
+
+    /* background: rgb(0,0,0);
+    background: linear-gradient(90deg, rgba(0,0,0,1) 8%, rgba(194,197,170,1) 100%);  */
+
+    background: rgb(0,0,0);
+    background: linear-gradient(90deg, rgba(0,0,0,1) 8%, rgba(51,51,51,1) 100%); 
+    width: 100%;
+}
+
+.clothes-show-header__intro p {
+    font-size: 2rem;
+    font-style: italic;
+    color: white;
+}
+
+.clothes-show-header__logo,
+.clothes-show-header__title,
+.clothes-show-header__text {
+    padding: 0 .5em;
+}
