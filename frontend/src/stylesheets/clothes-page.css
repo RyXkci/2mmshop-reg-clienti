@@ -7,7 +7,7 @@
     width: 90%;
     max-width: 600px;
     margin: 0 auto;
-
+  
 }
 
 .clothes-category-title {
@@ -70,6 +70,7 @@ outline-offset: 2rem;
 
 .clothes-card-details {
     width: 100%;
+    background: #FAF9F6;
     display: flex;
     flex-direction: column;
     align-items: center;
