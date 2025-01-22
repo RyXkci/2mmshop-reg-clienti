@@ -15,6 +15,11 @@
     margin: 0 auto;
 }
 
+.clothes-show-header__logo p {
+    font-size: 1.2rem;
+    font-style: italic;
+}
+
 .clothes-show-header-logo__text {
     font-family: 'Montserrat Variable', sans-serif;
     font-weight: 300;
@@ -49,15 +54,27 @@
     /* background: rgb(0,0,0);
     background: linear-gradient(90deg, rgba(0,0,0,1) 8%, rgba(194,197,170,1) 100%);  */
 
-    background: rgb(0,0,0);
-    background: linear-gradient(90deg, rgba(0,0,0,1) 8%, rgba(51,51,51,1) 100%); 
-    width: 100%;
+    /* `OPTION 1 */
+    background: linear-gradient(180deg, #1a1a1a, #000000);
+    
+    /*  OPTION 2 */
+    /* background: linear-gradient(45deg, #FFD700, #D4AF37, #B8860B);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 .8px rgba(0, 0, 0, 0.6); */
+
+    /* Option 3 */
+    /* background: var(--primary-600); */
+    
+
 }
 
 .clothes-show-header__intro p {
     font-size: 2rem;
     font-style: italic;
-    color: white;
+    font-weight: 700;
+    color: #d4af37;
+  
 }
 
 .clothes-show-header__logo,
