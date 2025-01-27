@@ -12,6 +12,18 @@ const getClothing = async (req, res) => {
   }
 };
 
+const getSingleClothing = async(req, res) => {
+  const {id} = req.params
+  try {
+    const cloth = await Clothing.findById(id)
+    console.log(cloth)
+    res.status(200).json(cloth)
+  } catch (error) {
+    console.log(error)
+    res.sendStatus(500)
+  }
+}
+
 const postClothing = async (req, res, next) => {
   console.log("BEGINNING OF CONTROLLER", req.body.clothing);
 
@@ -60,4 +72,4 @@ const postClothing = async (req, res, next) => {
   }
 };
 
-module.exports = { getClothing, postClothing };
+module.exports = { getClothing, getSingleClothing, postClothing };
