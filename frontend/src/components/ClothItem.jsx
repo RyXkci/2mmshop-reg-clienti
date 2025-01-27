@@ -1,5 +1,9 @@
-export default function ClothItem({ item }) {
+import { Link } from "react-router-dom";
 
+export default function ClothItem({ item }) {
+    
+   const baseUrl = import.meta.env.VITE_LOCAL_URL;
+    console.log(baseUrl)
   return (
  
     <div className="clothes-card">
@@ -12,9 +16,10 @@ export default function ClothItem({ item }) {
         <p className="clothes-card-details__price">
           <span>{item.price}€</span> {item.discountedPrice}€
         </p>
-        <a href="" className="clothes-card-details__btn">
+        {/* <a href="" className="clothes-card-details__btn">
           Vedi di più
-        </a>
+        </a> */}
+        <Link to={`${baseUrl}/promo/${item._id}`} className="clothes-card-details__btn">Scopri</Link>
       </div>
     </div>
   );
