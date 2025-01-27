@@ -3,8 +3,12 @@ import { useSearchParams } from "react-router-dom";
 
 
 //components
-import { groupClothes } from "../utils/clothesUtils";
+
 import ClothesShowHeader from "./ClothesShowHeader";
+import ClothItem from "./ClothItem";
+
+// UTILS
+import { groupClothes } from "../utils/clothesUtils";
 
 import "../stylesheets/clothes-page.css";
 
@@ -142,32 +146,21 @@ export default function ClothesPage() {
       {/* {clientName && <p>Ciao {clientName} Ecco i capi in promozion su misura per te!</p>} */}
       {<ClothesShowHeader />}
       {Object.keys(groupedClothes).map((category) => {
-        console.log("CLOTH CATEGORY:", category);
         return (
           <section className="clothes-category" key={category}>
             <h1 className="clothes-category-title">{category}</h1>
             <article className="clothes-show">
               {groupedClothes[category].map((cloth) => (
-                <div className="clothes-card">
-                  <div className="clothes-card-img">
-                    <img src={cloth.images.featured} alt="" />
-                  </div>
-                  <div className="clothes-card-details">
-                    {" "}
-                    <h2 className="clothes-card-details__title">{cloth.name}</h2>
-                    <p className="clothes-card-details__price"><span>{cloth.price}€</span> {cloth.discountedPrice}€</p>
-                    <a href="" className="clothes-card-details__btn">
-                      Vedi di più
-                    </a>
-                  </div>
-                </div>
+                <ClothItem
+                key={cloth._id}
+                item={cloth} />
               ))}
             </article>
           </section>
         );
       })}
 
-      <button onClick={() => filterClothes("m", null, null)}>
+      {/* <button onClick={() => filterClothes("m", null, null)}>
         Filter Tops - Size M
       </button>
       <button onClick={() => filterClothes(null, 42, null)}>
@@ -178,7 +171,7 @@ export default function ClothesPage() {
       </button>
       <button onClick={() => filterClothes(null, 52, 40)}>
         Filter Shoes - Size 43 and trouser 52
-      </button>
+      </button> */}
     </>
   );
 }
