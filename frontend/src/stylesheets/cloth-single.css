@@ -1,0 +1,77 @@
+
+
+.cloth-single-section__carousel {
+    padding: 1em;
+}
+
+.cloth-single-section__title {
+    text-align: center;
+    font-style: italic;
+}
+
+.cloth-details__size,
+.cloth-details__price {
+    font-size: 2rem;
+    padding: 0em 1em;
+    color: var(--primary-600);
+}
+
+.cloth-details-price-span {
+    position: relative;
+}
+.cloth-details-price-span::before {
+    content: "";
+    background: var(--primary-600);
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 2px;
+    transform: rotate(-45deg);
+}
+
+.cloth-details-discount {
+    font-size: 1.7em;
+}
+
+.cloth-details-bg {
+    font-size: 1.3em;
+}
+
+.cloth-details-description-container {
+    padding: 1em;
+    margin-top: .8em;
+    width: 100%;
+    background: #C2C5AA;
+}
+
+.clothes-single-section-contact__buttons,
+.clothes-single-section-contact__icons {
+    display: flex;
+    justify-content: center;
+    gap: 1.3em;
+    padding: 2em;
+}
+
+.clothes-single-contact-wapp,
+.clothes-single-contact-back {
+    padding: .5em;
+    background: black;
+    border-radius: 30px;
+
+}
+
+.clothes-single-contact-wapp {
+    background: #00ED47;
+}
+
+.clothes-single-contact-back {
+    background: #2E3325;
+    color: white;
+}
+
+.clothes-single-contact-phone span,
+.clothes-single-contact-address span {
+    display: block;
+    text-align: center;
+} 

@@ -14,6 +14,7 @@ export default function ClothCarousel({ images }) {
     all: {
       slidesToShow: 1,
       slidesToScroll: 3,
+      enablePagination: true
     },
   });
 
@@ -30,8 +31,12 @@ export default function ClothCarousel({ images }) {
               );
             })}
           </div>
-          <button className="blaze-prev carousel-btn carousel-btn-prev">Prev</button>
-          <button className="blaze-next carousel-btn carousel-btn-next">Next</button>
+          
+      <div class="my-pagination-container">
+        <div class="blaze-pagination"></div>
+      </div>
+          {/* <button className="blaze-prev carousel-btn carousel-btn-prev">Prev</button>
+          <button className="blaze-next carousel-btn carousel-btn-next">Next</button> */}
         </div>
       </div>
     </div>
