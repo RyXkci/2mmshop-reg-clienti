@@ -15,3 +15,24 @@
 .carousel-btn-next {
     right: 0;
 }
+
+.blaze-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .5em;
+    padding: .3em 0em;
+}
+
+.blaze-pagination button {
+    width: 10px;
+    height: 10px;
+    padding: 0;
+    border-radius: 50%;
+    color: rgba(0, 0, 0, 0);
+    background-color: var(--primary-600);
+}
+
+.blaze-pagination button.active {
+    background-color: black;
+}

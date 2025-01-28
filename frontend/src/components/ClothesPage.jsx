@@ -144,7 +144,7 @@ export default function ClothesPage() {
   return (
     <>
       {/* {clientName && <p>Ciao {clientName} Ecco i capi in promozion su misura per te!</p>} */}
-      {<ClothesShowHeader />}
+      {<ClothesShowHeader intro={true} />}
       {Object.keys(groupedClothes).map((category) => {
         return (
           <section className="clothes-category" key={category}>
