@@ -10,6 +10,7 @@ const groupClothes = (clothes) => {
     "tshirt",
     "pantaloni",
     "jeans",
+    "denim",
     "scarpe",
   ];
 

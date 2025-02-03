@@ -28,13 +28,13 @@ export default function ClothesUpload() {
     newClothes.discountedPrice = price - (price * discount) / 100;
 
     //ADDING IMAGE PREVIEW ARR
-    let imageArr = [];
-    setStatus("initial");
-    for (let i = 0; i < newClothes.images.length; i++) {
-      imageArr.push(URL.createObjectURL(newClothes.images[i]));
-    }
-    console.log(imageArr);
-    newClothes.imgPreviews = imageArr;
+    // let imageArr = [];
+    // setStatus("initial");
+    // for (let i = 0; i < newClothes.images.length; i++) {
+    //   imageArr.push(URL.createObjectURL(newClothes.images[i]));
+    // }
+    // console.log(imageArr);
+    // newClothes.imgPreviews = imageArr;
     // ADDING THE NEW OBJECT TO CLOTHES STATE
     setClothes((prevClothes) => {
       return [...prevClothes, newClothes];
@@ -65,9 +65,14 @@ export default function ClothesUpload() {
       });
       formData.append(`clothing[${index}][sex]`, item.sex);
 
+       // Append featured image (one file per clothing item)
+    if (item.featuredImage) {
+      formData.append(`clothing[${index}][images][featured]`, item.featuredImage[0]);
+    }
+
       // Append each image for the current clothing object
-      Array.from(item.images).forEach((image, imgIndex) => {
-        formData.append(`clothing[${index}][images]`, image);
+      Array.from(item.detailsImages).forEach((image, imgIndex) => {
+        formData.append(`clothing[${index}][images][details]`, image);
       });
     });
     // console.log(formData)

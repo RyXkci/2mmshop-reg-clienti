@@ -15,7 +15,7 @@ export default function ClothItem({ item }) {
  
     <div className="clothes-card">
       <div className="clothes-card-img">
-        <img src={item.images.featured} alt="" />
+        <img src={item.images.featured.url} alt="" />
       </div>
       <div className="clothes-card-details">
         {" "}

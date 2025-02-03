@@ -30,28 +30,43 @@ export default function ClothesForm({
     console.log("FORDATA IS:".formData);
   };
 
-  const handleFileInputChange = (e) => {
-    const files = e.target.files;
-    setValue("images", files); // Update react-hook-form state
-    handleFileChange(files); // Call parent's handler to update external state
-  };
+  // const handleFileInputChange = (e) => {
+  //   const files = e.target.files;
+  //   setValue("images", files); // Update react-hook-form state
+  //   handleFileChange(files); // Call parent's handler to update external state
+  // };
 
   return (
     <form className="clothes-form" onSubmit={handleSubmit(handleSave)}>
-      <div className="image-input">
-        <label className="img-upload-btn" htmlFor="imgUpload">
-          Carica immagini
+      <div className="images-input">
+        <label className="img-upload-btn featured-img-btn" htmlFor="featuredImgUpload">
+          Carica immagine in evidenza
         </label>
         <input
-          id="imgUpload"
+          id="featuredImgUpload"
           type="file"
-          name="images"
-          multiple
-          {...register("images")}
-          onChange={handleFileInputChange}
+          name="featuredImage"
+          // multiple
+          {...register("featuredImage")}
+          // onChange={handleFileInputChange}
         />
-        {errors?.images && (
-          <div className="form-danger"> {errors.images.message}</div>
+        {errors?.featuredImage && (
+          <div className="form-danger"> {errors.featuredImage.message}</div>
+        )}
+
+        <label className="img-upload-btn details-img-btn" htmlFor="detailsImgUpload">
+          Carica immagini dettagli
+        </label>
+        <input
+          id="detailsImgUpload"
+          type="file"
+          name="detailsImages"
+          multiple
+          {...register("detailsImages")}
+          // onChange={handleFileInputChange}
+        />
+        {errors?.detailsImages && (
+          <div className="form-danger"> {errors.detailsImages.message}</div>
         )}
       </div>
 

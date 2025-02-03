@@ -30,21 +30,30 @@ const postClothing = async (req, res, next) => {
   try {
     // Parse the nested fields
     const clothing = req.body.clothing; // Parse from FormData JSON
-    // console.log("CLOTHING IS", typeof(clothing), clothing)
+    console.log("CLOTHING IS", typeof(clothing), clothing)
     const files = req.files;
-    // console.log("IMAGES ARE:", files)
+    console.log("IMAGES ARE:", files)
 
     // Map files to their respective clothing items
 
+   
+
     const structuredClothing = clothing.map((item, index) => {
-      const itemImages = files
-        .filter((file) => file.fieldname === `clothing[${index}][images]`)
+
+      const featuredImage = files.find(
+        (file) => file.fieldname === `clothing[${index}][images][featured]`
+      );
+      const detailsImages = files
+        .filter((file) => file.fieldname === `clothing[${index}][images][details]`)
         .map((im) => ({ url: im.path, filename: im.filename }));
       // console.log(itemImages)
 
       return {
         ...item,
-        images: itemImages,
+        images: {
+          featured: featuredImage ? { url: featuredImage.path, filename: featuredImage.filename } : null,
+          details: detailsImages,
+        },
       };
     });
 
