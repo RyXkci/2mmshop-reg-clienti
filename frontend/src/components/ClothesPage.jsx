@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useSearchParams } from "react-router-dom";
 
-
+import { useClient } from "../hooks/useClient";
 //components
 
 import ClothesShowHeader from "./ClothesShowHeader";
@@ -16,28 +16,37 @@ const apiUrl = import.meta.env.VITE_API_URL;
 
 export default function ClothesPage() {
   const [searchParams, setSearchParams] = useSearchParams();
+  const {name, changeName} = useClient();
+  const {lastName, changeLastName} = useClient();
+  const {clientSex, changeClientSex} = useClient();
+
+
 
   const topSize = searchParams.get("top");
   const trouserSize = searchParams.get("tp");
   const shoeSize = searchParams.get("ts");
   const sex = searchParams.get("s");
+  console.log(sex)
+
   const id = searchParams.get("id");
 
-  console.log("top size is:", topSize);
-  console.log("waist is:", trouserSize);
-  console.log("shoe size is:", shoeSize);
-  console.log("sex is", sex);
-  console.log("id is", id);
+  // console.log("top size is:", topSize);
+  // console.log("waist is:", trouserSize);
+  // console.log("shoe size is:", shoeSize);
+  // console.log("sex is", sex);
+  // console.log("id is", id);
 
   const [clothes, setClothes] = useState([]);
   const [filteredClothes, setFilteredClothes] = useState([]);
   const [clientName, setClientName] = useState("");
 
+
+
   useEffect(() => {
     const fetchClothes = async () => {
       const response = await fetch(`${apiUrl}/api/clothing`);
       const json = await response.json();
-      console.log(json);
+      // console.log(json);
       setClothes(json);
       //  setFilteredClothes(json)
       applyFilters(json);
@@ -46,16 +55,44 @@ export default function ClothesPage() {
     fetchClothes();
   }, []);
 
+  useEffect(() => {
+    const fetchClientName = async () => {
+      try {
+        const response = await fetch(`${apiUrl}/api/clients/${id}`);
+        if (!response.ok) {
+          throw new Error("Client not found");
+        }
+        const json = await response.json();
+        setClientName(json.firstName);
+        changeName(json.firstName);
+        changeLastName(json.lastName);
+        changeClientSex(json.sex);
+      } catch (error) {
+        console.error("Error fetching client:", error);
+        setClientName("cliente");
+        changeName("cliente");
+      }
+    };
+  
+    fetchClientName();
+  }, []);
+  
   // useEffect(() => {
   //   const fetchClientName = async() => {
   //     const response = await fetch(`${apiUrl}/api/clients/${id}`);
   //     const json = await response.json();
-  //     setClientName(json);
+  //     setClientName(json.firstName);
+  //     changeName(json.firstName);
+  //     changeLastName(json.lastName)
+  //     changeClientSex(json.sex)
+     
 
   //   }
 
   //   fetchClientName()
-  // })
+  // }, [])
+
+
 
   const applyFilters = (data) => {
     // const topSize = searchParams.get("topSize");
@@ -139,12 +176,13 @@ export default function ClothesPage() {
 
   const groupedClothes = groupClothes(filteredClothes);
 
-  console.log(groupedClothes);
+  // console.log(groupedClothes);
+  // console.log(clientName)
 
   return (
     <>
       {/* {clientName && <p>Ciao {clientName} Ecco i capi in promozion su misura per te!</p>} */}
-      {<ClothesShowHeader intro={true} />}
+      {<ClothesShowHeader intro={true} name={clientName} />}
       {Object.keys(groupedClothes).map((category) => {
         return (
           <section className="clothes-category" key={category}>
@@ -153,7 +191,8 @@ export default function ClothesPage() {
               {groupedClothes[category].map((cloth) => (
                 <ClothItem
                 key={cloth._id}
-                item={cloth} />
+                item={cloth}
+               />
               ))}
             </article>
           </section>

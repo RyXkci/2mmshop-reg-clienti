@@ -2,7 +2,9 @@ import "../stylesheets/clothes-show-header.css";
 
 import logoBlack from "../assets/logos/2mm-logo-black.png";
 
-export default function ClothesShowHeader({intro}) {
+// import introImage from '../../public/intro-images/gm-top-1.jpeg'
+
+export default function ClothesShowHeader({intro, name}) {
   return (
     <div className="clothes-show-header">
       <div className="clothes-show-header__logo">
@@ -15,7 +17,7 @@ export default function ClothesShowHeader({intro}) {
       </div>
       {intro && <div className="clothes-show-header__intro">
         <p>
-          Ciao utente. Ecco la selezone di capi in promozione esclusivi della
+          Ciao {name}. Ecco la selezone di capi in promozione esclusivi della
           tua taglia!
         </p>
       </div>}

@@ -20,7 +20,7 @@ const getClient = async(req, res) => {
   try {
     const id = req.params.id
     const client = await Client.findOne({id: id});
-    res.status(200).json(client.firstName)
+    res.status(200).json({firstName: client.firstName, lastName: client.lastName, sex: client.sex})
     console.log(client)
   } catch (error) {
     console.log(error)
