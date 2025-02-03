@@ -3,7 +3,14 @@ import { Link } from "react-router-dom";
 export default function ClothItem({ item }) {
     
    const baseUrl = import.meta.env.VITE_LOCAL_URL;
-    console.log(baseUrl)
+    // console.log(baseUrl)
+    // console.log("CLOTH ITEM IN clothItem IS", item)
+    // console.log("clientInfo is:", clientInfo)
+
+
+
+
+
   return (
  
     <div className="clothes-card">

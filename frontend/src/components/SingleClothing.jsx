@@ -1,7 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 
 import ClothesShowHeader from "./ClothesShowHeader";
+
+import { useClient } from "../hooks/useClient";
+
+
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone } from '@fortawesome/free-solid-svg-icons';
@@ -9,6 +13,7 @@ import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
 
 const phoneIcon = <FontAwesomeIcon icon={faPhone} />
 const locationIcon = <FontAwesomeIcon icon={faLocationDot} />
+
 
 import { Link } from "react-router-dom";
 
@@ -20,6 +25,47 @@ import ClothCarousel from "./ClothCarousel";
 
 export default function SingleClothing() {
   const { id } = useParams();
+
+  const {name, changeName} = useClient();
+  const {lastName, changeLastName} = useClient();
+  const {clientSex, changeClientSex} = useClient()
+  console.log(name)
+  console.log(lastName)
+  console.log(clientSex)
+
+  const fullName = `${name} ${lastName}`;
+  
+  const messageVariation = (sex) => {
+    let variation;
+    switch (sex) {
+ case "m" :
+  variation= "interessato"
+  return variation
+  case "f":
+    variation= "interessata"
+    return variation
+
+    }
+  
+
+   
+  }
+
+  // WHATSAPP STUFF;
+const wappNumber = "+393791032653";
+
+const pageUrl = window.location.href;
+console.log(pageUrl)
+
+const shareOnWhatsApp = () => {
+  const pageUrl = window.location.href;
+  const message = encodeURIComponent(`Ciao, sono ${fullName} e sono ${messageVariation(clientSex)} in questo articolo! 
+${pageUrl}`);
+  const whatsappUrl = `https://wa.me/${wappNumber}?text=${message}`;
+
+  window.open(whatsappUrl, "_blank");
+};
+
 
   const [cloth, setCloth] = useState({});
 
@@ -67,7 +113,7 @@ export default function SingleClothing() {
         </div>
         <div className="clothes-single-section__contact">
           <div className="clothes-single-section-contact__buttons">
-            <button className="clothes-single-contact-wapp">
+            <button onClick={shareOnWhatsApp} className="clothes-single-contact-wapp">
               Mi interessa
             </button>
             <Link className="clothes-single-contact-back">Vedi altro</Link>
