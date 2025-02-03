@@ -26,7 +26,7 @@ export default function ClothCarousel({ images }) {
             {images.map((image) => {
               return (
                 <div key={uuid()} className="cloth-page-slide-container">
-                  <img src={image} className="slide-container-img" alt="" />
+                  <img src={image.url} className="slide-container-img" alt="" />
                 </div>
               );
             })}

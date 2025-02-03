@@ -31,47 +31,82 @@ const arrPusher = (arr) => {
 const imagesArrays = {
   tops: [
     {
-      featured:
-        "https://res.cloudinary.com/dkhzi5hj9/image/upload/v1737133718/2mmTest/gm-top-1_svf1n4.jpg",
+      featured: {
+        url: "https://res.cloudinary.com/dkhzi5hj9/image/upload/v1738598905/2mmTest/gm-top-1_jewmjp.jpg",
+        filename: "gm-top-1_jewmjp",
+      },
       details: [
-        "https://res.cloudinary.com/dkhzi5hj9/image/upload/v1737133717/2mmTest/gm-top-1-1_oexjql.jpg",
-        "https://res.cloudinary.com/dkhzi5hj9/image/upload/v1737133714/2mmTest/gm-top-1-2_ntrant.jpg",
+        {
+          url: "https://res.cloudinary.com/dkhzi5hj9/image/upload/v1738598904/2mmTest/gm-top-1-1_zsgg0z.jpg",
+          filename: "test2",
+        },
+        {
+          url: "https://res.cloudinary.com/dkhzi5hj9/image/upload/v1738598901/2mmTest/gm-top-1-2_xvhx8m.jpg",
+          filename: "test3",
+        },
       ],
     },
     {
-      featured:
-        "https://res.cloudinary.com/dkhzi5hj9/image/upload/v1737133712/2mmTest/gm-top-3_qiedu1.jpg",
+      featured: {
+        url: "https://res.cloudinary.com/dkhzi5hj9/image/upload/v1738598901/2mmTest/gm-top-3_wztkeb.jpg",
+        filename: "test4",
+      },
       details: [
-        "https://res.cloudinary.com/dkhzi5hj9/image/upload/v1737133705/2mmTest/gm-top-3-1_k3weu5.jpg",
-        "https://res.cloudinary.com/dkhzi5hj9/image/upload/v1737133701/2mmTest/gm-top-3-2_mpzbgz.jpg",
+        {
+          url: "https://res.cloudinary.com/dkhzi5hj9/image/upload/v1738598899/2mmTest/gm-top-3-1_rpa2le.jpg",
+          filename: "test5",
+        },
+        {
+          url: "https://res.cloudinary.com/dkhzi5hj9/image/upload/v1738598898/2mmTest/gm-top-3-2_m0te3z.jpg",
+          filename: "test6",
+        },
       ],
     },
     {
-      featured:
-        "https://res.cloudinary.com/dkhzi5hj9/image/upload/v1737133718/2mmTest/gm-top-2_swefxf.jpg",
+      featured: {
+        url: "https://res.cloudinary.com/dkhzi5hj9/image/upload/v1738598901/2mmTest/gm-top-2_smup8v.jpg",
+        filename: "test7",
+      },
       details: [
-        "https://res.cloudinary.com/dkhzi5hj9/image/upload/v1737133711/2mmTest/gm-top-2-1_spgubr.jpg",
-        "https://res.cloudinary.com/dkhzi5hj9/image/upload/v1737133709/2mmTest/gm-top-2-2_jcfipq.jpg",
+        {
+          url: "https://res.cloudinary.com/dkhzi5hj9/image/upload/v1738598902/2mmTest/gm-top-2-2_hh7mil.jpg",
+          filename: "test8",
+        },
+        {
+          url: "https://res.cloudinary.com/dkhzi5hj9/image/upload/v1738598901/2mmTest/gm-top-2-1_dript0.jpg",
+          filename: "test8"
+        },
       ],
     },
   ],
   jeans: [
     {
-      featured:
-        "https://res.cloudinary.com/dkhzi5hj9/image/upload/v1737133723/2mmTest/gm-jeans-1_bdv2v7.jpg",
+      featured: {
+        url: "https://res.cloudinary.com/dkhzi5hj9/image/upload/v1738598906/2mmTest/gm-jeans-1_axtcxt.jpg",
+        filename: "test9"
+      },
       details: [
-        "https://res.cloudinary.com/dkhzi5hj9/image/upload/v1737133731/2mmTest/gm-jeans-1-1_yziokm.jpg",
-        "https://res.cloudinary.com/dkhzi5hj9/image/upload/v1737133720/2mmTest/gm-jeans-1-2_fueb3w.jpg",
+        {
+          url: "https://res.cloudinary.com/dkhzi5hj9/image/upload/v1738598908/2mmTest/gm-jeans-1-2_meauqc.jpg",
+          filename: "test10"
+        },
+        {
+          url: "https://res.cloudinary.com/dkhzi5hj9/image/upload/v1738598907/2mmTest/gm-jeans-1-1_whi9xv.jpg",
+          filename: "test10"
+        }
       ],
     },
   ],
   accessories: [
     {
-      featured:
-        "https://res.cloudinary.com/dkhzi5hj9/image/upload/v1737133734/2mmTest/hat-1_ysobry.jpg",
-      details: [
-        "https://res.cloudinary.com/dkhzi5hj9/image/upload/v1737133731/2mmTest/hat-2_jttbid.jpg",
-      ],
+      featured: {
+        url: "https://res.cloudinary.com/dkhzi5hj9/image/upload/v1738599788/2mmTest/hat-1_fr2cn5.jpg",
+        filename: "test11"
+      },
+      details: [{
+        url: "https://res.cloudinary.com/dkhzi5hj9/image/upload/v1738599784/2mmTest/hat-2_indazc.jpg",
+        filename: "test12"
+      }],
     },
   ],
 };
@@ -82,24 +117,7 @@ const selectClothesImages = (arr) => {
   // console.log(arr[randomIdx()]);
   return arr[randomIdx()];
 };
-// const imagesArrays = {
-//   top1: {
-//     featured: "",
-//     details: ""
-//   },
-//   top2: {
-//     featured: "",
-//     details: ""
-//   },
-//   top3: {
-//     featured: "",
-//     details: ""
-//   },
-//   jeans1: {
-//     featured: "",
-//     details: ""
-//   }
-// }
+
 
 mongoose
   .connect("mongodb://localhost:27017/2mmShop")
@@ -127,41 +145,42 @@ const seedClothing = async () => {
       category = getRandomItem(categories.top);
       name = getRandomItem(clothesNames.top);
       //Randomly selecting from image types
-     const selectedImages = selectClothesImages(imagesArrays.tops)
-     images= {
-      featured: selectedImages.featured,
-      details: selectedImages.details
-     }
+      const selectedImages = selectClothesImages(imagesArrays.tops);
+      console.log(selectedImages)
+      images = {
+        featured: selectedImages.featured,
+        details: selectedImages.details,
+      };
     }
     if (type === "trousers") {
       sizes = arrPusher(sizesOptions.trousersSizes);
       category = getRandomItem(categories.middle);
       name = getRandomItem(clothesNames.trousers);
-      const selectedImages = selectClothesImages(imagesArrays.jeans)
-     images= {
-      featured: selectedImages.featured,
-      details: selectedImages.details
-     }
+      const selectedImages = selectClothesImages(imagesArrays.jeans);
+      images = {
+        featured: selectedImages.featured,
+        details: selectedImages.details,
+      };
     }
     if (type === "shoes") {
       sizes = arrPusher(sizesOptions.shoeSizes);
       category = getRandomItem(categories.shoe);
       name = getRandomItem(clothesNames.shoes);
-      const selectedImages = selectClothesImages(imagesArrays.accessories)
-     images= {
-      featured: selectedImages.featured,
-      details: selectedImages.details
-     }
+      const selectedImages = selectClothesImages(imagesArrays.accessories);
+      images = {
+        featured: selectedImages.featured,
+        details: selectedImages.details,
+      };
     }
     if (type === "accessory") {
       (sizes = ["all"]),
         (category = getRandomItem(categories.accessory)),
         (name = getRandomItem(clothesNames.accessories));
-        const selectedImages = selectClothesImages(imagesArrays.accessories)
-     images= {
-      featured: selectedImages.featured,
-      details: selectedImages.details
-     }
+      const selectedImages = selectClothesImages(imagesArrays.accessories);
+      images = {
+        featured: selectedImages.featured,
+        details: selectedImages.details,
+      };
     }
 
     const clothing = new Clothing({

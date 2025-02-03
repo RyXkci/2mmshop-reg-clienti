@@ -7,7 +7,8 @@ const clothesValues = {
   description: "",
   price: "",
   discount: "",
-  images: [],
+  featuredImage: "",
+  detailsImages: [],
 };
 
 const clothesOptions = {
@@ -68,9 +69,12 @@ const registerOptions = {
   discount: {
     required: "Questo campo è obbligatorio",
   },
-  images: {
+  detailImages: {
     required: "Immagini sono obbligatorie",
   },
+  featuredImage: {
+    required: "L'immagine in evidenza è obbligatoria"
+  }
 };
 
 export { clothesOptions, clothesValues, clothesSizes, clothesCategories, registerOptions };
