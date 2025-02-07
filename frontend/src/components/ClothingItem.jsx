@@ -5,14 +5,14 @@ export default function ClothingItem({ item }) {
     <div key={uuid()} className="clothes-container">
       <div key={uuid()} className="clothes-images images-container">
         {console.log("ITEM IS", item)}
-        {/* {item.imgPreviews.map((img) => (
+        {item.imgPreviews.map((img) => (
           <img
             src={img}
             alt=""
             style={{ width: "100px", display: "block" }}
             key={uuid()}
           />
-        ))} */}
+        ))}
       </div>
       <div key={uuid()} className="clothes-details">
         <p key={uuid()} className="clothes-details-text type">

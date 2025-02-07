@@ -4,11 +4,11 @@ import '../stylesheets/clothing-picker.css'
 
 export default function ClothingPicker({clothesOptions, clothesType, handleClick}) {
 
-console.log("TYPE IN BUTTON COMP IS:", clothesType)
-console.log("Options are:", clothesOptions)
+// console.log("TYPE IN BUTTON COMP IS:", clothesType)
+// console.log("Options are:", clothesOptions)
 
 const [categories, setCategories] = useState(clothesOptions[clothesType].categories)
-console.log(categories)
+// console.log(categories)
 
 const testFunc = (param, category) => {
     console.log(param)

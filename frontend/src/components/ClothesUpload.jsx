@@ -20,6 +20,27 @@ export default function ClothesUpload() {
 
   // BEGIN SAVE STUFF
 
+  // const handleFileChange = (files) => {
+  //   const imageUrls = Array.from(files).map((file) =>
+  //     URL.createObjectURL(file)
+  //   );
+  //   setImages(imageUrls); // Update preview state
+  // };
+
+
+  //  const handleFileChange = (e) => {
+  //   console.log(e)
+  //   if (e.target.files) {
+  //     let imageArr = [];
+  //     setStatus("initial");
+  //     for (let i = 0; i < e.target.files.length; i++) {
+  //       imageArr.push(URL.createObjectURL(e.target.files[i]));
+  //     }
+  //     console.log(imageArr);
+  //     setImages(imageArr);
+  //   }
+  // };
+
   const handleSave = (newClothes) => {
     console.log("Clothes are", newClothes);
     // CALCULATING AND SAVING THE DISCOUNTED PRiCE
@@ -27,20 +48,23 @@ export default function ClothesUpload() {
     const discount = parseFloat(newClothes.discount);
     newClothes.discountedPrice = price - (price * discount) / 100;
 
-    //ADDING IMAGE PREVIEW ARR
-    // let imageArr = [];
-    // setStatus("initial");
-    // for (let i = 0; i < newClothes.images.length; i++) {
-    //   imageArr.push(URL.createObjectURL(newClothes.images[i]));
-    // }
-    // console.log(imageArr);
-    // newClothes.imgPreviews = imageArr;
+    // ADDING IMAGE PREVIEW ARR
+    let imageArr = [];
+    setStatus("initial");
+    for (let i = 0; i < newClothes.featuredImage.length; i++) {
+      imageArr.push(URL.createObjectURL(newClothes.featuredImage[i]));
+    }
+    for (let i = 0; i < newClothes.detailsImages.length; i++) {
+      imageArr.push(URL.createObjectURL(newClothes.detailsImages[i]));
+    }
+    console.log(imageArr);
+    newClothes.imgPreviews = imageArr;
     // ADDING THE NEW OBJECT TO CLOTHES STATE
     setClothes((prevClothes) => {
       return [...prevClothes, newClothes];
     });
     // SETTING THE INITIAL PREVIEW BACK TO EMPTY ARRAY
-    setImages([]);
+    // setImages([]);
 
     // REMOVING AND EMPTYING FORM
     setIsToggled(false);
@@ -100,7 +124,7 @@ export default function ClothesUpload() {
 
   //END SAVE STUFF
 
-  console.log(clothesOptions);
+  // console.log(clothesOptions);
 
   const [clothesImages, setClothesImages] = useState([]);
 
@@ -130,29 +154,13 @@ export default function ClothesUpload() {
   });
 
   // const [image, setImage] = useState();
-  const [images, setImages] = useState([]);
+  // const [images, setImages] = useState([]);
+  const [formPreviewImages, setFormPreviewImages] = useState([]);
 
   const [status, setStatus] = useState("initial");
 
-  // const handleFileChange = (e) => {
-  //   console.log(e)
-  //   if (e.target.files) {
-  //     let imageArr = [];
-  //     setStatus("initial");
-  //     for (let i = 0; i < e.target.files.length; i++) {
-  //       imageArr.push(URL.createObjectURL(e.target.files[i]));
-  //     }
-  //     console.log(imageArr);
-  //     setImages(imageArr);
-  //   }
-  // };
+ 
 
-  const handleFileChange = (files) => {
-    const imageUrls = Array.from(files).map((file) =>
-      URL.createObjectURL(file)
-    );
-    setImages(imageUrls); // Update preview state
-  };
 
   // const handleToggle = (formType, type) => {
   //   console.log(formType)
@@ -182,19 +190,19 @@ export default function ClothesUpload() {
   // };
 
   const handleFormRender = (type, category) => {
-    console.log("AFTER CLICK I GET:", type);
-    console.log("I ALSO GET", category);
+    // console.log("AFTER CLICK I GET:", type);
+    // console.log("I ALSO GET", category);
     setSizeOptions(clothesSizes[type]);
     console.log(clothesSizes);
     clothesValues.type = type;
     clothesValues.category = category;
-    console.log("VALUES ARE", clothesValues);
+    // console.log("VALUES ARE", clothesValues);
     setIsToggled(!isToggled);
     setClothingSelector(!clothingSelector);
   };
 
   const handleToggle = (type) => {
-    console.log("TYPE IN HANDLE TOGGLE IS:", type);
+    // console.log("TYPE IN HANDLE TOGGLE IS:", type);
     setCategories(clothesOptions[type].categories);
     setClothesType(type);
     setFormType(type)
@@ -281,10 +289,11 @@ export default function ClothesUpload() {
                   sizes={sizeOptions}
                   values={clothesValues}
                   categories={categories}
-                  imgPreviews={images}
+                  // imgPreviews={images}
                   registerOptions={registerOptions}
-                  handleFileChange={handleFileChange}
+                  // handleFileChange={handleFileChange}
                   handleSave={handleSave}
+                  formPreviewImages={formPreviewImages}
                 />
               </>
             )}

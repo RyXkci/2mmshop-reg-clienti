@@ -1,17 +1,20 @@
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { v4 as uuid } from "uuid";
+
+import useImagePreviews from "../hooks/useImagePreviews";
 
 export default function ClothesForm({
   formType,
   sizes,
   values,
-  imgPreviews,
+  // imgPreviews,
   categories,
   registerOptions,
-  handleFileChange,
+  // handleFileChange,
   handleSave,
 }) {
-  console.log(formType);
+  // console.log(formType);
 
   const {
     register,
@@ -30,11 +33,31 @@ export default function ClothesForm({
     console.log("FORDATA IS:".formData);
   };
 
-  // const handleFileInputChange = (e) => {
-  //   const files = e.target.files;
-  //   setValue("images", files); // Update react-hook-form state
-  //   handleFileChange(files); // Call parent's handler to update external state
-  // };
+
+
+  const featuredImage= watch('featuredImage');
+  const detailsImages = watch('detailsImages');
+  const previewImages = useImagePreviews(featuredImage, detailsImages);
+
+  console.log(featuredImage)
+
+//   useEffect(() => {
+// console.log("IN EFFECT", featuredImage)
+
+// const imageUrls = Array.from(featuredImage).map((img) =>
+//           URL.createObjectURL(img)
+//         );
+//         setPreviewImages(((prevImages) => {
+//           return [
+//             ...prevImages,
+//             imageUrls
+//           ]
+//         }))
+//         console.log(imageUrls)
+
+//   }, [featuredImage, detailsImages])
+
+
 
   return (
     <form className="clothes-form" onSubmit={handleSubmit(handleSave)}>
@@ -46,9 +69,11 @@ export default function ClothesForm({
           id="featuredImgUpload"
           type="file"
           name="featuredImage"
-          // multiple
-          {...register("featuredImage")}
-          // onChange={handleFileInputChange}
+          // onChange={handleFileChange}
+  
+          {...register("featuredImage", registerOptions.featuredImage)}
+         
+
         />
         {errors?.featuredImage && (
           <div className="form-danger"> {errors.featuredImage.message}</div>
@@ -70,9 +95,12 @@ export default function ClothesForm({
         )}
       </div>
 
-      {imgPreviews.length > 1 && (
+     
+
+
+      {previewImages.length > 0 && (
         <div className="images-container">
-          {imgPreviews.map((img) => {
+          {previewImages.map((img) => {
             return <img src={img} alt="" key={uuid()} />;
           })}
         </div>
