@@ -68,18 +68,24 @@ ${pageUrl}`);
 
 
   const [cloth, setCloth] = useState({});
+  const [carouselImages, setCarouselImages] = useState([]);
 
   useEffect(() => {
     const fetchCloth = async () => {
       const response = await fetch(`${apiUrl}/api/clothing/${id}`);
       const json = await response.json();
       setCloth(json);
+
+      const images = json.images?.featured
+      ? [json.images.featured, ...(json.images.details || [])]
+      : json.images?.details || [];
+
+    setCarouselImages(images);
     };
 
     fetchCloth();
   }, []);
 
-  console.log(cloth);
 
   return (
     <>
@@ -90,7 +96,7 @@ ${pageUrl}`);
         <div className="cloth-single-section__carousel">
           {" "}
           {cloth.images?.details && (
-            <ClothCarousel images={cloth.images.details} />
+            <ClothCarousel images={carouselImages} />
           )}
         </div>
         <h1 className="cloth-single-section__title">{cloth.name}</h1>
