@@ -96,7 +96,7 @@ ${pageUrl}`);
         <h1 className="cloth-single-section__title">{cloth.name}</h1>
         <div className="cloth-single-section__details">
           <p className="cloth-details__size">
-            Taglia: <span className="cloth-details-bg">{cloth.size} 42</span>
+            Taglia: <span className="cloth-details-bg">{cloth.size}</span>
           </p>
           <p className="cloth-details__price">
             Prezzo:{" "}

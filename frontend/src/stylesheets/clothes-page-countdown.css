@@ -1,0 +1,45 @@
+.clothes-page-countdown {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 1.3em 0em;
+}
+
+.clothes-page-countdown-inner {
+    width:100%;
+    text-align: center;
+    background-color: #FAF9F6;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: .8em;
+}
+
+.clothes-page-countdown-inner h2 {
+    font-style: italic;
+    color: var(--dark-700);
+}
+
+.countdown {
+    display: flex;
+    justify-content: space-around;
+    font-size: 2.7rem;
+    color: var(--dark-700);
+    font-weight: 700;
+gap: .5em;
+}
+
+
+.countdown-time {
+    border-right: 1px solid black;
+    padding-right: .3em;
+}
+
+.countdown-block {
+    display: block;
+    font-size: .5em;
+    color: var(--primary-600);
+
+}

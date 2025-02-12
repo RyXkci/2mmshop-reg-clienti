@@ -17,7 +17,7 @@ const sendMessage = (data) => {
 };
 
 const makeLink = (obj) => {
-  const baseLink = "http://localhost:5173/promo";
+  const baseLink = "http://192.168.236.66:5173/promo";
   const searchParams = new URLSearchParams(obj).toString();
   const link = `${baseLink}?${searchParams}`;
   console.log(`LINK IS ${link}`);
@@ -27,7 +27,8 @@ const makeLink = (obj) => {
 const makeFakeText= (parsedClient) => {
   const name = parsedClient.firstName;
   const link = makeLink(parsedClient.params);
-  console.log(`Ciao ${name}! Questo mese in negozio abbiao sconti su articoi mirati per te! ${link}`)
+  console.log(`Ciao, {name}! Ecco la tua selezone di capi su misura, con un prezzo riservato solo per te. Scoprila ora!
+ ${link}`)
 }
 
 

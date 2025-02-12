@@ -6,6 +6,7 @@ import { useClient } from "../hooks/useClient";
 
 import ClothesShowHeader from "./ClothesShowHeader";
 import ClothItem from "./ClothItem";
+import CountdownTimer from "./CountdownTimer";
 
 // UTILS
 import { groupClothes } from "../utils/clothesUtils";
@@ -30,15 +31,12 @@ export default function ClothesPage() {
 
   const id = searchParams.get("id");
 
-  // console.log("top size is:", topSize);
-  // console.log("waist is:", trouserSize);
-  // console.log("shoe size is:", shoeSize);
-  // console.log("sex is", sex);
-  // console.log("id is", id);
 
   const [clothes, setClothes] = useState([]);
   const [filteredClothes, setFilteredClothes] = useState([]);
   const [clientName, setClientName] = useState("");
+  
+  const [startDate, setStartDate] = useState("");
 
 
 
@@ -48,8 +46,11 @@ export default function ClothesPage() {
       const json = await response.json();
       // console.log(json);
       setClothes(json);
-      //  setFilteredClothes(json)
+
       applyFilters(json);
+
+      setStartDate(json[0].createdAt);
+   
     };
 
     fetchClothes();
@@ -77,22 +78,6 @@ export default function ClothesPage() {
     fetchClientName();
   }, []);
   
-  // useEffect(() => {
-  //   const fetchClientName = async() => {
-  //     const response = await fetch(`${apiUrl}/api/clients/${id}`);
-  //     const json = await response.json();
-  //     setClientName(json.firstName);
-  //     changeName(json.firstName);
-  //     changeLastName(json.lastName)
-  //     changeClientSex(json.sex)
-     
-
-  //   }
-
-  //   fetchClientName()
-  // }, [])
-
-
 
   const applyFilters = (data) => {
     // const topSize = searchParams.get("topSize");
@@ -181,8 +166,9 @@ export default function ClothesPage() {
 
   return (
     <>
-      {/* {clientName && <p>Ciao {clientName} Ecco i capi in promozion su misura per te!</p>} */}
       {<ClothesShowHeader intro={true} name={clientName} />}
+      {<CountdownTimer startDate={startDate} />}
+
       {Object.keys(groupedClothes).map((category) => {
         return (
           <section className="clothes-category" key={category}>

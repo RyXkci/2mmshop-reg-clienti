@@ -56,25 +56,25 @@ const messageClient = (parsedClient) => {
     makeFakeText(parsedClient)
     console.log(data)
     console.log(data)
-//     sendMessage(data)
-//   .then((response) => {
-//     console.log('API Response:', response.data); // Log the full API response
-//     // res.status(200).json({
-//     //   success: true,
-//     //   message: 'Message sent successfully.',
-//     //   response: response.data,
-//     // });
-//   })
-//   .catch((error) => {
-//     console.error('Error:', error.message);
-//     if (error.response?.data) {
-//       console.error('API Error Response:', error.response.data); // Log API error details
-//     }
-//     // res.status(500).json({
-//     //   success: false,
-//     //   error: error.response?.data || error.message,
-//     // });
-//   });
+    sendMessage(data)
+  .then((response) => {
+    console.log('API Response:', response.data); // Log the full API response
+    res.status(200).json({
+      success: true,
+      message: 'Message sent successfully.',
+      response: response.data,
+    });
+  })
+  .catch((error) => {
+    console.error('Error:', error.message);
+    if (error.response?.data) {
+      console.error('API Error Response:', error.response.data); // Log API error details
+    }
+    // res.status(500).json({
+    //   success: false,
+    //   error: error.response?.data || error.message,
+    // });
+  });
 }
 
 
@@ -135,7 +135,7 @@ router.get('/', async (req, res) => {
             if (Object.keys(parsedClient.params).length > 0) {
                 
                 matchedClients.push(parsedClient);
-                // messageClient(parsedClient)
+                messageClient(parsedClient)
                 // doSomething(parsedClient);
             }
         });

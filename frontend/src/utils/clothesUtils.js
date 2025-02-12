@@ -5,13 +5,21 @@ const groupClothes = (clothes) => {
     "piumino",
     "cappotto",
     "giacca",
-    "shirt",
     "maglia",
+    "felpa",
+    "shirt",
     "tshirt",
-    "pantaloni",
-    "jeans",
+    "pantalone",
     "denim",
-    "scarpe",
+    "bermuda",
+    "sneaker",
+    "scarpa elegante",
+    "scarpa casual",
+    "borsa",
+    "cintura",
+    "sciarpa",
+    "capellino",
+    "calze"
   ];
 
   const groupedClothes = {}; //initiate empty object 
