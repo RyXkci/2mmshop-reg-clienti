@@ -12,7 +12,8 @@ const ClothingSchema = new Schema({
     sex: String,
     images: Object,
     price: Number,
-    discountedPrice: Number
-})
+    discountedPrice: Number,
+    
+},{timestamps: true})
 
 module.exports = mongoose.model('Clothing', ClothingSchema);

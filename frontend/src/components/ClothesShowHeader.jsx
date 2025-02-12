@@ -13,13 +13,13 @@ export default function ClothesShowHeader({intro, name}) {
         <h1 className="clothes-show-header-logo__text">Manfredi Giordano</h1>
       </div>
       <div className="clothes-show-header__title">
-        <p>Il piacere di indossare ciò che vi rende unici!</p>
+        <p>Il piacere di indossare ciò che vi rende <span className="clothes-show-header-title__accent">unici</span>!</p>
       </div>
       {intro && <div className="clothes-show-header__intro">
-        <p>
-          Ciao {name}. Ecco la selezone di capi in promozione esclusivi della
-          tua taglia!
-        </p>
+        <div className="clothes-show-header-intro__inner">   <p>
+          Ciao, {name}! Ecco la tua selezone di capi su misura, con un prezzo riservato solo per te. Scoprila ora!
+        </p></div>
+     
       </div>}
     </div>
   );

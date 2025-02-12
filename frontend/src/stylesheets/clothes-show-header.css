@@ -38,49 +38,42 @@
 
 .clothes-show-header__title {
     width: 100%;
-    background: rgb(8,8,8);
-    background: rgb(8,8,8);
-    background: radial-gradient(circle, rgba(8,8,8,1) 0%, rgba(61,60,60,1) 75%); 
+    background: rgb(8, 8, 8);
+    /* background: rgb(8,8,8);
+    background: radial-gradient(circle, rgba(8,8,8,1) 0%, rgba(61,60,60,1) 75%);  */
+    ;
 
 }
 
 .clothes-show-header__title p {
     font-size: 2rem;
-    background: linear-gradient(45deg, #ffffff, #dcdcdc);
+    /* background: linear-gradient(45deg, #ffffff, #dcdcdc);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     
-    text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.3);
+    text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.3); */
+    color: white;
 
-    
+
     font-style: italic;
+    padding: .7em;
+}
+
+.clothes-show-header-title__accent {
+    color: var(--primary-300);
+    font-weight: 700;
 }
 
 .clothes-show-header__intro {
-    /* background: rgb(0,0,0);
-    background: linear-gradient(180deg, rgba(0,0,0,1) 74%, rgba(194,197,170,1) 100%);  */
 
-    /* background: rgb(0,0,0);
-    background: linear-gradient(90deg, rgba(0,0,0,1) 8%, rgba(194,197,170,1) 100%);  */
-
-    /* `OPTION 1 */
-    /* background: linear-gradient(180deg, #1a1a1a, #000000); */
-
-    /*  OPTION 2 */
-    /* background: linear-gradient(45deg, #FFD700, #D4AF37, #B8860B);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 .8px rgba(0, 0, 0, 0.6); */
-
-    /* Option 3 */
-    /* background: var(--primary-600); */
-
-    background-image: url('../../public/intro-images/gm-top-1.jpeg');
-    background-size: contain;
-   
+    background-image: url('../../public/intro-images/immagine-copertina-4.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
     padding: 3em;
-    position:relative;
+    position: relative;
     isolation: isolate;
+    text-align: center;
 
 
 }
@@ -89,17 +82,29 @@
     content: "";
     position: absolute;
     inset: 0;
-/* From https://css.glass */
-background: rgba(0, 0, 0, 0.2);
-/* border-radius: 16px; */
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-backdrop-filter: blur(8.7px);
--webkit-backdrop-filter: blur(8.7px);
-border: 1px solid rgba(0, 0, 0, 0.3);
-z-index: -1;
+    background: rgba(0, 0, 0, 0.7);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(1px);
+    -webkit-backdrop-filter: blur(8.7px);
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    z-index: -1;
 
 }
 
+.clothes-show-header-intro__inner {
+    width: calc(100% + 6em);
+    margin: 0 auto;
+    background: rgba(0, 0, 0, .6);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(8.7px);
+    margin-left: -3em;
+}
+
+.clothes-show-header__intro p {
+
+    border-radius: 5px;
+
+}
 
 
 .clothes-show-header__intro p {
@@ -107,8 +112,7 @@ z-index: -1;
     font-style: italic;
     font-weight: 700;
     color: white;
- 
-
+padding: .8em;
 }
 
 .clothes-show-header__logo,
