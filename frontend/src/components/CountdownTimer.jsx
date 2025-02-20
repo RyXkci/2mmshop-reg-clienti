@@ -33,7 +33,7 @@ export default function CountdownTimer({ startDate }) {
   return (
     <div className="clothes-page-countdown">
       <div className="clothes-page-countdown-inner">
-        <h2>Prezzi disponibili per: </h2>
+        <h2>Questa <span>selezione</span> di capi è <span>disponinile</span> per: </h2>
         <div className="countdown">
           <div className="countdown-time">
             {timeLeft.days}

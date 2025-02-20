@@ -35,6 +35,7 @@ export default function ClothesPage() {
   const [clothes, setClothes] = useState([]);
   const [filteredClothes, setFilteredClothes] = useState([]);
   const [clientName, setClientName] = useState("");
+  const [clientSizes, setClientSizes] = useState("") // state to be passed to clothes component to set as url param in single view
   
   const [startDate, setStartDate] = useState("");
 
@@ -64,6 +65,7 @@ export default function ClothesPage() {
           throw new Error("Client not found");
         }
         const json = await response.json();
+        console.log("CLIENT IS", json)
         setClientName(json.firstName);
         changeName(json.firstName);
         changeLastName(json.lastName);
@@ -80,10 +82,6 @@ export default function ClothesPage() {
   
 
   const applyFilters = (data) => {
-    // const topSize = searchParams.get("topSize");
-    // const trouserWaist = searchParams.get("trouserWaist");
-    // const shoeSize = searchParams.get("shoeSize");
-    // const sex = searchParams.get("sex")
     console.log(data);
 
     const filtered = data

@@ -19,7 +19,11 @@
 
 .clothes-page-countdown-inner h2 {
     font-style: italic;
-    color: var(--dark-700);
+    color: var(--primary-600);
+}
+.clothes-page-countdown-inner h2 span {
+    font-style: italic;
+    color: var(--primary-300);
 }
 
 .countdown {
@@ -29,17 +33,27 @@
     color: var(--dark-700);
     font-weight: 700;
 gap: .5em;
+background: linear-gradient(0deg, rgba(0, 0, 0, .3) rgba(0, 0, 0, 0));
 }
 
 
 .countdown-time {
-    border-right: 1px solid black;
+    box-shadow: 1px 0 1px rgba(147, 159, 95, .3);
     padding-right: .3em;
+    /* color: #a15722; */
+    /* color: #b75e38; */
+    /* color: #a3985c; */
+    color: #ac8160
+    /* -webkit-text-stroke: .05rem black;
+    text-stroke: .05rem black; */
 }
 
 .countdown-block {
     display: block;
     font-size: .5em;
-    color: var(--primary-600);
+    font-style: italic;
+    color: var(--primary-300);
+    -webkit-text-stroke: 0px black;
+    text-stroke: 0px black;
 
 }

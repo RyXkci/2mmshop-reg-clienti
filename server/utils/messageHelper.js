@@ -17,7 +17,7 @@ const sendMessage = (data) => {
 };
 
 const makeLink = (obj) => {
-  const baseLink = "http://192.168.236.66:5173/promo";
+  const baseLink = "http://localhost:5173/promo";
   const searchParams = new URLSearchParams(obj).toString();
   const link = `${baseLink}?${searchParams}`;
   console.log(`LINK IS ${link}`);
