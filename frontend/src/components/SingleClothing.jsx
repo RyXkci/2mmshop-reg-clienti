@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 
 import ClothesShowHeader from "./ClothesShowHeader";
 
@@ -26,9 +26,13 @@ import ClothCarousel from "./ClothCarousel";
 export default function SingleClothing() {
   const { id } = useParams();
 
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const {name, changeName} = useClient();
   const {lastName, changeLastName} = useClient();
   const {clientSex, changeClientSex} = useClient()
+
+  const size = searchParams.get("cs");
   console.log(name)
   console.log(lastName)
   console.log(clientSex)
@@ -102,7 +106,7 @@ ${pageUrl}`);
         <h1 className="cloth-single-section__title">{cloth.name}</h1>
         <div className="cloth-single-section__details">
           <p className="cloth-details__size">
-            Taglia: <span className="cloth-details-bg">{cloth.size}</span>
+            Taglia: <span className="cloth-details-bg">{size}</span>
           </p>
           <p className="cloth-details__price">
             Prezzo:{" "}
