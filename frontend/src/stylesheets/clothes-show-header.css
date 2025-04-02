@@ -39,7 +39,7 @@
 .clothes-show-header__title {
     width: 100%;
     background: rgb(0,0,0);
-    background: linear-gradient(90deg, rgba(0,0,0,1) 21%, rgba(46,51,37,1) 86%); 
+    /* background: linear-gradient(90deg, rgba(0,0,0,1) 21%, rgba(46,51,37,1) 86%);  */
 
 }
 
@@ -56,11 +56,11 @@
 }
 
 .clothes-show-header-title__accent {
-    color: var(--primary-300);
+    color: #D4AF37;
     font-weight: 700;
 }
 
-.clothes-show-header__intro {
+/* .clothes-show-header__intro {
 
     background-image: url('../../public/intro-images/immagine-copertina-4.jpeg');
     background-size: cover;
@@ -72,9 +72,9 @@
     text-align: center;
 
 
-}
+} */
 
-.clothes-show-header__intro::before {
+/* .clothes-show-header__intro::before {
     content: "";
     position: absolute;
     inset: 0;
@@ -85,9 +85,9 @@
     border: 1px solid rgba(0, 0, 0, 0.3);
     z-index: -1;
 
-}
+} */
 
-.clothes-show-header-intro__inner {
+/* .clothes-show-header-intro__inner {
     width: calc(100% + 6em);
     margin: 0 auto;
     background: rgb(0,0,0);
@@ -95,20 +95,29 @@
     backdrop-filter: blur(3px);
     -webkit-backdrop-filter: blur(8.7px);
     margin-left: -3em;
+} */
+
+.clothes-show-header-intro__inner {
+    width: 80%;
+    margin: 0 auto;
+    background: #FAF9F6;
+    border: 5px solid var(--dark-700);
+    border-image: linear-gradient(174deg, rgba(51,51,51,1) 52%, rgba(212,175,55,1) 100%);
+    border-image-slice: 1;
 }
 
 .clothes-show-header__intro p {
 
-    border-radius: 5px;
+    border-radius: px;
 
 }
 
 
 .clothes-show-header__intro p {
     font-size: 2rem;
-    font-style: italic;
+    /* font-style: italic; */
     font-weight: 700;
-    color: white;
+    color: var(--dark-700);
     padding: .8em;
 }
 

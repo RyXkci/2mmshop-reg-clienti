@@ -15,6 +15,12 @@ export default function ClothesShowHeader({intro, name}) {
       <div className="clothes-show-header__title">
         <p>Il piacere di indossare ciò che vi rende <span className="clothes-show-header-title__accent">unici</span>!</p>
       </div>
+      {/* {intro && <div className="clothes-show-header__intro">
+        <div className="clothes-show-header-intro__inner">   <p>
+          Ciao, {name}! Ecco la tua selezone di capi su misura, con un prezzo riservato solo per te. Scoprila ora!
+        </p></div>
+     
+      </div>} */}
       {intro && <div className="clothes-show-header__intro">
         <div className="clothes-show-header-intro__inner">   <p>
           Ciao, {name}! Ecco la tua selezone di capi su misura, con un prezzo riservato solo per te. Scoprila ora!

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { v4 as uuid } from "uuid";
 
 import "../stylesheets/clothes-upload.css";
@@ -20,26 +20,40 @@ export default function ClothesUpload() {
 
   // BEGIN SAVE STUFF
 
-  // const handleFileChange = (files) => {
-  //   const imageUrls = Array.from(files).map((file) =>
-  //     URL.createObjectURL(file)
-  //   );
-  //   setImages(imageUrls); // Update preview state
-  // };
 
+  const getInitialClothes = () => {
+    const data = JSON.parse(localStorage.getItem('clothes'));
 
-  //  const handleFileChange = (e) => {
-  //   console.log(e)
-  //   if (e.target.files) {
-  //     let imageArr = [];
-  //     setStatus("initial");
-  //     for (let i = 0; i < e.target.files.length; i++) {
-  //       imageArr.push(URL.createObjectURL(e.target.files[i]));
-  //     }
-  //     console.log(imageArr);
-  //     setImages(imageArr);
-  //   }
-  // };
+    if (!data) return [];
+    return data;
+  }
+
+  const [clothesImages, setClothesImages] = useState([]);
+
+  const [clothingSelector, setClothingSelector] = useState(false);
+
+  const [clothes, setClothes] = useState(getInitialClothes);
+
+  // cont [clothesChoices, setClothesChoices] = useState(clothesOptions)
+
+  const [sizeOptions, setSizeOptions] = useState([]);
+
+  const [clothesType, setClothesType] = useState("");
+
+  const [categories, setCategories] = useState([]);
+
+  const [formType, setFormType] = useState(""); //state to determine whether form will be clothes or accessory, as accessory doesn't have sizes.
+
+  const [isToggled, setIsToggled] = useState(false);
+
+  const [formPreviewImages, setFormPreviewImages] = useState([]);
+
+  const [status, setStatus] = useState("initial");
+
+  // useEffect(() => {
+  //   localStorage.setItem('clothes',JSON.stringify(clothes))
+  // }, [clothes])
+
 
   const handleSave = (newClothes) => {
     console.log("Clothes are", newClothes);
@@ -48,7 +62,7 @@ export default function ClothesUpload() {
     const discount = parseFloat(newClothes.discount);
     newClothes.discountedPrice = price - (price * discount) / 100;
 
-    // ADDING IMAGE PREVIEW ARR
+    // // ADDING IMAGE PREVIEW ARR
     let imageArr = [];
     setStatus("initial");
     for (let i = 0; i < newClothes.featuredImage.length; i++) {
@@ -57,12 +71,14 @@ export default function ClothesUpload() {
     for (let i = 0; i < newClothes.detailsImages.length; i++) {
       imageArr.push(URL.createObjectURL(newClothes.detailsImages[i]));
     }
-    console.log(imageArr);
+    // console.log(imageArr);
     newClothes.imgPreviews = imageArr;
-    // ADDING THE NEW OBJECT TO CLOTHES STATE
+    // // ADDING THE NEW OBJECT TO CLOTHES STATE
     setClothes((prevClothes) => {
       return [...prevClothes, newClothes];
     });
+
+
     // SETTING THE INITIAL PREVIEW BACK TO EMPTY ARRAY
     // setImages([]);
 
@@ -126,23 +142,6 @@ export default function ClothesUpload() {
 
   // console.log(clothesOptions);
 
-  const [clothesImages, setClothesImages] = useState([]);
-
-  const [clothingSelector, setClothingSelector] = useState(false);
-
-  const [clothes, setClothes] = useState([]);
-
-  // cont [clothesChoices, setClothesChoices] = useState(clothesOptions)
-
-  const [sizeOptions, setSizeOptions] = useState([]);
-
-  const [clothesType, setClothesType] = useState("");
-
-  const [categories, setCategories] = useState([]);
-
-  const [formType, setFormType] = useState(""); //state to determine whether form will be clothes or accessory, as accessory doesn't have sizes.
-
-  const [isToggled, setIsToggled] = useState(false);
 
   const [clothesData, setClothesData] = useState({
     type: "",
@@ -153,41 +152,7 @@ export default function ClothesUpload() {
     discountedPrice: "",
   });
 
-  // const [image, setImage] = useState();
-  // const [images, setImages] = useState([]);
-  const [formPreviewImages, setFormPreviewImages] = useState([]);
 
-  const [status, setStatus] = useState("initial");
-
- 
-
-
-  // const handleToggle = (formType, type) => {
-  //   console.log(formType)
-  //   // console.log(type)
-  //   if (formType === "accessory") {
-  //     console.log(type)
-  //     setSizeOptions(['all']);
-  //     clothesValues.type = "accessorio"
-  //     clothesValues.name = type
-  //     setCategories(clothesCategories.accessories)
-  //     setFormType('accessory');
-  //     setIsToggled(!isToggled)
-  //   } else if (formType === "clothing") {
-  //     console.log(type);
-  //     // setFormType('clothes');
-  //     setSizeOptions(clothesSizes[type]); //SETS SIZE OPTIONS ACCORDING TO WHICH BUTTON IS PRESSED TO RENDER FORM DYNAMICALLY
-  //     console.log(sizeOptions);
-  //     clothesValues.type = type; //SETS THE TYPE IN HOOK FORM DEFAULT VALUES ACCRDING TO WHICH BUTTON IS PRESSED TO PRE-FILL FORM
-  //     console.log(clothesValues);
-  //     setFormType('clothing')
-  //     setCategories(clothesCategories[type])
-  //     console.log(categories)
-  //     setIsToggled(!isToggled);
-  //     // console.log(sizeOptions)
-  //   }
-
-  // };
 
   const handleFormRender = (type, category) => {
     // console.log("AFTER CLICK I GET:", type);
@@ -439,3 +404,58 @@ export default function ClothesUpload() {
         placeholder="Inserisci sconto"
       /> */
 }
+
+  // const [image, setImage] = useState();
+  // const [images, setImages] = useState([]);
+
+ 
+
+
+  // const handleToggle = (formType, type) => {
+  //   console.log(formType)
+  //   // console.log(type)
+  //   if (formType === "accessory") {
+  //     console.log(type)
+  //     setSizeOptions(['all']);
+  //     clothesValues.type = "accessorio"
+  //     clothesValues.name = type
+  //     setCategories(clothesCategories.accessories)
+  //     setFormType('accessory');
+  //     setIsToggled(!isToggled)
+  //   } else if (formType === "clothing") {
+  //     console.log(type);
+  //     // setFormType('clothes');
+  //     setSizeOptions(clothesSizes[type]); //SETS SIZE OPTIONS ACCORDING TO WHICH BUTTON IS PRESSED TO RENDER FORM DYNAMICALLY
+  //     console.log(sizeOptions);
+  //     clothesValues.type = type; //SETS THE TYPE IN HOOK FORM DEFAULT VALUES ACCRDING TO WHICH BUTTON IS PRESSED TO PRE-FILL FORM
+  //     console.log(clothesValues);
+  //     setFormType('clothing')
+  //     setCategories(clothesCategories[type])
+  //     console.log(categories)
+  //     setIsToggled(!isToggled);
+  //     // console.log(sizeOptions)
+  //   }
+
+  // };
+
+
+  // const handleFileChange = (files) => {
+  //   const imageUrls = Array.from(files).map((file) =>
+  //     URL.createObjectURL(file)
+  //   );
+  //   setImages(imageUrls); // Update preview state
+  // };
+
+
+  //  const handleFileChange = (e) => {
+  //   console.log(e)
+  //   if (e.target.files) {
+  //     let imageArr = [];
+  //     setStatus("initial");
+  //     for (let i = 0; i < e.target.files.length; i++) {
+  //       imageArr.push(URL.createObjectURL(e.target.files[i]));
+  //     }
+  //     console.log(imageArr);
+  //     setImages(imageArr);
+  //   }
+  // };
