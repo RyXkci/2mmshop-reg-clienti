@@ -21,7 +21,8 @@ input[type='file'] {
 .clothes-upload-main__title {
   color: var(--primary-600);
   font-weight: 900;
-  font-size: 3rem;
+  font-size: 2rem;
+  padding: 1.3rem;
 }
 
 .clothes-details__title {
@@ -45,7 +46,6 @@ max-width: 1200px;
 
 
 .clothes-upload-section {
-  width: 70%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -54,6 +54,8 @@ max-width: 1200px;
 
 .clothes-upload-buttons {
   display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
   gap: 1.3em;
 }
 
@@ -94,16 +96,85 @@ max-width: 1200px;
   position: relative;
 }
 
-.images-container {
+
+
+
+
+/*  CLOTHES FORM LAYOUT */
+.clothes-form {
+  padding:1.3em;
   display: flex;
-  gap: 1.3em;
+  flex-direction: column;
   justify-content: center;
-  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.3em;
+  /* border: 1px solid var(--primary-300); */
+  width: 100%;
 }
 
-.images-container img {
-  width: 150px;
+.images-input {
+  display: flex;
+  flex-direction: column;
+  gap: 1.3em;
 }
+
+.clothes-form-images-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.3em;
+
+}
+
+.clothes-form-details {
+  display: flex;
+  flex-direction: column;
+gap: 1.3em;
+text-align: left;
+}
+
+.clothes-input {
+  display: flex;
+  flex-direction: column;
+}
+
+.clothes-input > select,
+.clothes-input > input {
+  /* max-width: 250px;
+  margin: 0 auto; */
+  border-radius: 30px;
+  padding: .1em 3em;
+  border: none;
+  background: var(--primary-300);
+  color: white;
+}
+
+.clothes-input > select {
+  width: 100%;
+}
+
+
+
+.clothes-input > fieldset {
+  border: 1px solid var(--primary-300);
+}
+
+/* .size-checkboxes {
+  display: flex;
+  gap: 1.3em;
+} */
+
+.size-checkbox {
+  display: flex;
+  justify-content: space-between;
+  border-right: 1px solid var(--primary-300);
+}
+
+/* .clothes-form > div {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+} */
 
 .clothes-sex-input {
   display: flex;
@@ -130,32 +201,9 @@ max-width: 1200px;
   border-radius: 10px;
 }
 
-.clothes-input > select {
-  width: 100%;
-}
 
-.clothes-input > select,
-.clothes-input > input {
-  max-width: 250px;
-  margin: 0 auto;
-  border-radius: 30px;
-  padding: .1em 3em;
-  border: none;
-  background: var(--primary-300);
-  color: white;
-}
 
-.clothes-input > fieldset {
-  border: 1px solid var(--primary-300);
-}
 
-.size-checkboxes {
-  display: flex;
-  gap: 1.3em;
-}
-.size-checkbox {
-  border-right: 1px solid var(--primary-300);
-}
 
 .clothes-form__btn {
   background: var(--table-500);
@@ -170,24 +218,9 @@ max-width: 1200px;
 .clothes-form__btn:hover {
   transform: scale(1.1);
 }
-.clothes-form {
-  padding:1.3em;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 1.3em;
-  /* border: 1px solid var(--primary-300); */
-  width: 100%;
-}
 
-.clothes-form > div {
-  width: 80%;
-  display: flex;
-  justify-content: center;
-  margin: 0 auto;
-}
 
+/* CLOTHES UPLOADED SECTION */
 
 .clothes-section {
   display: flex;

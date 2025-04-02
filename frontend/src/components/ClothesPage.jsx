@@ -94,6 +94,9 @@ export default function ClothesPage() {
           return cloth.sizes.includes(parseInt(trouserSize));
         if (cloth.type === "shoes" && shoeSize)
           return cloth.sizes.includes(parseInt(shoeSize));
+        if(cloth.type === "accessory") {
+          return cloth
+        }
         return !topSize && !trouserSize && !shoeSize; // Include if no filters apply
       })
       .map((cloth) => {
@@ -106,6 +109,9 @@ export default function ClothesPage() {
         }
         if (cloth.type === "trousers" && trouserSize) {
           return { ...cloth, sizes: [parseInt(trouserSize, 10)] };
+        }
+        if (cloth.type === "accessory") {
+          return {...cloth, sizes: []}
         }
         return cloth;
       });

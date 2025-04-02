@@ -99,13 +99,14 @@ export default function ClothesForm({
 
 
       {previewImages.length > 0 && (
-        <div className="images-container">
+        <div className="clothes-form-images-container">
           {previewImages.map((img) => {
             return <img src={img} alt="" key={uuid()} />;
           })}
         </div>
       )}
-
+      
+      <div className="clothes-form-details">
       <div className="clothes-input clothes-type-input">
         <label htmlFor="clothesType">Tipo:</label>
         <input
@@ -227,6 +228,9 @@ export default function ClothesForm({
         />
       </div>
       {/* <button onClick={() => handleSave(clothesData)}>Salva</button> */}
+        
+      </div>
+     
       <button className="clothes-form__btn" type="submit">
         Salva
       </button>
