@@ -39,8 +39,8 @@ function App() {
             }
           />
           <Route path="/caricavestiti" element={<ClothesUpload />} />
-          <Route path="/promo" element={<ClothesPage />} />
-          <Route path="/promo/:id" element={<SingleClothing/>} />
+          <Route path="/mystylebox" element={<ClothesPage />} />
+          <Route path="/mystylebox/:id" element={<SingleClothing/>} />
         </Routes>
       </BrowserRouter>
     </>
