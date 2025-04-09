@@ -187,7 +187,7 @@ export default function ClothesUpload() {
         </h1>
         
         <button 
-        onClick={handleDelete}
+        // onClick={handleDelete}
         className="clothes-delete-btn">Inizia un mese nuovo</button>
 
         {!hasStarted && (
