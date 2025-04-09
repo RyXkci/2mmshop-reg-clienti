@@ -5,13 +5,7 @@ input[type='file'] {
   display: none;
 }
 
-.img-upload-btn {
-  background: var(--primary-300);
-  color: white;
-  padding: .5em 1em;
-  border-radius: 30px;
-  display: inline-block;
-}
+
 
 .clothes-upload-main {
   font-family: "Playfair Display", serif;
@@ -21,7 +15,7 @@ input[type='file'] {
 .clothes-upload-main__title {
   color: var(--primary-600);
   font-weight: 900;
-  font-size: 2rem;
+  font-size: 2.5rem;
   padding: 1.3rem;
 }
 
@@ -34,14 +28,14 @@ input[type='file'] {
 }
 
 .clothes-upload-main {
-width: 80%;
+width: 90%;
 max-width: 1200px;
   display: flex;
   gap: 1.3em;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 3em;
+  padding: 1.3em;
 }
 
 
@@ -56,12 +50,13 @@ max-width: 1200px;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  gap: 1.3em;
+  gap: 2em;
 }
 
 .clothes-upload-button {
+  font-size: 2rem;
   border-radius: 30px;
-  padding: .8em 1em;
+  padding:1em 1.2em;
 }
 
 .btn-top {
@@ -112,6 +107,22 @@ max-width: 1200px;
   width: 100%;
 }
 
+.img-upload-btn {
+  background: var(--primary-300);
+  color: white;
+  font-size: 2rem;
+  padding: .5em 1em;
+  border-radius: 30px;
+  display: inline-block;
+}
+
+.featured-img-btn {
+  background-color: var(--table-500);
+}
+.details-img-btn {
+  background-color: var(--table-500);
+}
+
 .images-input {
   display: flex;
   flex-direction: column;
@@ -141,6 +152,7 @@ text-align: left;
 .clothes-input > input {
   /* max-width: 250px;
   margin: 0 auto; */
+  font-size: 2rem;
   border-radius: 30px;
   padding: .1em 3em;
   border: none;
@@ -158,17 +170,29 @@ text-align: left;
   border: 1px solid var(--primary-300);
 }
 
-/* .size-checkboxes {
+.size-checkboxes {
   display: flex;
+  flex-direction: column;
   gap: 1.3em;
-} */
+}
+
+
 
 .size-checkbox {
   display: flex;
   justify-content: space-between;
   border-right: 1px solid var(--primary-300);
+  gap: 1.3em;
 }
 
+.size-checkbox label {
+  font-size: 2rem;
+}
+
+.size-checkbox input {
+  height:25px;
+  width: 25px;
+}
 /* .clothes-form > div {
   width: 80%;
   display: flex;
@@ -209,7 +233,7 @@ text-align: left;
   background: var(--table-500);
   padding: .8em 2em;
   border-radius: 30px;
-  color: black;
+  color: white;
   font-size: 1.9rem;
   transition: all 150ms ease-in-out;
 }
