@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 const Clothing = require("../models/clothing");
 
+const { v4: uuidv4 } = require('uuid');
+
 // get all clothing
 
 const getClothing = async (req, res) => {
@@ -11,6 +13,8 @@ const getClothing = async (req, res) => {
     res.sendStatus(500);
   }
 };
+
+// get single clothing
 
 const getSingleClothing = async(req, res) => {
   const {id} = req.params
@@ -24,61 +28,47 @@ const getSingleClothing = async(req, res) => {
   }
 }
 
+// post clothing
+
 const postClothing = async (req, res, next) => {
-  console.log("BEGINNING OF CONTROLLER", req.body.clothing);
 
-  try {
-    // Parse the nested fields
-    const clothing = req.body.clothing; // Parse from FormData JSON
-    console.log("CLOTHING IS", typeof(clothing), clothing)
-    const files = req.files;
-    console.log("IMAGES ARE:", files)
+  const clothes = req.body;
+  const clothesImages = req.files
+  console.log("BEGINNING OF CONTROLLER", clothes);
+  console.log("BEGINNING OF CONTROLLER FILES:", clothesImages);
 
-    // Map files to their respective clothing items
+  const featuredImage = clothesImages.find(
+    (file) => file.fieldname === 'featured'
+  );
 
-   
+  console.log("FEATURED IMAGE IS:", featuredImage);
 
-    const structuredClothing = clothing.map((item, index) => {
+  const detailsImages = clothesImages
+  .filter((file) => file.fieldname === 'details');
 
-      const featuredImage = files.find(
-        (file) => file.fieldname === `clothing[${index}][images][featured]`
-      );
-      const detailsImages = files
-        .filter((file) => file.fieldname === `clothing[${index}][images][details]`)
-        .map((im) => ({ url: im.path, filename: im.filename }));
-      // console.log(itemImages)
+  console.log("DETAILS IMAGES ARE", detailsImages);
 
-      return {
-        ...item,
+   try {
+    
+      const newClothes = new Clothing({
+        id: uuidv4(),
         images: {
           featured: featuredImage ? { url: featuredImage.path, filename: featuredImage.filename } : null,
-          details: detailsImages,
+          details: detailsImages.map((im) => ({ url: im.path, filename: im.filename }))
         },
-      };
-    });
-
-    // console.log('Structured Clothing:', structuredClothing);
-    // structuredClothing.forEach((item, index) => {
-    //   console.log("ITEM IMAGES ARE", item.images)
-    // })
-
-    structuredClothing.forEach((item, index) => {
-      console.log(`CLOTHING ${index + 1} is`, item);
-      console.log(`CLOTHING ${index + 1} IMAGES ARE`, item.images);
-    });
-
-    const savedClothing = await Clothing.insertMany(structuredClothing);
-
-    res
-      .status(200)
-      .json({
-        message: "Clothing uploaded successfully",
-        data: savedClothing
+        ...req.body
       });
-  } catch (error) {
-    console.error("Error processing clothing:", error);
-    res.status(500).json({ error: "Failed to upload clothing" });
-  }
+      await newClothes.save();
+      res.status(200).json(newClothes);
+      console.log(newClothes)
+    } catch (error) {
+      console.log({error})
+      res.status(500).json({ error: error.message });
+      console.log(error)
+    }
+
+ 
+
 };
 
 module.exports = { getClothing, getSingleClothing, postClothing };

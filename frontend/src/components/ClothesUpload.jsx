@@ -19,20 +19,111 @@ export default function ClothesUpload() {
   const apiUrl = import.meta.env.VITE_API_URL;
 
   // BEGIN SAVE STUFF
+  const handleUpload = async (clothes) => {
+    const price = parseFloat(clothes.price);
+    const discount = parseFloat(clothes.discount);
+    clothes.discountedPrice = price - (price * discount) / 100;
+    const formData = new FormData();
+    console.log("CLOTHES IN UPLOAD:", clothes);
+
+     // Append the clothing object's metadata
+     formData.append('type', clothes.type);
+     formData.append('category', clothes.category);
+     formData.append('name', clothes.name)
+     formData.append('price', clothes.price);
+     formData.append(
+       'discountedPrice',
+      clothes.discountedPrice
+     );
+     formData.append('description', clothes.description);
+     clothes.sizes.forEach((size) => {
+       formData.append('sizes', size);
+     });
+     formData.append('sex', clothes.sex);
+
+      // Append featured image (one file per clothing item)
+   if (clothes.featuredImage) {
+     formData.append('featured', clothes.featuredImage[0]);
+   }
+
+     // Append each image for the current clothing object
+     Array.from(clothes.detailsImages).forEach((image, imgIndex) => {
+       formData.append('details', image);
+     });
+  
+
+    console.log(formData);
+
+    const response = await fetch(`${apiUrl}/api/clothing`, {
+      method: "POST",
+
+      body: formData,
+    });
+
+    // clothes.forEach((item, index) => {
+    //   // Append the clothing object's metadata
+    //   formData.append(`clothing[${index}][type]`, item.type);
+    //   formData.append(`clothing[${index}][category]`, item.category);
+    //   formData.append(`clothing[${index}][name]`, item.name)
+    //   formData.append(`clothing[${index}][price]`, item.price);
+    //   formData.append(
+    //     `clothing[${index}][discountedPrice]`,
+    //     item.discountedPrice
+    //   );
+    //   formData.append(`clothing[${index}][description]`, item.description);
+    //   item.sizes.forEach((size) => {
+    //     formData.append(`clothing[${index}][sizes]`, size);
+    //   });
+    //   formData.append(`clothing[${index}][sex]`, item.sex);
+
+    //    // Append featured image (one file per clothing item)
+    // if (item.featuredImage) {
+    //   formData.append(`clothing[${index}][images][featured]`, item.featuredImage[0]);
+    // }
+
+    //   // Append each image for the current clothing object
+    //   Array.from(item.detailsImages).forEach((image, imgIndex) => {
+    //     formData.append(`clothing[${index}][images][details]`, image);
+    //   });
+    // });
+    // console.log(formData)
 
 
-  const getInitialClothes = () => {
-    const data = JSON.parse(localStorage.getItem('clothes'));
+    // for (let [key, value] of formData.entries()) {
+    //   console.log(key, value);
+    // }
+    // console.log(formData);
+    // try {
+    //   const response = await fetch(`${apiUrl}/api/clothing`, {
+    //     method: "POST",
 
-    if (!data) return [];
-    return data;
-  }
+    //     body: formData,
+    //   });
+
+    //   if (!response.ok) {
+    //     throw new Error(`HTTP error! status: ${response.status}`);
+    //   }
+
+    //   const result = await response.json();
+    //   console.log("Response:", result);
+    // } catch (error) {
+    //   console.error("Error uploading data:", error);
+    // }
+  };
+
+
+  // const getInitialClothes = () => {
+  //   const data = JSON.parse(localStorage.getItem('clothes'));
+
+  //   if (!data) return [];
+  //   return data;
+  // }
 
   const [clothesImages, setClothesImages] = useState([]);
 
   const [clothingSelector, setClothingSelector] = useState(false);
 
-  const [clothes, setClothes] = useState(getInitialClothes);
+  // const [clothes, setClothes] = useState(getInitialClothes);
 
   // cont [clothesChoices, setClothesChoices] = useState(clothesOptions)
 
@@ -55,88 +146,8 @@ export default function ClothesUpload() {
   // }, [clothes])
 
 
-  const handleSave = (newClothes) => {
-    console.log("Clothes are", newClothes);
-    // CALCULATING AND SAVING THE DISCOUNTED PRiCE
-    const price = parseFloat(newClothes.price);
-    const discount = parseFloat(newClothes.discount);
-    newClothes.discountedPrice = price - (price * discount) / 100;
 
-    // // ADDING IMAGE PREVIEW ARR
-    let imageArr = [];
-    setStatus("initial");
-    for (let i = 0; i < newClothes.featuredImage.length; i++) {
-      imageArr.push(URL.createObjectURL(newClothes.featuredImage[i]));
-    }
-    for (let i = 0; i < newClothes.detailsImages.length; i++) {
-      imageArr.push(URL.createObjectURL(newClothes.detailsImages[i]));
-    }
-    // console.log(imageArr);
-    newClothes.imgPreviews = imageArr;
-    // // ADDING THE NEW OBJECT TO CLOTHES STATE
-    setClothes((prevClothes) => {
-      return [...prevClothes, newClothes];
-    });
-
-
-    // SETTING THE INITIAL PREVIEW BACK TO EMPTY ARRAY
-    // setImages([]);
-
-    // REMOVING AND EMPTYING FORM
-    setIsToggled(false);
-  };
-
-  const handleUpload = async () => {
-    const formData = new FormData();
-    console.log("CLOTHES IN UPLOAD:", clothes);
-    clothes.forEach((item, index) => {
-      // Append the clothing object's metadata
-      formData.append(`clothing[${index}][type]`, item.type);
-      formData.append(`clothing[${index}][category]`, item.category);
-      formData.append(`clothing[${index}][name]`, item.name)
-      formData.append(`clothing[${index}][price]`, item.price);
-      formData.append(
-        `clothing[${index}][discountedPrice]`,
-        item.discountedPrice
-      );
-      formData.append(`clothing[${index}][description]`, item.description);
-      item.sizes.forEach((size) => {
-        formData.append(`clothing[${index}][sizes]`, size);
-      });
-      formData.append(`clothing[${index}][sex]`, item.sex);
-
-       // Append featured image (one file per clothing item)
-    if (item.featuredImage) {
-      formData.append(`clothing[${index}][images][featured]`, item.featuredImage[0]);
-    }
-
-      // Append each image for the current clothing object
-      Array.from(item.detailsImages).forEach((image, imgIndex) => {
-        formData.append(`clothing[${index}][images][details]`, image);
-      });
-    });
-    // console.log(formData)
-    for (let [key, value] of formData.entries()) {
-      console.log(key, value);
-    }
-    console.log(formData);
-    try {
-      const response = await fetch(`${apiUrl}/api/clothing`, {
-        method: "POST",
-
-        body: formData,
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const result = await response.json();
-      console.log("Response:", result);
-    } catch (error) {
-      console.error("Error uploading data:", error);
-    }
-  };
+  
 
   //END SAVE STUFF
 
@@ -192,11 +203,6 @@ export default function ClothesUpload() {
         />
       )}
 
-      {/* <div className="accessory-picker">
-        {clothesCategories.accessories.map((accessory) => {
-          return <button onClick={() => handleToggle('accessory', accessory)} key={accessory}>{accessory}</button>
-        })}
-      </div> */}
       <section className="clothes-upload-main">
         <h1 className="clothes-upload-main__title">
           Ciao Giordano! Inizia a caricare la promo del mese!
@@ -257,7 +263,7 @@ export default function ClothesUpload() {
                   // imgPreviews={images}
                   registerOptions={registerOptions}
                   // handleFileChange={handleFileChange}
-                  handleSave={handleSave}
+                  handleSave={handleUpload}
                   formPreviewImages={formPreviewImages}
                 />
               </>
@@ -265,16 +271,16 @@ export default function ClothesUpload() {
           </div>
         </section>
 
-        {clothes && (
+        {/* {clothes && (
           <section className="clothes-section">
             <h1 className="clothes-section__title">Vestiti caricati:</h1>
             {clothes.map((item) => {
               return <ClothingItem item={item} />;
             })}
           </section>
-        )}
+        )} */}
       </section>
-      <button className="clothes-upload-save-btn" onClick={handleUpload}>Salva tutto</button>
+      {/* <button className="clothes-upload-save-btn" onClick={handleUpload}>Salva tutto</button> */}
     </main>
   );
 }
@@ -459,3 +465,10 @@ export default function ClothesUpload() {
   //     setImages(imageArr);
   //   }
   // };
+
+
+      {/* <div className="accessory-picker">
+        {clothesCategories.accessories.map((accessory) => {
+          return <button onClick={() => handleToggle('accessory', accessory)} key={accessory}>{accessory}</button>
+        })}
+      </div> */}  

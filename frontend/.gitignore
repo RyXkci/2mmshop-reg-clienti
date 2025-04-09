@@ -1,3 +1,8 @@
 node_modules/
 
 .env.local
+
+ClothesOldSave.jsx
+
+src/components/ClothesOldSave.jsx
+
