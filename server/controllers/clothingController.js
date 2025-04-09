@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 const Clothing = require("../models/clothing");
 
+const {cloudinary, storage} = require('../cloudinary');
+
 const { v4: uuidv4 } = require('uuid');
 
 // get all clothing
@@ -71,4 +73,52 @@ const postClothing = async (req, res, next) => {
 
 };
 
-module.exports = { getClothing, getSingleClothing, postClothing };
+const deleteClothing = async (req, res, next) => {
+
+  try {
+    // Fetch all clothing items from the database
+    const allClothingItems = await Clothing.find({});
+
+    if (allClothingItems.length === 0) {
+      return res.status(404).json({ message: 'No clothing items found to delete.' });
+    }
+
+    // Iterate through each clothing item and delete the associated images from Cloudinary
+    for (const clothingItem of allClothingItems) {
+      const { featured, details } = clothingItem.images || {};
+
+      // Delete featured image if it exists
+      if (featured && featured.filename) {
+        await cloudinary.uploader.destroy(featured.filename); // Delete the featured image from Cloudinary
+        console.log(`Deleted featured image: ${featured.filename}`);
+      }
+
+      // Delete all detail images if they exist
+      if (details && Array.isArray(details)) {
+        for (const detail of details) {
+          if (detail.filename) {
+            await cloudinary.uploader.destroy(detail.filename); // Delete each detail image from Cloudinary
+            console.log(`Deleted detail image: ${detail.filename}`);
+          }
+        }
+      }
+
+      // Delete the clothing item from MongoDB after deleting images
+      await Clothing.findByIdAndDelete(clothingItem._id);
+      console.log(`Deleted clothing item with ID: ${clothingItem._id}`);
+    }
+
+    // Respond with a success message
+    return res.status(200).json({ message: 'All clothing items and their images have been deleted successfully.' });
+
+  } catch (err) {
+    console.error('Error deleting clothing items and images:', err);
+    return res.status(500).json({ message: 'Error deleting clothing items and images', error: err.message });
+  }
+}
+
+
+  
+
+
+module.exports = { getClothing, getSingleClothing, postClothing, deleteClothing };
