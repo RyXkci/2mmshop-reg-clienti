@@ -243,6 +243,13 @@ text-align: left;
   transform: scale(1.1);
 }
 
+.clothes-delete-btn {
+  background-color: red;
+  padding: 3em;
+  color: white;
+
+}
+
 
 /* CLOTHES UPLOADED SECTION */
 

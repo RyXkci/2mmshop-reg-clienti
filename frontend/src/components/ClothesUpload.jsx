@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { v4 as uuid } from "uuid";
 
-
 import "../stylesheets/clothes-upload.css";
 
 import ClothingPicker from "./ClothingPicker";
@@ -19,7 +18,6 @@ import {
 
 export default function ClothesUpload() {
   const apiUrl = import.meta.env.VITE_API_URL;
-
 
   const [clothesImages, setClothesImages] = useState([]);
 
@@ -108,6 +106,29 @@ export default function ClothesUpload() {
 
   //END SAVE STUFF
 
+  // DELETE STUFF    ALL THIS WILL BE MOVED WHEN I HAVE TIME
+
+  const handleDelete = async () => {
+    try {
+      const response = await fetch(`${apiUrl}/api/clothing/delete`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const result = await response.json();
+
+      console.log("Deleted", result);
+    } catch (error) {
+      console.error("Error uploading data:", error);
+    }
+  };
+
   // console.log(clothesOptions);
 
   const [clothesData, setClothesData] = useState({
@@ -164,38 +185,40 @@ export default function ClothesUpload() {
         <h1 className="clothes-upload-main__title">
           Ciao Giordano! Inizia a caricare la promo del mese!
         </h1>
+        
+        <button 
+        onClick={handleDelete}
+        className="clothes-delete-btn">Inizia un mese nuovo</button>
 
         {!hasStarted && (
           <section className="clothes-upload-buttons">
-          <button
-            className="clothes-upload-button btn-top"
-            onClick={() => handleToggle("top")}
-          >
-            Carica top
-          </button>
-          <button
-            className="clothes-upload-button btn-trouser"
-            onClick={() => handleToggle("trousers")}
-          >
-            Carica pantalone
-          </button>
-          <button
-            className="clothes-upload-button btn-shoe"
-            onClick={() => handleToggle("shoes")}
-          >
-            Carica scarpe
-          </button>
+            <button
+              className="clothes-upload-button btn-top"
+              onClick={() => handleToggle("top")}
+            >
+              Carica top
+            </button>
+            <button
+              className="clothes-upload-button btn-trouser"
+              onClick={() => handleToggle("trousers")}
+            >
+              Carica pantalone
+            </button>
+            <button
+              className="clothes-upload-button btn-shoe"
+              onClick={() => handleToggle("shoes")}
+            >
+              Carica scarpe
+            </button>
 
-          <button
-            className="clothes-upload-button btn-accessory"
-            onClick={() => handleToggle("accessories")}
-          >
-            Carica accessorio
-          </button>
-        </section>
+            <button
+              className="clothes-upload-button btn-accessory"
+              onClick={() => handleToggle("accessories")}
+            >
+              Carica accessorio
+            </button>
+          </section>
         )}
-
-        
 
         <section className="clothes-upload-section">
           <div className="clothes-upload-details">
@@ -226,8 +249,6 @@ export default function ClothesUpload() {
                   // handleFileChange={handleFileChange}
                   handleSave={handleUpload}
                   formPreviewImages={formPreviewImages}
-  
-
                 />
               </>
             )}
