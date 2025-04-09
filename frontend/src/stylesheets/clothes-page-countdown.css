@@ -23,7 +23,7 @@
 }
 .clothes-page-countdown-inner h2 span {
     font-style: italic;
-    color: #D4AF37;
+    color: #588157;
 }
 
 .countdown {
@@ -43,7 +43,7 @@ background: linear-gradient(0deg, rgba(0, 0, 0, .3) rgba(0, 0, 0, 0));
     /* color: #a15722; */
     /* color: #b75e38; */
     /* color: #a3985c; */
-    color: #C39EA0
+    color: #588157;
     /* -webkit-text-stroke: .05rem black;
     text-stroke: .05rem black; */
 }
@@ -52,7 +52,7 @@ background: linear-gradient(0deg, rgba(0, 0, 0, .3) rgba(0, 0, 0, 0));
     display: block;
     font-size: .5em;
     font-style: italic;
-    color: #DAA520;
+    color: var(--dark-700);
     -webkit-text-stroke: 0px black;
     text-stroke: 0px black;
 
