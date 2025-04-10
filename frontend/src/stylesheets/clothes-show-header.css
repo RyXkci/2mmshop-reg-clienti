@@ -51,7 +51,7 @@
     
     text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.3); */
     color: var(--dark-700);
-    font-style: italic;
+    /* font-style: italic; */
     padding: .7em;
 }
 
@@ -63,7 +63,7 @@
 
 .clothes-show-header__intro {
 height: 500px;
-    background-image: url('../../public/intro-images/immagine-copertina.jpeg');
+    background-image: url('../../public/intro-images/imm-intro-6.jpeg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
