@@ -33,7 +33,7 @@ const getSingleClothing = async(req, res) => {
 // post clothing
 
 const postClothing = async (req, res, next) => {
-
+console.log("ROUTE HIT")
   const clothes = req.body;
   const clothesImages = req.files
   console.log("BEGINNING OF CONTROLLER", clothes);

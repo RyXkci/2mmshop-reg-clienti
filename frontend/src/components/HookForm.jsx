@@ -441,7 +441,7 @@ useEffect(() => {
                 Invia
               </button>
             </form>
-            {isLoading && <Spinner />}
+            {isLoading && <Spinner type="light" />}
           </div>
           {isSubmitted && (
             <Result content={resultText} clickFunc={clearResult} isSuccess={isSuccess}  />

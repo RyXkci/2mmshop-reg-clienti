@@ -1,4 +1,11 @@
 import { useState, useEffect } from "react";
+import {
+  useQuery,
+  useMutation,
+  useQueryClient,
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import reactLogo from "./assets/react.svg";
 
@@ -16,15 +23,20 @@ import HookForm from "./components/HookForm";
 
 import ClothesPage from "./components/ClothesPage";
 import ClothesUpload from "./components/ClothesUpload";
+import SingleClothingEdit from "./components/SingleClothingEdit";
 import SingleClothing from "./components/SingleClothing";
 
 import AuthWrapper from "./components/AuthWrapper";
 import Login from "./components/Login";
 
+const queryClient = new QueryClient();
+
 function App() {
   return (
     <>
-      <BrowserRouter>
+     <QueryClientProvider client={queryClient}>
+
+     <BrowserRouter>
         <Routes>
           <Route path="/" element={<HookForm />} />
           <Route 
@@ -39,10 +51,13 @@ function App() {
             }
           />
           <Route path="/caricavestiti" element={<ClothesUpload />} />
+          <Route path="/caricavestiti/modifica/:id" element={<SingleClothingEdit/>} />
           <Route path="/mystylebox" element={<ClothesPage />} />
           <Route path="/mystylebox/:id" element={<SingleClothing/>} />
         </Routes>
       </BrowserRouter>
+     </QueryClientProvider>
+    
     </>
   );
 }
