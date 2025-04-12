@@ -31,7 +31,7 @@ export default function ClothesPage() {
 
   const id = searchParams.get("id");
 
-
+console.log(trouserSize)
 
   const [clothes, setClothes] = useState([]);
   const [filteredClothes, setFilteredClothes] = useState([]);
@@ -92,9 +92,9 @@ export default function ClothesPage() {
           return cloth.sizes.includes(topSize);
     
         if (cloth.type === "trousers" && trouserSize)
-          return cloth.sizes.includes(parseInt(trouserSize));
+          return cloth.sizes.includes(trouserSize);
         if (cloth.type === "shoes" && shoeSize)
-          return cloth.sizes.includes(parseInt(shoeSize));
+          return cloth.sizes.includes(shoeSize);
         if(cloth.type === "accessory") {
           return cloth
         }
