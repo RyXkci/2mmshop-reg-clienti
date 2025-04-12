@@ -118,8 +118,9 @@ const deleteClothing = async (req, res, next) => {
 }
 
 
-const deleteSingleClothing = async() => {
+const deleteSingleClothing = async(req, res, next) => {
   const { id } = req.params;
+  console.log(id)
 
   try {
     const clothingItem = await Clothing.findById(id);

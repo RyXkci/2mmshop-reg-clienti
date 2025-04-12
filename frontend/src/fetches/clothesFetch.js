@@ -84,10 +84,10 @@ const deleteClothes = async () => {
   }
 };
 
-const deleteSingleClothing = async(id) => {
+const deleteSingleClothing = async(clothingId) => {
   try {
     const response = await fetch(`${apiUrl}/api/clothing/delete/${clothingId}`, {
-      method: "DELETE",
+      method: "POST",
     });
 
     if (!response.ok) {
