@@ -116,17 +116,17 @@ router.get('/', async (req, res) => {
 
                         parsedClient.params.ts = parsedClientSizes.shoeSize;
                         parsedClient.params.s = parsedClient.sex;
-                        parsedClient.params.id = parsedClient.id;
+                        parsedClient.params.id = "d9477d44-cfa0-49c6-a45d-d67c9005c747";
                     }
                     if (item.type === "trousers" && item.sizes.includes(parsedClientSizes.trouserSize)) {
                         parsedClient.params.tp = parsedClientSizes.trouserSize;
                         parsedClient.params.s = parsedClient.sex;
-                        parsedClient.params.id = parsedClient.id;
+                        parsedClient.params.id = "d9477d44-cfa0-49c6-a45d-d67c9005c747";
                     }
                     if (item.type === "top" && item.sizes.includes(parsedClientSizes.tshirtSize)) {
                         parsedClient.params.top = parsedClientSizes.tshirtSize;
                         parsedClient.params.s = parsedClient.sex;
-                        parsedClient.params.id = parsedClient.id;
+                        parsedClient.params.id = "d9477d44-cfa0-49c6-a45d-d67c9005c747";
                     }
                 }
             });

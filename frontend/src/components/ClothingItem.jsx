@@ -1,9 +1,41 @@
+import { useState } from "react";
+
+import { useMutation, useQueryClient, useQuery } from "@tanstack/react-query";
+import {
+ deleteSingleClothing
+} from "../fetches/clothesFetch";
 import { v4 as uuid } from "uuid";
 
 import { Link } from "react-router-dom";
 
+
 export default function ClothingItem({ item }) {
   const baseUrl = import.meta.env.VITE_LOCAL_URL;
+
+
+  const queryClient = useQueryClient();
+  
+  const [sending, setIsSending] = useState(false);
+
+  const clothesSingleDeletionMutation = useMutation({
+    mutationFn: deleteSingleClothing,
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["clothes"],
+      });
+      setIsSending(false);
+      console.log("Clothing item deleted successfully");
+    },
+    onError: (error) => {
+      console.error("Error deleting clothing item:", error);
+    },
+  });
+
+  const handleSingleDelete = () => {
+    setIsSending(true);
+    clothesSingleDeletionMutation.mutate();
+  };
+
 
   return (
     <div key={uuid()} className="clothes-container">
@@ -60,15 +92,15 @@ export default function ClothingItem({ item }) {
         </p>
       </div>
       <div className="clothes-container-buttons">
-        <Link
+        {/* <Link
           to={""}
           // to={`${baseUrl}/caricavestiti/modifica/${item._id}`}
 
         >
           Modifica
-        </Link>
+        </Link> */}
 
-        <button className="clothes-container-delete-button">Elimina</button>
+        {/* <button onClick={handleSingleDelete} className="clothes-container-delete-button">Elimina</button> */}
       </div>
     </div>
   );

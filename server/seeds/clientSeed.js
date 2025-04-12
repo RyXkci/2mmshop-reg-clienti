@@ -46,8 +46,16 @@ function getRandomItem(arr) {
     }
   };
 
-  seedClient().then(() => {
-    mongoose.connection.close();
-  });
+  const deleteClients = async () => {
+    await Client.deleteMany({});
+  }
+
+  deleteClients().then(() => {
+    mongoose.connection.close()
+  })
+
+  // seedClient().then(() => {
+  //   mongoose.connection.close();
+  // });
   
 

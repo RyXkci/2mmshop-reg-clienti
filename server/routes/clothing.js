@@ -5,7 +5,7 @@ const router = express.Router();
 const multer = require('multer');
 const {cloudinary, storage} = require('../cloudinary');
 const upload = multer({storage});
-const {getClothing, getSingleClothing, postClothing, deleteClothing} = require('../controllers/clothingController');
+const {getClothing, getSingleClothing, postClothing, deleteClothing, deleteSingleClothing} = require('../controllers/clothingController');
 
 // get all clothing
 
@@ -23,5 +23,7 @@ router.post('/', upload.any(), postClothing);
 //delete clothing
 router.post('/delete', upload.any(), deleteClothing);
 
+//delete single clothing
+router.delete('/delete/:id', deleteSingleClothing);
 
 module.exports = router;

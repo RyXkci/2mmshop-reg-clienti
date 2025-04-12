@@ -17,7 +17,7 @@ const sendMessage = (data) => {
 };
 
 const makeLink = (obj) => {
-  const baseLink = "http://localhost:5173/promo";
+  const baseLink = "https://2mmshop.it/club";
   const searchParams = new URLSearchParams(obj).toString();
   const link = `${baseLink}?${searchParams}`;
   console.log(`LINK IS ${link}`);
@@ -57,7 +57,7 @@ const getTextMessageInput = (messageVariables) => {
     to: messageVariables.phoneNumber,
     type: "template",
     template: {
-      name: "promo_test",
+      name: "mystylebox",
       language: {
         code: 'it'
       },
@@ -74,10 +74,7 @@ const getTextMessageInput = (messageVariables) => {
         {
           type: 'body',
           parameters: [
-            {
-              type: "text",
-              text: messageVariables.firstName
-            },
+          
             {
               type: "text",
               text: makeLink(messageVariables.params)
