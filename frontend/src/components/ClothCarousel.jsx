@@ -4,8 +4,18 @@ import BlazeSlider from "blaze-slider";
 import { v4 as uuid } from "uuid";
 import { useBlazeSlider } from "../hooks/useBlazeSlider";
 
+import {Cloudinary} from "@cloudinary/url-gen";
+import {AdvancedImage} from '@cloudinary/react';
+import {fill} from "@cloudinary/url-gen/actions/resize";
+
 import "blaze-slider/dist/blaze.css";
 import  "../stylesheets/cloth-carousel.css"
+
+const cld = new Cloudinary({
+  cloud: {
+    cloudName: 'dkhzi5hj9'
+  }
+});
 
 export default function ClothCarousel({ images }) {
   console.log(images);
@@ -24,9 +34,10 @@ export default function ClothCarousel({ images }) {
         <div className="blaze-track-container">
           <div className="blaze-track">
             {images.map((image) => {
+              const cldImage = cld.image(image.filename).format('auto').quality('auto')
               return (
                 <div key={uuid()} className="cloth-page-slide-container">
-                  <img src={image.url} className="slide-container-img" alt="" />
+                  <AdvancedImage cldImg={cldImage} />
                 </div>
               );
             })}
