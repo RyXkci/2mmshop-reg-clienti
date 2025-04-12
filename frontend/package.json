@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@cloudinary/react": "^1.14.1",
+    "@cloudinary/url-gen": "^1.21.0",
     "@fontsource-variable/montserrat": "^5.1.1",
     "@fontsource-variable/playfair-display": "^5.1.0",
     "@fontsource/lato": "^5.1.0",
