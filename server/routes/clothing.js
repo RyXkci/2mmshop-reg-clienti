@@ -24,6 +24,6 @@ router.post('/', upload.any(), postClothing);
 router.post('/delete', upload.any(), deleteClothing);
 
 //delete single clothing
-router.delete('/delete/:id', deleteSingleClothing);
+router.post('/delete/:id', deleteSingleClothing);
 
 module.exports = router;

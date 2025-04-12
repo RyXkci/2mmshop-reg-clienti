@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+
 import { useMutation, useQueryClient, useQuery } from "@tanstack/react-query";
 import {
  deleteSingleClothing
@@ -8,6 +9,8 @@ import { v4 as uuid } from "uuid";
 
 import { Link } from "react-router-dom";
 
+import Spinner from "./Spinner";
+
 
 export default function ClothingItem({ item }) {
   const baseUrl = import.meta.env.VITE_LOCAL_URL;
@@ -15,7 +18,7 @@ export default function ClothingItem({ item }) {
 
   const queryClient = useQueryClient();
   
-  const [sending, setIsSending] = useState(false);
+  const [isSending, setIsSending] = useState(false);
 
   const clothesSingleDeletionMutation = useMutation({
     mutationFn: deleteSingleClothing,
@@ -31,16 +34,17 @@ export default function ClothingItem({ item }) {
     },
   });
 
-  const handleSingleDelete = () => {
+  const handleSingleDelete = (id) => {
+    console.log(id)
     setIsSending(true);
-    clothesSingleDeletionMutation.mutate();
+    clothesSingleDeletionMutation.mutate(id);
   };
 
 
   return (
     <div key={uuid()} className="clothes-container">
       <div key={uuid()} className="clothes-images images-container">
-        {console.log("ITEM IS", item)}
+        {/* {console.log("ITEM IS", item)} */}
         <div className="clothes-details-images">
           <img src={item.images.featured.url} alt="Featured" />
 
@@ -69,7 +73,7 @@ export default function ClothingItem({ item }) {
         <div className="clothes-sizes">
           <p className="clothes-details-text__title">Taglie: </p>
           {item.sizes.map((size) => (
-            <p key={size} className="clothing-size">
+            <p key={uuid()} className="clothing-size">
               {size}
             </p>
           ))}
@@ -100,8 +104,9 @@ export default function ClothingItem({ item }) {
           Modifica
         </Link> */}
 
-        {/* <button onClick={handleSingleDelete} className="clothes-container-delete-button">Elimina</button> */}
+        <button onClick={() => handleSingleDelete(item._id)} className="clothes-container-delete-button">Elimina</button>
       </div>
+      {isSending && <Spinner type="dark" />}
     </div>
   );
 }
