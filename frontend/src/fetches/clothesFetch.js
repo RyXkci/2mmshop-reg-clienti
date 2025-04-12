@@ -84,4 +84,21 @@ const deleteClothes = async () => {
   }
 };
 
-export {getClothes, getSingleClothes, postClothes, deleteClothes};
+const deleteSingleClothing = async(id) => {
+  try {
+    const response = await fetch(`${apiUrl}/api/clothing/delete/${clothingId}`, {
+      method: "DELETE",
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const result = await response.json();
+    console.log("Deleted item:", result);
+  } catch (error) {
+    console.error("Error deleting clothing item:", error);
+  }
+};
+
+export {getClothes, getSingleClothes, postClothes, deleteClothes, deleteSingleClothing};

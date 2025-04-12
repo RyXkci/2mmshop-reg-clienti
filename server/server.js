@@ -48,6 +48,6 @@ app.use('/api/matchclient', matchRoutes)
 
 
 // FIRING UP SERVER
-app.listen(PORT, '0.0.0.0', () => {
+app.listen(PORT, () => {
     console.log('listening on port 4000')
 })

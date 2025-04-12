@@ -24,12 +24,13 @@ export default function ClothesPage() {
 
 
   const topSize = searchParams.get("top");
-  const trouserSize = searchParams.get("tp");
-  const shoeSize = searchParams.get("ts");
+  const trouserSize = String(searchParams.get("tp"));
+  const shoeSize = String(searchParams.get("ts"));
   const sex = searchParams.get("s");
   console.log(sex)
 
   const id = searchParams.get("id");
+
 
 
   const [clothes, setClothes] = useState([]);
@@ -89,7 +90,7 @@ export default function ClothesPage() {
         if (sex && cloth.sex !== sex) return false;
         if (cloth.type === "top" && topSize)
           return cloth.sizes.includes(topSize);
-        // if (cloth.type === "trousers" && trouserWaist) return cloth.size === parseInt(trouserWaist, 10);
+    
         if (cloth.type === "trousers" && trouserSize)
           return cloth.sizes.includes(parseInt(trouserSize));
         if (cloth.type === "shoes" && shoeSize)

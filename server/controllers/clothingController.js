@@ -118,7 +118,45 @@ const deleteClothing = async (req, res, next) => {
 }
 
 
+const deleteSingleClothing = async() => {
+  const { id } = req.params;
+
+  try {
+    const clothingItem = await Clothing.findById(id);
+    if (!clothingItem) {
+      return res.status(404).json({ message: 'Clothing item not found.' });
+    }
+
+    const { featured, details } = clothingItem.images || {};
+
+    // Delete featured image from Cloudinary
+    if (featured?.filename) {
+      await cloudinary.uploader.destroy(featured.filename);
+      console.log(`Deleted featured image: ${featured.filename}`);
+    }
+
+    // Delete detail images from Cloudinary
+    if (Array.isArray(details)) {
+      for (const detail of details) {
+        if (detail.filename) {
+          await cloudinary.uploader.destroy(detail.filename);
+          console.log(`Deleted detail image: ${detail.filename}`);
+        }
+      }
+    }
+
+    // Delete the clothing item from the database
+    await Clothing.findByIdAndDelete(id);
+    console.log(`Deleted clothing item with ID: ${id}`);
+
+    return res.status(200).json({ message: 'Clothing item deleted successfully.' });
+  } catch (err) {
+    console.error('Error deleting clothing item:', err);
+    return res.status(500).json({ message: 'Error deleting clothing item', error: err.message });
+  }
+}
+
   
 
 
-module.exports = { getClothing, getSingleClothing, postClothing, deleteClothing };
+module.exports = { getClothing, getSingleClothing, postClothing, deleteClothing, deleteSingleClothing};
