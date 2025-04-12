@@ -29,8 +29,8 @@
 .clothes-show-header-logo__text::after {
     position: absolute;
     content: "";
-    left: -3em;
-    right: -3em;
+    left: -5%;
+    right: -5%;
     bottom: 0;
     background: black;
     height: 3px;

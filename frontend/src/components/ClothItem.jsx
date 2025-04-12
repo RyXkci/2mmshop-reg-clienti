@@ -40,7 +40,7 @@ export default function ClothItem({ item }) {
         {" "}
         <h2 className="clothes-card-details__title">{item.name}</h2>
         <p className="clothes-card-details__price">
-          <span>{item.price}€</span> {item.discountedPrice}€
+          <span>{item.price}€</span> {Math.ceil(item.discountedPrice)}€
         </p>
         {/* <a href="" className="clothes-card-details__btn">
           Vedi di più
