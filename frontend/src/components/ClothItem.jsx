@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 import {Cloudinary} from "@cloudinary/url-gen";
 import {AdvancedImage} from '@cloudinary/react';
-import {fill} from "@cloudinary/url-gen/actions/resize";
+import {fill, scale} from "@cloudinary/url-gen/actions/resize";
 
 export default function ClothItem({ item }) {
     
@@ -24,6 +24,7 @@ export default function ClothItem({ item }) {
     .image(item.images.featured.filename)
     .format('auto')
     .quality('auto')
+    .resize(scale().width(300))
 
 
   return (
