@@ -35,6 +35,24 @@ export default function ClothesUpload() {
     queryFn: getClothes,
   });
 
+  const sendMessage = async() => {
+    
+     setIsSending(true)
+      try {
+        const response = await fetch(`${apiUrl}/api/matchClient`);
+        if (!response.ok) throw new Error("Network response was not ok");
+        const result = await response.json();
+        console.log(result.messaggio)
+        setMessageText(result.messaggio)
+        setIsSending(false)
+      } catch (err) {
+        // setError(err.message);
+      } finally {
+        // setLoading(false);
+      }
+    };
+  
+
   console.log(clothes.data);
 
   const [clothesImages, setClothesImages] = useState([]);
@@ -62,6 +80,8 @@ export default function ClothesUpload() {
   const [status, setStatus] = useState("initial");
 
   const [isSending, setIsSending] = useState(false);
+
+  const [messageText, setMessageText] = useState(null);
 
   // BEGIN SAVE STUFF
 
@@ -212,10 +232,12 @@ export default function ClothesUpload() {
             {clothes.data?.map((item) => {
               return <ClothingItem key={item.id} item={item} />;
             })}
-            <button className="clothes-upload-save-btn">Invia messaggi!</button>
+            <button onClick={sendMessage} className="clothes-upload-save-btn">Invia messaggi!</button>
             {/* <button className="clothes-upload-save-btn" onClick={handleDelete}>
               Inizia un mese nuovo
             </button> */}
+
+            {messageText && <h3>{messageText}</h3>}
             
           </section>
         )}

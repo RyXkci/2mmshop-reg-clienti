@@ -116,17 +116,17 @@ router.get('/', async (req, res) => {
 
                         parsedClient.params.ts = parsedClientSizes.shoeSize;
                         parsedClient.params.s = parsedClient.sex;
-                        parsedClient.params.id = "d9477d44-cfa0-49c6-a45d-d67c9005c747";
+                        parsedClient.params.id = parsedClient.id;
                     }
                     if (item.type === "trousers" && item.sizes.includes(parsedClientSizes.trouserSize)) {
                         parsedClient.params.tp = parsedClientSizes.trouserSize;
                         parsedClient.params.s = parsedClient.sex;
-                        parsedClient.params.id = "d9477d44-cfa0-49c6-a45d-d67c9005c747";
+                        parsedClient.params.id = parsedClient.id;
                     }
                     if (item.type === "top" && item.sizes.includes(parsedClientSizes.tshirtSize)) {
                         parsedClient.params.top = parsedClientSizes.tshirtSize;
                         parsedClient.params.s = parsedClient.sex;
-                        parsedClient.params.id = "d9477d44-cfa0-49c6-a45d-d67c9005c747";
+                        parsedClient.params.id = parsedClient.id;
                     }
                 }
             });
@@ -142,6 +142,7 @@ router.get('/', async (req, res) => {
         res.status(200).json({
             success: true,
             message: `${matchedClients.length} clients found with matching clothing.`,
+            messaggio: `Sono stati inviati ${matchedClients.length} messaggi!`,
             matchedClients,
         });
     } catch (error) {
