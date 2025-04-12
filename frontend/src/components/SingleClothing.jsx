@@ -114,7 +114,7 @@ ${pageUrl}`);
               {cloth.price}€{" "}
             </span>
             <span className="cloth-details-discount">
-              {cloth.discountedPrice}€
+              {Math.ceil(cloth.discountedPrice)}€
             </span>
           </p>
           <div className="cloth-details-description-container">
