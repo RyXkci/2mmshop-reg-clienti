@@ -213,10 +213,9 @@ export default function ClothesUpload() {
               return <ClothingItem key={item.id} item={item} />;
             })}
             <button className="clothes-upload-save-btn">Invia messaggi!</button>
-            <button className="clothes-upload-save-btn">
-            {/* <button className="clothes-upload-save-btn" onClick={handleDelete}> */}
+            {/* <button className="clothes-upload-save-btn" onClick={handleDelete}>
               Inizia un mese nuovo
-            </button>
+            </button> */}
             
           </section>
         )}
