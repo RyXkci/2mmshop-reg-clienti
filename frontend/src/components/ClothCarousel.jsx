@@ -6,7 +6,7 @@ import { useBlazeSlider } from "../hooks/useBlazeSlider";
 
 import {Cloudinary} from "@cloudinary/url-gen";
 import {AdvancedImage} from '@cloudinary/react';
-import {fill} from "@cloudinary/url-gen/actions/resize";
+import {fill, scale} from "@cloudinary/url-gen/actions/resize";
 
 import "blaze-slider/dist/blaze.css";
 import  "../stylesheets/cloth-carousel.css"
@@ -34,7 +34,7 @@ export default function ClothCarousel({ images }) {
         <div className="blaze-track-container">
           <div className="blaze-track">
             {images.map((image) => {
-              const cldImage = cld.image(image.filename).format('auto').quality('auto')
+              const cldImage = cld.image(image.filename).format('auto').quality('auto').resize(scale().width(400))
               return (
                 <div key={uuid()} className="cloth-page-slide-container">
                   <AdvancedImage cldImg={cldImage} />

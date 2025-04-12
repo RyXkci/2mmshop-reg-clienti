@@ -52,8 +52,8 @@ function App() {
           />
           <Route path="/caricavestiti" element={<ClothesUpload />} />
           <Route path="/caricavestiti/modifica/:id" element={<SingleClothingEdit/>} />
-          <Route path="/mystylebox" element={<ClothesPage />} />
-          <Route path="/mystylebox/:id" element={<SingleClothing/>} />
+          <Route path="/club" element={<ClothesPage />} />
+          <Route path="/club/:id" element={<SingleClothing/>} />
         </Routes>
       </BrowserRouter>
      </QueryClientProvider>

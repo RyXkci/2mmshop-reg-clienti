@@ -45,7 +45,7 @@ export default function ClothItem({ item }) {
         {/* <a href="" className="clothes-card-details__btn">
           Vedi di più
         </a> */}
-        <Link to={`${baseUrl}/promo/${item._id}?cs=${size}`} className="clothes-card-details__btn">Scopri</Link>
+        <Link to={`${baseUrl}/club/${item._id}?cs=${size}`} className="clothes-card-details__btn">Scopri</Link>
       </div>
     </div>
   );

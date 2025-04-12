@@ -1,4 +1,7 @@
-
+.cloth-single-section {
+    max-width: 400px;
+    margin: 0 auto;
+}
 
 .cloth-single-section__carousel {
     padding: 1em;
@@ -19,6 +22,7 @@
 .cloth-details-price-span {
     position: relative;
 }
+
 .cloth-details-price-span::before {
     content: "";
     background: var(--primary-600);
@@ -42,7 +46,16 @@
     padding: 1em;
     margin-top: .8em;
     width: 100%;
-    background: #C2C5AA;
+    background: #F5F3EF;
+}
+
+.cloth-single-section__title {
+    color: var(--primary-600);
+}
+
+.cloth-details-description {
+    color: var(--primary-600);
+    line-height: 1.6;
 }
 
 .clothes-single-section-contact__buttons,
@@ -74,4 +87,4 @@
 .clothes-single-contact-address span {
     display: block;
     text-align: center;
-} 
+}
