@@ -20,45 +20,16 @@ const { sendMessage, getTextMessageInput, makeFakeText } = require("../utils/mes
 // console.log(getTextMessageInput);
 router.use(bodyParser.json());
 
-// const messageVariables = {
-//   name: "Fabio",
-//   topSize: "m",
-//   trouserSize: "44"
-// }
-
-// router.get('/', (req, res) => {
-// const data = getTextMessageInput(process.env.RECIPIENT_WAID, messageVariables);
-// console.log(data)
-// sendMessage(data)
-//   .then((response) => {
-//     console.log('API Response:', response.data); // Log the full API response
-//     res.status(200).json({
-//       success: true,
-//       message: 'Message sent successfully.',
-//       response: response.data,
-//     });
-//   })
-//   .catch((error) => {
-//     console.error('Error:', error.message);
-//     if (error.response?.data) {
-//       console.error('API Error Response:', error.response.data); // Log API error details
-//     }
-//     res.status(500).json({
-//       success: false,
-//       error: error.response?.data || error.message,
-//     });
-//   });
-// })
 
 
 const messageClient = (parsedClient) => {
     const data = getTextMessageInput(parsedClient);
-    makeFakeText(parsedClient)
-    console.log(data)
+    // makeFakeText(parsedClient)
+    console.log("DATA", data)
     console.log(data)
     sendMessage(data)
   .then((response) => {
-    console.log('API Response:', response.data); // Log the full API response
+    // console.log('API Response:', response.data); // Log the full API response
     res.status(200).json({
       success: true,
       message: 'Message sent successfully.',
@@ -78,10 +49,6 @@ const messageClient = (parsedClient) => {
 }
 
 
-
-const doSomething = (client) => {
-    console.log(client)
-}
 
 router.get('/', async (req, res) => {
     try {
@@ -130,8 +97,7 @@ router.get('/', async (req, res) => {
                     }
                 }
             });
-        
-            // Call doSomething if there are matches
+    
             if (Object.keys(parsedClient.params).length > 0) {
                 
                 matchedClients.push(parsedClient);
