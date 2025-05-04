@@ -54,8 +54,9 @@ const createClient = async (req, res) => {
   });
   const result = clientSchema.validate(req.body);
   if (result.error) {
-    return res.status(400).json(result.error);
     console.log(result.error);
+    return res.status(400).json(result.error);
+ 
   }
   try {
   

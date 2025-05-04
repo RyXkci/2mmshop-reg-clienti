@@ -32,20 +32,6 @@ const makeFakeText= (parsedClient) => {
 }
 
 
-// const makeLink = (obj) => {
-//   let baseLink = "http://localhost:5173/promo";
-//   let link;
-//   let params = [];
-
-//   for (const property in obj) {
-//       console.log(`${property}: ${obj[property]}`);
-//       params.push(`${property}=${obj[property]}`)
-//     }
-//     link = `${baseLink}?${params.join('&')}`
-//     console.log(`PARAMS ARE ${params}`)
-//     console.log(`LINK IS ${link}`)
-//     return link
-//   }
 
 
 const getTextMessageInput = (messageVariables) => {
@@ -86,8 +72,40 @@ const getTextMessageInput = (messageVariables) => {
   });
 };
 
+
+const makeBirthdayText = (client) => {
+  console.log(client)
+  return JSON.stringify({
+    messaging_product: "whatsapp",
+    preview_url: false,
+    recipient_type: "individual",
+    to: client.phoneNumber,
+    type: "template",
+    template: {
+      name: "birthday",
+      language: {
+        code: 'it'
+      },
+      components: [
+        {
+          type: 'header',
+          parameters: [
+            {
+              type: "text",
+              text: client.firstName
+            }
+          ]
+        }
+      ]
+    },
+  });
+}
+
+
+
 module.exports = {
   sendMessage,
   getTextMessageInput,
-  makeFakeText
+  makeFakeText,
+  makeBirthdayText
 };
