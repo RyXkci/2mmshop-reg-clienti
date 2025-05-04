@@ -1,0 +1,15 @@
+name: Daily Birthday API Trigger
+
+on:
+  schedule:
+    - cron: '0 16 * * *'  # 16:00 UTC = 18:00 Italy time (CEST)
+  workflow_dispatch:       # Optional: lets you trigger manually
+
+jobs:
+  call-api:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call Birthday API Endpoint
+        run: |
+          echo "Calling birthday API at $(date -u)"
+          curl -s https://twommshop-server.onrender.com/api/birthday
