@@ -2,7 +2,7 @@ name: Daily Birthday API Trigger
 
 on:
   schedule:
-    - cron: '*/5 * * * *'  # 16:00 UTC = 18:30 Italy time (CEST)
+    - cron: '30 7 * * *'  # 16:00 UTC = 18:30 Italy time (CEST)
   workflow_dispatch:       # Optional: lets you trigger manually
 
 jobs:
