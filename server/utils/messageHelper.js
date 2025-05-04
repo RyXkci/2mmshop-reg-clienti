@@ -1,7 +1,5 @@
 const axios = require("axios");
 
-
-
 const sendMessage = (data) => {
   const config = {
     method: "post",
@@ -12,7 +10,7 @@ const sendMessage = (data) => {
     },
     data: data,
   };
-  console.log(config)
+  console.log(config);
   return axios(config);
 };
 
@@ -22,20 +20,17 @@ const makeLink = (obj) => {
   const link = `${baseLink}?${searchParams}`;
   console.log(`LINK IS ${link}`);
   return link;
-}
+};
 
-const makeFakeText= (parsedClient) => {
+const makeFakeText = (parsedClient) => {
   const name = parsedClient.firstName;
   const link = makeLink(parsedClient.params);
   console.log(`Ciao, {name}! Ecco la tua selezone di capi su misura, con un prezzo riservato solo per te. Scoprila ora!
- ${link}`)
-}
-
-
-
+ ${link}`);
+};
 
 const getTextMessageInput = (messageVariables) => {
-    console.log(messageVariables)
+  console.log(messageVariables);
   return JSON.stringify({
     messaging_product: "whatsapp",
     preview_url: false,
@@ -45,36 +40,67 @@ const getTextMessageInput = (messageVariables) => {
     template: {
       name: "mystylebox",
       language: {
-        code: 'it'
+        code: "it",
       },
       components: [
         {
-          type: 'header',
+          type: "header",
           parameters: [
             {
               type: "text",
-              text: messageVariables.firstName
-            }
-          ]
+              text: messageVariables.firstName,
+            },
+          ],
         },
         {
-          type: 'body',
+          type: "body",
           parameters: [
-          
             {
               type: "text",
-              text: makeLink(messageVariables.params)
-            }
-          ]
+              text: makeLink(messageVariables.params),
+            },
+          ],
         },
-      ]
+      ],
     },
   });
 };
 
+const makeReminderText = (messageVariables) => {
+  console.log(messageVariables);
+  return JSON.stringify({
+    messaging_product: "whatsapp",
+    preview_url: false,
+    recipient_type: "individual",
+    to: messageVariables.phoneNumber,
+    type: "template",
+    template: {
+      name: "mystylebox_reminder",
+      language: {
+        code: "it",
+      },
+      components: [
+        {
+          type: "body",
+          parameters: [
+            {
+              type: "text",
+              text: messageVariables.firstName,
+            },
+
+            {
+              type: "text",
+              text: makeLink(messageVariables.params),
+            },
+          ],
+        },
+      ],
+    },
+  });
+};
 
 const makeBirthdayText = (client) => {
-  console.log(client)
+  console.log(client);
   return JSON.stringify({
     messaging_product: "whatsapp",
     preview_url: false,
@@ -84,28 +110,27 @@ const makeBirthdayText = (client) => {
     template: {
       name: "birthday",
       language: {
-        code: 'it'
+        code: "it",
       },
       components: [
         {
-          type: 'header',
+          type: "header",
           parameters: [
             {
               type: "text",
-              text: client.firstName
-            }
-          ]
-        }
-      ]
+              text: client.firstName,
+            },
+          ],
+        },
+      ],
     },
   });
-}
-
-
+};
 
 module.exports = {
   sendMessage,
   getTextMessageInput,
   makeFakeText,
-  makeBirthdayText
+  makeReminderText,
+  makeBirthdayText,
 };
