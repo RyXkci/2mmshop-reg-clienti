@@ -48,7 +48,6 @@ app.use('/api/ping', pingRoutes)
 app.use('/api/matchclient', matchRoutes)
 app.use('/api/birthday', birthdayRoute)
 
-
 // FIRING UP SERVER
 app.listen(PORT, () => {
     console.log('listening on port 4000')
