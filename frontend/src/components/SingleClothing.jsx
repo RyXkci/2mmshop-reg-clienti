@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import ClothesShowHeader from "./ClothesShowHeader";
 
@@ -24,6 +25,10 @@ export default function SingleClothing() {
   const { id } = useParams();
 
   const [searchParams, setSearchParams] = useSearchParams();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from || '/default-path';
+  console.log(from)
 
   const { name, changeName } = useClient();
   const { lastName, changeLastName } = useClient();
@@ -120,7 +125,7 @@ ${pageUrl}`);
             >
               Mi interessa
             </button>
-            {/* <Link className="clothes-single-contact-back">Vedi altro</Link> */}
+            <Link to={from} className="clothes-single-contact-back">Vedi altro</Link>
           </div>
           <div className="clothes-single-section-contact__icons">
             <a
