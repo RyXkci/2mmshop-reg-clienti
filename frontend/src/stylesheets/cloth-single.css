@@ -83,8 +83,14 @@
     color: white;
 }
 
+.clothes-single-contact-phone,
+.clothes-single-contact-address {
+    color: var(--primary-600);
+}
+
 .clothes-single-contact-phone span,
 .clothes-single-contact-address span {
     display: block;
     text-align: center;
+    color: var(--primary-600);
 }

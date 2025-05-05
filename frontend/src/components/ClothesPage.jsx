@@ -27,11 +27,11 @@ export default function ClothesPage() {
   const trouserSize = String(searchParams.get("tp"));
   const shoeSize = String(searchParams.get("ts"));
   const sex = searchParams.get("s");
-  console.log(sex)
+  // console.log(sex)
 
   const id = searchParams.get("id");
 
-console.log(trouserSize)
+// console.log(trouserSize)
 
   const [clothes, setClothes] = useState([]);
   const [filteredClothes, setFilteredClothes] = useState([]);
@@ -66,7 +66,7 @@ console.log(trouserSize)
           throw new Error("Client not found");
         }
         const json = await response.json();
-        console.log("CLIENT IS", json)
+        // console.log("CLIENT IS", json)
         setClientName(json.firstName);
         changeName(json.firstName);
         changeLastName(json.lastName);
@@ -83,7 +83,7 @@ console.log(trouserSize)
   
 
   const applyFilters = (data) => {
-    console.log(data);
+    // console.log(data);
 
     const filtered = data
       .filter((cloth) => {
@@ -95,7 +95,7 @@ console.log(trouserSize)
           return cloth.sizes.includes(trouserSize);
         if (cloth.type === "shoes" && shoeSize)
           return cloth.sizes.includes(shoeSize);
-        if(cloth.type === "accessory") {
+        if(cloth.type === "accessories") {
           return cloth
         }
         return !topSize && !trouserSize && !shoeSize; // Include if no filters apply
@@ -118,7 +118,7 @@ console.log(trouserSize)
       });
 
     setFilteredClothes(filtered); // Update displayed data
-    console.log("FILTERED CLOTHES ARE:", filteredClothes);
+    // console.log("FILTERED CLOTHES ARE:", filteredClothes);
   };
 
   const filterClothes = (topSize, trouserWaist, shoeSize, sex) => {
@@ -158,7 +158,7 @@ console.log(trouserSize)
   };
 
   const filterSize = (sizes, clientSize) => {
-    console.log("SIZES ARE:", sizes, "CLIENT SIZE IS:", clientSize);
+    // console.log("SIZES ARE:", sizes, "CLIENT SIZE IS:", clientSize);
     // const filteredSize = sizes.filter((item) => item === clientSize)
     // console.log(filteredSize)
     return sizes.filter((item) => item === clientSize);

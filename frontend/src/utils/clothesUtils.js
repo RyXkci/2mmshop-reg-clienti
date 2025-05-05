@@ -53,7 +53,7 @@ const groupClothes = (clothes) => {
       }
     });
   });
-  console.log("GROUPED CLOTHES:", groupedClothes);
+  // console.log("GROUPED CLOTHES:", groupedClothes);
   return groupedClothes
 };
 
