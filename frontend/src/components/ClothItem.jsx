@@ -8,7 +8,7 @@ export default function ClothItem({ item }) {
     
    const baseUrl = import.meta.env.VITE_LOCAL_URL;
     // console.log(baseUrl)
-    console.log("CLOTH ITEM IN clothItem IS", item)
+    // console.log("CLOTH ITEM IN clothItem IS", item)
     const size = item.sizes.join()
     // console.log("clientInfo is:", clientInfo)
 
