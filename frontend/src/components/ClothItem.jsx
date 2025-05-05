@@ -1,10 +1,14 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import {Cloudinary} from "@cloudinary/url-gen";
 import {AdvancedImage} from '@cloudinary/react';
 import {fill, scale} from "@cloudinary/url-gen/actions/resize";
 
 export default function ClothItem({ item }) {
+
+  const location = useLocation();
+  const currentUrl = location.pathname + location.search;
+  console.log(currentUrl)
     
    const baseUrl = import.meta.env.VITE_LOCAL_URL;
     // console.log(baseUrl)
@@ -45,7 +49,11 @@ export default function ClothItem({ item }) {
         {/* <a href="" className="clothes-card-details__btn">
           Vedi di più
         </a> */}
-        <Link to={`${baseUrl}/club/${item._id}?cs=${size}`} className="clothes-card-details__btn">Scopri</Link>
+        <Link to={`${baseUrl}/club/${item._id}?cs=${size}`}
+        state={{ from: currentUrl }} 
+        className="clothes-card-details__btn">
+          Scopri
+          </Link>
       </div>
     </div>
   );
