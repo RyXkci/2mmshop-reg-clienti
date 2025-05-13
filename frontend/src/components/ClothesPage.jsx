@@ -38,7 +38,7 @@ export default function ClothesPage() {
   const [clientName, setClientName] = useState("");
   const [clientSizes, setClientSizes] = useState("") // state to be passed to clothes component to set as url param in single view
   
-  const [startDate, setStartDate] = useState("");
+  const [startDate, setStartDate] = useState(null);
 
 
 
@@ -51,7 +51,7 @@ export default function ClothesPage() {
 
       applyFilters(json);
 
-      setStartDate(json[0].createdAt);
+      // setStartDate(json[0].createdAt);
    
     };
 
@@ -81,6 +81,19 @@ export default function ClothesPage() {
     fetchClientName();
   }, []);
   
+  useEffect(() => {
+    const fetchStartDate = async () => {
+      try {
+        const response = await fetch(`${apiUrl}/api/getDate`);
+        const data = await response.json();
+        setStartDate(data.promoDate); // This is a string ISO date
+      } catch (err) {
+        console.error('Error fetching promotion start date:', err);
+      }
+    };
+
+    fetchStartDate();
+  }, []);
 
   const applyFilters = (data) => {
     // console.log(data);
@@ -172,7 +185,7 @@ export default function ClothesPage() {
   return (
     <>
       {<ClothesShowHeader intro={true} name={clientName} />}
-      {<CountdownTimer startDate={startDate} />}
+      {startDate && <CountdownTimer startDate={startDate} />}
 
       {Object.keys(groupedClothes).map((category) => {
         return (
