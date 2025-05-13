@@ -23,7 +23,7 @@ import HookForm from "./components/HookForm";
 
 import ClothesPage from "./components/ClothesPage";
 import ClothesUpload from "./components/ClothesUpload";
-import SingleClothingEdit from "./components/SingleClothingEdit";
+// import SingleClothingEdit from "./components/SingleClothingEdit";
 import SingleClothing from "./components/SingleClothing";
 
 import AuthWrapper from "./components/AuthWrapper";
@@ -51,7 +51,7 @@ function App() {
             }
           />
           <Route path="/caricavestiti" element={<ClothesUpload />} />
-          <Route path="/caricavestiti/modifica/:id" element={<SingleClothingEdit/>} />
+          {/* <Route path="/caricavestiti/modifica/:id" element={<SingleClothingEdit/>} /> */}
           <Route path="/club" element={<ClothesPage />} />
           <Route path="/club/:id" element={<SingleClothing/>} />
         </Routes>

@@ -3,11 +3,14 @@ const groupClothes = (clothes) => {
 
   const groupOrder = [
     "piumino",
+    "giubbino",
     "cappotto",
     "giacca",
     "maglia",
     "felpa",
     "shirt",
+    "abiti",
+    "tailleur",
     "tshirt",
     "pantalone",
     "denim",
@@ -54,6 +57,7 @@ const groupClothes = (clothes) => {
     });
   });
   // console.log("GROUPED CLOTHES:", groupedClothes);
+  console.log(groupedClothes)
   return groupedClothes
 };
 
