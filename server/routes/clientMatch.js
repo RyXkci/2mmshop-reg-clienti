@@ -5,6 +5,7 @@ const router = express.Router();
 
 const Client= require("../models/clients");
 const Clothing= require("../models/clothing");
+const AppSettings = require('../models/appSettings');
 
 
 // const {findMatch} = require('../utils/findMatch');
@@ -51,6 +52,17 @@ const messageClient = (parsedClient) => {
 
 
 router.get('/', async (req, res) => {
+    const today = new Date();
+
+    let settings = await AppSettings.findOne();
+if (!settings) {
+  settings = new AppSettings({ promoDate: today });
+} else {
+  settings.promoDate = today;
+}
+await settings.save();
+
+
     try {
         // Fetch all clients and clothing from the database
         const clients = await Client.find({});

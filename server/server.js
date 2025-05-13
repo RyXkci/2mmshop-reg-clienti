@@ -28,6 +28,7 @@ const clothingRoutes = require('./routes/clothing');
 const pingRoutes = require('./routes/ping');
 const matchRoutes = require('./routes/clientMatch');
 const birthdayRoute = require('./routes/birthday');
+const dateRoute = require('./routes/promoDate')
 
 // MIDDLEWARE
 app.use(express.json());
@@ -47,6 +48,7 @@ app.use('/api/clothing', clothingRoutes)
 app.use('/api/ping', pingRoutes)
 app.use('/api/matchclient', matchRoutes)
 app.use('/api/birthday', birthdayRoute)
+app.use('/api/getDate', dateRoute)
 
 // FIRING UP SERVER
 app.listen(PORT, () => {

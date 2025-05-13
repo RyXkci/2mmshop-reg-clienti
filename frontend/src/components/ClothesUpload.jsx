@@ -33,23 +33,21 @@ export default function ClothesUpload() {
     queryFn: getClothes,
   });
 
-  const sendMessage = async() => {
-    
-     setIsSending(true)
-      try {
-        const response = await fetch(`${apiUrl}/api/matchClient`);
-        if (!response.ok) throw new Error("Network response was not ok");
-        const result = await response.json();
-        console.log(result.messaggio)
-        setMessageText(result.messaggio)
-        setIsSending(false)
-      } catch (err) {
-        // setError(err.message);
-      } finally {
-        // setLoading(false);
-      }
-    };
-  
+  const sendMessage = async () => {
+    setIsSending(true);
+    try {
+      const response = await fetch(`${apiUrl}/api/matchClient`);
+      if (!response.ok) throw new Error("Network response was not ok");
+      const result = await response.json();
+      console.log(result.messaggio);
+      setMessageText(result.messaggio);
+      setIsSending(false);
+    } catch (err) {
+      // setError(err.message);
+    } finally {
+      // setLoading(false);
+    }
+  };
 
   // console.log(clothes.data);
 
@@ -112,6 +110,11 @@ export default function ClothesUpload() {
   });
 
   const handleDelete = () => {
+    const confirmed = window.confirm(
+      "Are you sure you want to delete all clothing items?"
+    );
+    if (!confirmed) return;
+
     setIsSending(true);
     clothesDeletionMutation.mutate();
   };
@@ -186,6 +189,10 @@ export default function ClothesUpload() {
             >
               Carica accessorio
             </button>
+
+            <button className="clothes-delete-btn" onClick={handleDelete}>
+              Inizia un mese nuovo
+            </button>
           </section>
         )}
 
@@ -216,13 +223,11 @@ export default function ClothesUpload() {
             {clothes.data?.map((item) => {
               return <ClothingItem key={item.id} item={item} />;
             })}
-            <button onClick={sendMessage} className="clothes-upload-save-btn">Invia messaggi!</button>
-            {/* <button className="clothes-upload-save-btn" onClick={handleDelete}>
-              Inizia un mese nuovo
-            </button> */}
+            <button onClick={sendMessage} className="clothes-upload-save-btn">
+              Invia messaggi!
+            </button>
 
             {messageText && <h3>{messageText}</h3>}
-            
           </section>
         )}
       </section>

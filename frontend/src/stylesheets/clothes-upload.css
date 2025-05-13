@@ -245,8 +245,11 @@ text-align: left;
 
 .clothes-delete-btn {
   background-color: red;
-  padding: 3em;
+  padding: .8em 2em;
   color: white;
+  border-radius: 30px;
+  font-size: 1.9rem;
+  text-transform: uppercase;
 
 }
 
