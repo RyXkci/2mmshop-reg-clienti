@@ -14,10 +14,10 @@ const clothesValues = {
 const clothesOptions = {
   top: {
     sizes: ["xs", "s", "m", "l", "xl", "xxl"],
-    categories: ["piumino", "cappotto", "giacca", "maglia", "felpa", "shirt", "tshirt"],
+    categories: ["piumino", "giubbino", "cappotto", "giacca", "maglia", "felpa", "shirt", "tshirt", "abiti", "tailleur"],
   },
   trousers: {
-    sizes: ["38", "40", "42", "44", "46", "48", "50"],
+    sizes: ["38", "40", "42", "44", "46", "48", "50", "52", "54", "56", "58"],
     categories: ["pantalone", "denim", "bermuda"],
   },
   shoes: {
@@ -30,19 +30,6 @@ const clothesOptions = {
   }
 }
 
-const clothesSizes = {
-  top: ["xs", "s", "m", "l", "xl", "xxl"],
-  trousers: ["38", "40", "42", "44", "46", "48", "50", "52", "54", "56"],
-  shoes: ["36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46"],
-  accessories: ["all"]
-};
-
-const clothesCategories = {
-  top: ["piumino", "giacca", "cappotto", "shirt"],
-  trousers: ["pantaloni", "denim", "bermuda", "costume da bagno"],
-  shoes: ["sneaker", "scarpa elegante", "scarpa casual"],
-  accessories: ["cinture", "calze", "borse", "sciarpe", "cappellini", "scarpe"]
-};
 
 const registerOptions = {
   type: {
@@ -77,4 +64,4 @@ const registerOptions = {
   }
 };
 
-export { clothesOptions, clothesValues, clothesSizes, clothesCategories, registerOptions };
+export { clothesOptions, clothesValues, registerOptions };

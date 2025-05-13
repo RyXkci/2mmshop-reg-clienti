@@ -20,8 +20,6 @@ import ClothesForm from "./ClothesForm";
 import {
   clothesOptions,
   clothesValues,
-  clothesSizes,
-  clothesCategories,
   registerOptions,
 } from "../utils/clothesFormUtils";
 
@@ -53,15 +51,11 @@ export default function ClothesUpload() {
     };
   
 
-  console.log(clothes.data);
+  // console.log(clothes.data);
 
   const [clothesImages, setClothesImages] = useState([]);
 
   const [clothingSelector, setClothingSelector] = useState(false);
-
-  // const [clothes, setClothes] = useState(getInitialClothes);
-
-  // cont [clothesChoices, setClothesChoices] = useState(clothesOptions)
 
   const [sizeOptions, setSizeOptions] = useState([]);
 
@@ -124,20 +118,10 @@ export default function ClothesUpload() {
 
   //END SAVE STUFF
 
-  // const [clothesData, setClothesData] = useState({
-  //   type: "",
-  //   sex: "",
-  //   size: "",
-  //   images: [],
-  //   price: "",
-  //   discountedPrice: "",
-  // });
-
   const handleFormRender = (type, category) => {
     // console.log("AFTER CLICK I GET:", type);
     // console.log("I ALSO GET", category);
-    setSizeOptions(clothesSizes[type]);
-    console.log(clothesSizes);
+    setSizeOptions(clothesOptions[type].sizes);
     clothesValues.type = type;
     clothesValues.category = category;
     // console.log("VALUES ARE", clothesValues);
