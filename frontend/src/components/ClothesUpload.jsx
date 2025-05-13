@@ -111,7 +111,7 @@ export default function ClothesUpload() {
 
   const handleDelete = () => {
     const confirmed = window.confirm(
-      "Are you sure you want to delete all clothing items?"
+      "Sei sicuro di voler eliminare tutti i vestiti"
     );
     if (!confirmed) return;
 
