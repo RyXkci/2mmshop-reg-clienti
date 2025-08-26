@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const twilio = require("twilio");
 
 const router = express.Router();
 
@@ -17,37 +18,20 @@ const bodyParser = require('body-parser');
 // const dotenv = require("dotenv");
 // dotenv.config();
 
-const { sendMessage, getTextMessageInput, makeFakeText } = require("../utils/messageHelper");
+const { createMessage, sendMessage, makePromoData } = require("../utils/messageHelper");
 // console.log(getTextMessageInput);
 router.use(bodyParser.json());
 
 
 
 const messageClient = (parsedClient) => {
-    const data = getTextMessageInput(parsedClient);
+    const data = makePromoData(parsedClient);
     // makeFakeText(parsedClient)
-    console.log("DATA", data)
-    console.log(data)
-    sendMessage(data)
-  .then((response) => {
-    // console.log('API Response:', response.data); // Log the full API response
-    res.status(200).json({
-      success: true,
-      message: 'Message sent successfully.',
-      response: response.data,
-    });
-  })
-  .catch((error) => {
-    console.error('Error:', error.message);
-    if (error.response?.data) {
-      console.error('API Error Response:', error.response.data); // Log API error details
-    }
-    // res.status(500).json({
-    //   success: false,
-    //   error: error.response?.data || error.message,
-    // });
-  });
+    // console.log("DATA", data)
+    // console.log(data)
+   createMessage(data)
 }
+
 
 
 
