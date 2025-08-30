@@ -10,7 +10,7 @@ const messageClient = (name, phoneNumber, url) => {
     recipient: phoneNumber,
     url: url,
   };
-  // sendFlyerMessage(data);
+  sendFlyerMessage(data);
   console.log("DATA FOR MESSAGE IS:", data);
 };
 
