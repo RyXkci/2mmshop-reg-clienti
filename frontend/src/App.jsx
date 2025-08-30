@@ -52,7 +52,7 @@ function App() {
             }
           />
           <Route path="/caricavestiti" element={<ClothesUpload />} />
-          <Route path="/caricavoucher" element={<FlyerUpload />} />
+          <Route path="/caricavolantino" element={<FlyerUpload />} />
           {/* <Route path="/caricavestiti/modifica/:id" element={<SingleClothingEdit/>} /> */}
           <Route path="/club" element={<ClothesPage />} />
           <Route path="/club/:id" element={<SingleClothing/>} />
