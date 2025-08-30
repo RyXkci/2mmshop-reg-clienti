@@ -28,8 +28,8 @@ const messageClient = (parsedClient) => {
     const data = makePromoData(parsedClient);
     // makeFakeText(parsedClient)
     // console.log("DATA", data)
-    // console.log(data)
-   createMessage(data)
+    console.log(data)
+//    createMessage(data)
 }
 
 

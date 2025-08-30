@@ -1,0 +1,41 @@
+.voucher-upload-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+    padding: 2em;
+}
+
+.flyer-form {
+  padding:1.3em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.3em;
+  /* border: 1px solid var(--primary-300); */
+  width: 100%;
+}
+
+
+
+
+.voucher-upload-btn {
+  font-size: 2rem;
+  border-radius: 30px;
+  padding:1em 1.2em;
+}
+
+.voucher-btn-m {
+  background-color: var(--primary-600);
+  color: white;
+}
+
+.voucher-btn-f {
+  background-color: var(--table-500);
+}
+
+.flyer-success {
+  color: var(--table-500);
+}

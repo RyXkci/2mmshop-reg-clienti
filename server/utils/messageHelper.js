@@ -5,53 +5,52 @@ const accountSid = process.env.TWILIO_ACCOUNT_SID;
 
 const authToken = process.env.TWILIO_AUTH_TOKEN;
 
-const baseSender = process.env.TWILIO_WAPP_NUMBER
+const baseSender = process.env.TWILIO_WAPP_NUMBER;
 
 const client = twilio(accountSid, authToken);
 
-async function createMessage(data) {
- if(!data) return;
- 
-  const message = await client.messages.create({
+//  MESSAGE SENDERS
 
+async function createMessage(data) {
+  if (!data) return;
+
+  const message = await client.messages.create({
     contentSid: "HX7b64d9d545cab3cb58d0c0c81b76b4e3",
 
-    contentVariables: JSON.stringify({ 1: data?.firstName, 2: data?.messageLink }),
+    contentVariables: JSON.stringify({
+      1: data?.firstName,
+      2: data?.messageLink,
+    }),
 
     from: `whatsapp:${baseSender}`,
 
     to: `whatsapp:${data?.recipient}`,
-
   });
-
 
   console.log(message.body);
 
-createMessage();
-console.log("DATA IN NEW FUNCTION IS:", data)
-
-
+  createMessage();
+  console.log("DATA IN NEW FUNCTION IS:", data);
 }
 
+async function sendFlyerMessage(data) {
+  if (!data) return;
 
-const sendMessage = (data) => {
+  const message = await client.messages.create({
+    contentSid: "HX3f574e14508375187b0c6721e240f1ff",
 
-  const config = {
-    method: "post",
-    url: `https://graph.facebook.com/${process.env.VERSION}/${process.env.PHONE_NUMBER_ID}/messages`,
-    headers: {
-      Authorization: `Bearer ${process.env.ACCESS_TOKEN}`,
-      "Content-Type": "application/json",
-    },
-    data: data,
-  };
-  console.log(config);
-  return axios(config);
-};
+    contentVariables: JSON.stringify({ 1: data?.firstName, 2: data?.url }),
 
+    from: `whatsapp:${baseSender}`,
 
+    to: `whatsapp:${data?.recipient}`,
+  });
 
+  console.log(message.body);
+  sendFlyerMessage();
+}
 
+//  MESSAGE DATA CONSTRUCTORS
 
 const makeLink = (obj) => {
   const baseLink = "https://2mmshop.it/club";
@@ -60,6 +59,15 @@ const makeLink = (obj) => {
   console.log(`LINK IS ${link}`);
   return link;
 };
+
+const makePromoData = (messageVariables) => {
+  return {
+    firstName: messageVariables.firstName,
+    messageLink: makeLink(messageVariables.params),
+    recipient: messageVariables.phoneNumber,
+  };
+};
+
 
 // const makeFakeText = (parsedClient) => {
 //   const name = parsedClient.firstName;
@@ -105,13 +113,19 @@ const makeLink = (obj) => {
 //   });
 // };
 
-const makePromoData = (messageVariables) => {
-  return {
-    firstName: messageVariables.firstName,
-    messageLink: makeLink(messageVariables.params),
-    recipient: messageVariables.phoneNumber
-  }
-}
+// const sendMessage = (data) => {
+//   const config = {
+//     method: "post",
+//     url: `https://graph.facebook.com/${process.env.VERSION}/${process.env.PHONE_NUMBER_ID}/messages`,
+//     headers: {
+//       Authorization: `Bearer ${process.env.ACCESS_TOKEN}`,
+//       "Content-Type": "application/json",
+//     },
+//     data: data,
+//   };
+//   console.log(config);
+//   return axios(config);
+// };
 
 const makeReminderText = (messageVariables) => {
   console.log(messageVariables);
@@ -176,7 +190,7 @@ const makeBirthdayText = (client) => {
 
 module.exports = {
   createMessage,
-  sendMessage,
+  sendFlyerMessage,
   makePromoData,
   makeReminderText,
   makeBirthdayText,

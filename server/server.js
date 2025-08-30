@@ -25,6 +25,7 @@ mongoose
 const clientRoutes = require('./routes/clients');
 const adminRoutes = require('./routes/admin');
 const clothingRoutes = require('./routes/clothing');
+const flyerRoutes = require('./routes/flyer');
 const pingRoutes = require('./routes/ping');
 const matchRoutes = require('./routes/clientMatch');
 const birthdayRoute = require('./routes/birthday');
@@ -45,6 +46,7 @@ app.use(cors({
 app.use('/api/clients', clientRoutes)
 app.use('/api/admin', adminRoutes)
 app.use('/api/clothing', clothingRoutes)
+app.use('/api/flyer', flyerRoutes)
 app.use('/api/ping', pingRoutes)
 app.use('/api/matchclient', matchRoutes)
 app.use('/api/birthday', birthdayRoute)

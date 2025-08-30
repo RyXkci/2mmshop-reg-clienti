@@ -25,6 +25,7 @@ import ClothesPage from "./components/ClothesPage";
 import ClothesUpload from "./components/ClothesUpload";
 // import SingleClothingEdit from "./components/SingleClothingEdit";
 import SingleClothing from "./components/SingleClothing";
+import FlyerUpload from "./components/FlyerUpload";
 
 import AuthWrapper from "./components/AuthWrapper";
 import Login from "./components/Login";
@@ -51,6 +52,7 @@ function App() {
             }
           />
           <Route path="/caricavestiti" element={<ClothesUpload />} />
+          <Route path="/caricavoucher" element={<FlyerUpload />} />
           {/* <Route path="/caricavestiti/modifica/:id" element={<SingleClothingEdit/>} /> */}
           <Route path="/club" element={<ClothesPage />} />
           <Route path="/club/:id" element={<SingleClothing/>} />

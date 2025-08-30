@@ -1,7 +1,9 @@
 const cloudinary = require('cloudinary').v2;
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
 
-const testFolder = '2mmTest';
+const promoFolder = process.env.CLOUDINARY_PROMO_DIR;
+const flyerFolder = process.env.CLOUDINARY_FLYER_DIR;
+
 
 const deleteTestFolder = '2mmdeleteTest';
 
@@ -14,9 +16,16 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
     cloudinary,
     params: {
-        folder: testFolder,
+        folder: promoFolder,
     }
 });
 
-module.exports = {cloudinary, storage};
+const flyerStorage = new CloudinaryStorage({
+    cloudinary,
+    params: {
+        folder: flyerFolder
+    }
+})
+
+module.exports = {cloudinary, storage, flyerStorage};
 
