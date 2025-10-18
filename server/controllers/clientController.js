@@ -11,6 +11,7 @@ const getClients = async (req, res) => {
     const clients = await Client.find({}).sort({ createdAt: -1 });
     res.status(200).json(clients);
   } catch (error) {
+    console.log(error);
     res.sendStatus(500);
   }
 };
