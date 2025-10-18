@@ -9,6 +9,8 @@ const baseSender = process.env.TWILIO_WAPP_NUMBER;
 
 const client = twilio(accountSid, authToken);
 
+console.log(client)
+
 //  MESSAGE SENDERS
 
 async function createMessage(data) {
@@ -35,7 +37,7 @@ async function createMessage(data) {
 
 async function sendFlyerMessage(data) {
   if (!data) return;
-
+console.log('DATA IN MESSAGE IS:', data)
   const message = await client.messages.create({
     contentSid: "HX3f574e14508375187b0c6721e240f1ff",
 
@@ -50,6 +52,22 @@ async function sendFlyerMessage(data) {
   sendFlyerMessage();
 }
 
+async function sendCardMessage(data) {
+  if (!data) return;
+console.log("DATA IN MESSAGE:", data)
+  const message = await client.messages.create({
+    contentSid: "HX830de6dac0dccbd73e3b62825582faef",
+
+    contentVariables: JSON.stringify({ 1: data?.firstName }),
+
+    from: `whatsapp:${baseSender}`,
+
+    to: `whatsapp:${data?.recipient}`,
+  });
+
+  console.log(message.body);
+  // sendCardMessage()
+}
 //  MESSAGE DATA CONSTRUCTORS
 
 const makeLink = (obj) => {
@@ -191,6 +209,7 @@ const makeBirthdayText = (client) => {
 module.exports = {
   createMessage,
   sendFlyerMessage,
+  sendCardMessage,
   makePromoData,
   makeReminderText,
   makeBirthdayText,
