@@ -3,6 +3,9 @@ const { v4: uuidv4 } = require('uuid');
 const Client = require("../models/clients");
 const Joi = require("joi");
 
+// TWILIO
+const {sendCardMessage} = require('../utils/messageHelper');
+
 
 
 // Get all clients
@@ -68,6 +71,7 @@ const createClient = async (req, res) => {
     await client.save();
     res.status(200).json(client);
     console.log(client)
+    sendCardMessage({firstName: client.firstName, recipient: client.phoneNumber})
   } catch (error) {
     console.log({error})
     res.status(500).json({ error: error.message });
