@@ -13,6 +13,8 @@ console.log(client)
 
 //  MESSAGE SENDERS
 
+
+//    PROMO MESSAGE
 async function createMessage(data) {
   if (!data) return;
 
@@ -35,6 +37,8 @@ async function createMessage(data) {
   console.log("DATA IN NEW FUNCTION IS:", data);
 }
 
+//   FLYER MESSAGE
+
 async function sendFlyerMessage(data) {
   if (!data) return;
 console.log('DATA IN MESSAGE IS:', data)
@@ -52,6 +56,8 @@ console.log('DATA IN MESSAGE IS:', data)
   sendFlyerMessage();
 }
 
+//   CARD MESSAGE FOR AUTOMATIC SENDING ON SUBSCRIPTION
+
 async function sendCardMessage(data) {
   if (!data) return;
 console.log("DATA IN MESSAGE:", data)
@@ -67,6 +73,43 @@ console.log("DATA IN MESSAGE:", data)
 
   console.log(message.body);
   // sendCardMessage()
+}
+
+//   PRE BIRTHDAY MESSAGE
+
+async function sendPreBirthdayMessage(data) {
+  if (!data) return;
+console.log("DATA IN MESSAGE:", data)
+  const message = await client.messages.create({
+    contentSid: "HXe8a0997f3ebb5832f3da50a3467b76a9",
+
+    contentVariables: JSON.stringify({ 1: data?.firstName }),
+
+    from: `whatsapp:${baseSender}`,
+
+    to: `whatsapp:${data?.recipient}`,
+  });
+
+  console.log(message.body);
+  sendPreBirthdayMessage()
+}
+
+//   BIRTHDAY MESSAGE
+async function sendBirthdayMessage(data) {
+  if (!data) return;
+console.log("DATA IN MESSAGE:", data)
+  const message = await client.messages.create({
+    contentSid: "HX25690fa9f6cc886fbf967378b7b7ed36",
+
+    contentVariables: JSON.stringify({ 1: data?.firstName }),
+
+    from: `whatsapp:${baseSender}`,
+
+    to: `whatsapp:${data?.recipient}`,
+  });
+
+  console.log(message.body);
+  sendPreBirthdayMessage()
 }
 //  MESSAGE DATA CONSTRUCTORS
 
@@ -210,6 +253,8 @@ module.exports = {
   createMessage,
   sendFlyerMessage,
   sendCardMessage,
+  sendPreBirthdayMessage,
+  sendBirthdayMessage,
   makePromoData,
   makeReminderText,
   makeBirthdayText,
