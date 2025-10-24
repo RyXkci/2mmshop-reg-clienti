@@ -73,6 +73,8 @@ router.get("/", async (req, res, next) => {
       }
     });
 
+    console.log('Birthdays checked')
+
     res.send("Checked birthdays. See console for results!");
   } catch (error) {
     console.error(error);
